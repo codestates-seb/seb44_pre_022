@@ -24,7 +24,13 @@ module.exports = {
           'input-border-click': '#59A4DE',
           'input-effect': '#BABFC4',
 
+          'logo-hover': '#E3E6E8',
+          footer: '#232629',
+          border: '#D6D9DC',
+
           button: {
+            'header-hover': '#D6D9DC',
+
             white: '#FFFFFF',
             'white-hover': '#F8F9F9',
             'white-click': '#E3E6E8',
