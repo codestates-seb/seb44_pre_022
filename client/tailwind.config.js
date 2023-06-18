@@ -32,18 +32,21 @@ module.exports = {
             'header-hover': '#D6D9DC',
 
             white: '#FFFFFF',
+            'white-border': '#9FA6AD',
             'white-hover': '#F8F9F9',
             'white-click': '#E3E6E8',
             'white-effect': '#E9E9E9',
             'white-text': '#525960',
 
             sky: '#E1ECF4',
+            'sky-border': '#7AA7C7',
             'sky-hover': '#B3D3EA',
             'sky-click': '#A0C8E4',
             'sky-effect': '#D9EAF7',
-            'sky-text': '#E1ECF4',
+            'sky-text': '#39739D',
 
             blue: '#0A95FF',
+            'blue-border': '#0A95FF',
             'blue-hover': '#0074CC',
             'blue-click': '#0063BF',
             'blue-effect': '#D8EAF7',
