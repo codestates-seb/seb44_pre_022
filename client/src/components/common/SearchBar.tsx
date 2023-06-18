@@ -1,7 +1,10 @@
 import React from 'react';
 import tw from 'twin.macro';
 
-const SearchBarContainerOrigin = tw.div`h-[60px]`;
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+
+const SearchBarContainerOrigin = tw.section`h-[60px]`;
 const SearchBarLargeContainer = tw(SearchBarContainerOrigin)`w-[790px]`;
 const SearchBarShortContainer = tw(SearchBarContainerOrigin)`w-[300px]`;
 
@@ -12,11 +15,16 @@ const SearchBarContainerTypes: {
   short: SearchBarShortContainer,
 };
 
-const SearchBar = tw.input`
+const SearchBar = tw.form`
 w-full h-full
-p-[15px] gap-[10px] border-[2px] border-gray-300 rounded-[10px]
-flex flex-row items-start
+px-[15px] py-[10px] gap-[10px] border-[2px] border-gray-300 rounded-[10px]
+flex justify-center items-center
 `;
+
+const SearchIcon = tw(FontAwesomeIcon)`
+text-cc-icon-search text-[24px]
+`;
+const SearchBarInput = tw.input`w-full h-full`;
 
 type Props = {
   type: string; // large, short
@@ -26,7 +34,10 @@ export default function SearchBarComponent(props: Props) {
   const SearchBarContainer = SearchBarContainerTypes[props.type];
   return (
     <SearchBarContainer>
-      <SearchBar type='text' />
+      <SearchBar>
+        <SearchIcon icon={faMagnifyingGlass} />
+        <SearchBarInput type='text' />
+      </SearchBar>
     </SearchBarContainer>
   );
 }

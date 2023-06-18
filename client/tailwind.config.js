@@ -53,6 +53,17 @@ module.exports = {
             'blue-click': '#0063BF',
             'blue-effect': '#D8EAF7',
             'blue-text': '#FFFFFF',
+
+            aside: '#FFFFFF',
+            'aside-active': '#F1F2F3',
+            'aside-text': '#838C95',
+            'aside-text-hover': '#0C0D0E',
+            'aside-text-active': '#0C0D0E',
+          },
+
+          icon: {
+            search: '#838C95',
+            nav: '#525960',
           },
         },
       },

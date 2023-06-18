@@ -16,7 +16,7 @@ flex items-end
 export default function AsideComponent() {
   return (
     <AsideContainer>
-      <AsideButton isCurrentPage={true}>Home</AsideButton>
+      <AsideButton isActive={true}>Home</AsideButton>
       <PublicIndicator>Public</PublicIndicator>
       <AsideButton>Questions</AsideButton>
       <AsideButton>Tags</AsideButton>
