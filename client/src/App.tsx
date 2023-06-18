@@ -6,7 +6,7 @@ import './App.css';
 import Home from './pages/Home';
 
 const AppContainer = tw.div`
-w-[100vw] h-[100vh] bg-cc-footer
+w-[100%] h-[100vh] bg-cc-footer
 `;
 
 export default function App() {

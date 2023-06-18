@@ -4,8 +4,7 @@ import tw from 'twin.macro';
 import AsideButton from '../components/aside/AsideButton';
 
 const AsideContainer = tw.aside`
-w-[330px]
-border-r-2 border-gray-300
+fixed w-[330px] bg-white
 flex flex-col items-start py-[20px] 
 `;
 

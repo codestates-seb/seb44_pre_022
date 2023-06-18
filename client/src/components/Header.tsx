@@ -6,9 +6,9 @@ import SearchBar from './common/SearchBar';
 import Nav from './header/Nav';
 
 const HeaderContainer = tw.header`
-w-full h-[90px]
+
+fixed w-full h-[90px] bg-white border-b-[2px] border-cc-border
 flex flex-col justify-center items-center
-border-b-[2px] border-cc-border
 `;
 
 const BorderTop = tw.section`

@@ -5,7 +5,7 @@ import SearchBar from '../common/SearchBar';
 import Button from '../common/Button';
 
 const SubmenuContainer = tw.div`
-w-[1080px] p-[30px] flex flex-col gap-[30px]
+w-[1080px] p-[30px] flex flex-col gap-[30px] border-b-[2px] border-cc-border
 `;
 
 const Upper = tw.div`flex justify-between`;

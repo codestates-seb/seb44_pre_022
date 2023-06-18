@@ -8,11 +8,12 @@ import Footer from '../components/Footer';
 
 const HomeContainer = tw.div`
 bg-white
-flex flex-col justify-center items-center
+flex flex-col justify-start items-center
 `;
 
-const MainContainer = tw.div`
-max-w-[1410px] w-[100vw] h-full
+const MiddleContainer = tw.div`
+mt-[90px]
+max-w-[1410px] w-[100%] h-full
 flex
 `;
 
@@ -20,10 +21,10 @@ export default function HomePage() {
   return (
     <HomeContainer>
       <Header />
-      <MainContainer>
+      <MiddleContainer>
         <Aside />
         <Main />
-      </MainContainer>
+      </MiddleContainer>
       <Footer />
     </HomeContainer>
   );

@@ -10,6 +10,8 @@ module.exports = {
           text: '#232629',
           'text-dark': '#0C0D0E',
           'text-ui': '#525960',
+          'text-link': '#0074CC',
+          'text-link-hover': '#0A95FF',
 
           red: '#C22E32',
           background: '#F1F2F3',
