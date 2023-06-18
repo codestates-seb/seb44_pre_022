@@ -10,12 +10,12 @@ const ProfileContainer = tw.div`
 `;
 
 const ContentDiv1 = tw.div`
-  basis-3/12
+  basis-2/12
   h-24
   ml-4
 `;
 const ContentDiv2 = tw.div`
-  basis-7/12
+  basis-8/12
   h-24
 `;
 const ContentDiv3 = tw.div`
@@ -30,7 +30,7 @@ const ProfileImg = tw.img`
 `;
 const ProfileNickName = tw.div`
   text-2xl
-  ml-2
+  ml-2 mb-4
 `;
 const AnsQueButton = tw.button`
   w-24 h-10
