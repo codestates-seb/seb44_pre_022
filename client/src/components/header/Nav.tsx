@@ -18,8 +18,8 @@ const AchievementsButton = tw(Button)``;
 const HelpButton = tw(Button)``;
 
 const ProfileButtonContainer = tw.section`
-w-[70px] h-full
-flex justify-end items-center
+p-[30px] h-full
+flex justify-center items-center
 `;
 const ProfileButton = tw(Button)`
 w-[50px] h-[50px]

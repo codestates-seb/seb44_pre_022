@@ -5,7 +5,7 @@ import Submenu from './common/Submenu';
 import QuestionPreviewList from './common/QuestionPreviewList';
 
 const MainContainer = tw.main`
-flex flex-col justify-center items-center
+flex flex-col justify-start items-center
 `;
 
 export default function MainComponent() {

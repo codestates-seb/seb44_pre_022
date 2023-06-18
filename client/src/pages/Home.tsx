@@ -13,6 +13,7 @@ flex flex-col justify-center items-center
 
 const MainContainer = tw.div`
 max-w-[1410px] w-[100vw] h-full
+flex
 `;
 
 export default function HomePage() {

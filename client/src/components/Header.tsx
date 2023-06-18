@@ -2,7 +2,7 @@ import React from 'react';
 import tw from 'twin.macro';
 
 import Logo from './header/Logo';
-import SearchBar from './header/SearchBar';
+import SearchBar from './common/SearchBar';
 import Nav from './header/Nav';
 
 const HeaderContainer = tw.header`
@@ -26,8 +26,8 @@ export default function HeaderComponent() {
     <HeaderContainer>
       <BorderTop />
       <ContentsContainer>
-        <Logo color={'orange'} isOnlyIcon={false} />
-        <SearchBar />
+        <Logo color='orange' isOnlyIcon={false} />
+        <SearchBar type='large' />
         <Nav />
       </ContentsContainer>
     </HeaderContainer>
