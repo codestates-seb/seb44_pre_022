@@ -95,7 +95,7 @@ const ButtonContainger = tw.div`
   p-4
   flex justify-between
 `;
-const AskQuestion = () => {
+const EditQuestion = () => {
   return (
     <Container>
       <ContentDiv>
@@ -133,4 +133,4 @@ const AskQuestion = () => {
   );
 };
 
-export default AskQuestion;
+export default EditQuestion;

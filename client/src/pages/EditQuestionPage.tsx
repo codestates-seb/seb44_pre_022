@@ -2,7 +2,7 @@ import tw from 'twin.macro';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import AskQuestion from '../components/edit-question-page/EditQuestion';
+import EditQuestion from '../components/edit-question-page/EditQuestion';
 
 const Container = tw.div`
 bg-white
@@ -16,17 +16,16 @@ flex
 
 `;
 
-const AskQuestionPage = () => {
+const EditQuestionPage = () => {
   return (
     <Container>
       <Header />
-
       <MiddleContainer>
-        <AskQuestion />
+        <EditQuestion />
       </MiddleContainer>
       <Footer />
     </Container>
   );
 };
 
-export default AskQuestionPage;
+export default EditQuestionPage;

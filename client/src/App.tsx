@@ -4,7 +4,7 @@ import tw from 'twin.macro';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './pages/HomePage';
-import AskQuestionPage from './pages/EditQuestionPage';
+import EditQuestionPage from './pages/EditQuestionPage';
 import LoginPage from './pages/LoginPage';
 import UserInfoPage from './pages/UserInfoPage';
 
@@ -18,7 +18,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/questions' element={<AskQuestionPage />} />
+          <Route path='/questions' element={<EditQuestionPage />} />
           <Route path='/tags' element={<LoginPage />} />
           <Route path='/users' element={<UserInfoPage />} />
         </Routes>
