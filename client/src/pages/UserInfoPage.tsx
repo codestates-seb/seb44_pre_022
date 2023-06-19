@@ -1,7 +1,7 @@
 import tw from 'twin.macro';
 import Header from '../components/Header';
 import Aside from '../components/Aside';
-import UserInfoMain from '../components/UserInfoMain';
+import UserInfoMain from '../components/user-info-page/UserInfoMain';
 import Footer from '../components/Footer';
 
 const HomeContainer = tw.div`

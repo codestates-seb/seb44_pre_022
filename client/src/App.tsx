@@ -3,7 +3,7 @@ import tw from 'twin.macro';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Home from './pages/Home';
+import Home from './pages/HomePage';
 import AskQuestionPage from './pages/AskQuestionPage';
 import LoginPage from './pages/LoginPage';
 import UserInfoPage from './pages/UserInfoPage';

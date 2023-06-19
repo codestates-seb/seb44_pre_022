@@ -1,6 +1,6 @@
 import tw from 'twin.macro';
-import codeIcon from '../images/code-icon.svg';
-import imageIcon from '../images/image-icon.svg';
+import codeIcon from '../../resources/images/code-icon.svg';
+import imageIcon from '../../resources/images/image-icon.svg';
 enum Message {
   PLACEHOLDER = 'e.g. Is there an R function for finding the index of an element in a vector',
   ASK_QUESTION = 'Ask a public question',
