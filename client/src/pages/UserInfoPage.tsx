@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 const HomeContainer = tw.div`
 bg-white
-flex flex-col justify-start 
+flex flex-col justify-start items-center
 `;
 const MiddleContainer = tw.div`
 mt-[90px]
