@@ -19,6 +19,6 @@ const App = () => {
       <Home />
     </AppContainer>
   );
-}
+};
 
 export default App;
