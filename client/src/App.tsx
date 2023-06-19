@@ -1,11 +1,21 @@
 import React from 'react';
+import tw from 'twin.macro';
+
+import './App.css';
+
+import Home from './pages/Home';
+import LoginPage from './pages/LoginPage';
 import UserInfo from './components/UserInfo';
 
-function App() {
+const AppContainer = tw.div`
+w-[100%] h-[100vh] bg-cc-footer
+`;
+
+const App = () => {
   return (
-    <div className='App'>
-      <UserInfo />
-    </div>
+    <AppContainer className='App'>
+      <Home />
+    </AppContainer>
   );
 }
 
