@@ -107,7 +107,7 @@ const Message = tw.div`
   text-cc-text
 `;
 
-const Signup = tw.a`
+const BlueText = tw.a`
   text-cc-button-blue-hover
 `;
 
@@ -147,9 +147,9 @@ const Login = () => {
       </LoginForm>
       <Message>
         {"Don't have an account? "}
-        <Signup href='https://stackoverflow.com/users/signup?ssrc=head'>
+        <BlueText href='https://stackoverflow.com/users/signup?ssrc=head'>
           Sign up
-        </Signup>
+        </BlueText>
       </Message>
     </LoginContainer>
   );
