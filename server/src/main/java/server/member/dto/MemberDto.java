@@ -26,14 +26,5 @@ public class MemberDto {
     private String password;
     @NotBlank
     private String alias;
-
-    @Override
-    public String toString() {
-      return "Post{" +
-              "email='" + email + '\'' +
-              ", password='" + password + '\'' +
-              ", alias='" + alias + '\'' +
-              '}';
-    }
   }
 }
