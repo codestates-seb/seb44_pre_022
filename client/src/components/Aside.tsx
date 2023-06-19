@@ -1,6 +1,8 @@
 import React from 'react';
 import tw from 'twin.macro';
 
+import { Link } from 'react-router-dom';
+
 import AsideButton from '../components/aside/AsideButton';
 
 const AsideContainer = tw.aside`
@@ -13,14 +15,24 @@ w-full h-[60px]
 flex items-end
 `;
 
+const LinkTW = tw(Link)`w-full h-full`;
+
 export default function AsideComponent() {
   return (
     <AsideContainer>
-      <AsideButton isActive={true}>Home</AsideButton>
+      <LinkTW to='/'>
+        <AsideButton isActive={true}>Home</AsideButton>
+      </LinkTW>
       <PublicIndicator>Public</PublicIndicator>
-      <AsideButton>Questions</AsideButton>
-      <AsideButton>Tags</AsideButton>
-      <AsideButton>Users</AsideButton>
+      <LinkTW to='/questions'>
+        <AsideButton>Questions</AsideButton>
+      </LinkTW>
+      <LinkTW to='/tags'>
+        <AsideButton>Tags</AsideButton>
+      </LinkTW>
+      <LinkTW to='/users'>
+        <AsideButton>Users</AsideButton>
+      </LinkTW>
     </AsideContainer>
   );
 }
