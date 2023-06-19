@@ -16,13 +16,14 @@ public class QuestionDto {
   public static class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long postId;
+    private Long questionId;
     @Min(15)
     @Column(nullable = false, updatable = true, unique = false)
     private String title;
     @Min(220)
     @Column(nullable = false, updatable = true, unique = false)
     private String content;
+
   }
 
   @Getter
@@ -30,7 +31,7 @@ public class QuestionDto {
   public static class Patch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long postId;
+    private Long questionId;
     @Min(15)
     @Column(nullable = false, updatable = true, unique = false)
     private String title;
@@ -44,7 +45,7 @@ public class QuestionDto {
   public static class Response {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long postId;
+    private Long questionId;
     @Min(15)
     @Column(nullable = false, updatable = true, unique = false)
     private String title;

@@ -17,7 +17,7 @@ public class Question extends Auditable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long postId;
+  private Long questionId;
   @Min(15)
   @Column(nullable = false, updatable = true, unique = false)
   private String title;
