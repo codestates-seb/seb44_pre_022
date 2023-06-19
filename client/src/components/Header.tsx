@@ -24,17 +24,19 @@ w-full h-[85px]
 flex justify-center items-center gap-[20px]
 `;
 
-const LinkTW = tw(Link)`h-full`;
+const LinkLogo = tw(Link)`h-full`;
 
 export default function HeaderComponent() {
   return (
     <HeaderContainer>
       <BorderTop />
       <ContentsContainer>
-        <LinkTW to='/'>
+        <LinkLogo to='/'>
           <Logo color='orange' isOnlyIcon={false} />
-        </LinkTW>
-        <SearchBar type='large' />
+        </LinkLogo>
+        <Link to='/search'>
+          <SearchBar type='large' />
+        </Link>
         <Nav />
       </ContentsContainer>
     </HeaderContainer>

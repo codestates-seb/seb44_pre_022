@@ -5,7 +5,7 @@ import SearchBar from '../common/SearchBar';
 import Button from '../common/Button';
 import SortButtons from './submenu/SortButtons';
 
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 /* [해당 페이지에서 사용됨]
 /(Home) : Top Questions
@@ -67,7 +67,9 @@ export default function SubmenuComponent(props: Props) {
     <SubmenuContainer>
       <Upper>
         <Title>{title}</Title>
-        <Button type={'blue'}>Ask Question</Button>
+        <Link to='../questions/ask'>
+          <Button type={'blue'}>Ask Question</Button>
+        </Link>
       </Upper>
       {props.children ? (
         <Description>

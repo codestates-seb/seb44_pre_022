@@ -8,6 +8,8 @@ import {
   faCircleQuestion,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { Link } from 'react-router-dom';
+
 const NavContainer = tw.nav`
 w-[250px] h-full
 flex flex-row items-start
@@ -47,7 +49,9 @@ export default function NavComponent() {
         <NavIcon icon={faCircleQuestion}></NavIcon>
       </HelpButton>
       <ProfileButtonContainer>
-        <ProfileButton />
+        <Link to='/user'>
+          <ProfileButton />
+        </Link>
       </ProfileButtonContainer>
     </NavContainer>
   );
