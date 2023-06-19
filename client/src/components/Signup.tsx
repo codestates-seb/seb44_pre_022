@@ -3,11 +3,33 @@ import tw from 'twin.macro';
 
 const SignupContainer = tw.div`
   flex
-  flex-col
   justify-center
   items-center
   h-screen
   bg-cc-background
+`;
+
+const TextForm = tw.div`
+`;
+
+const Title = tw.div`
+  text-[27px]
+  text-cc-text
+`;
+
+const ContentForm = tw.div`
+`;
+
+const ContentLogo = tw.div`
+`;
+
+const Content = tw.div`
+`;
+
+const SignupFormContainer = tw.div`
+  flex
+  flex-col
+  items-center
 `;
 
 const SignupForm = tw.form`
@@ -106,41 +128,50 @@ const Message = tw.div`
 const Signup = () => {
   return (
     <SignupContainer>
-      <SignupForm>
-        <Name>
-          <Label htmlFor='email-text'>Display name</Label>
-          <Input id='email-text' type='text' />
-        </Name>
-        <Email>
-          <Label htmlFor='email-text'>Email</Label>
-          <Input id='email-text' type='text' />
-        </Email>
-        <Password>
-          <Label htmlFor='password-text'>Password</Label>
-          <Input id='password-text' type='password' />
+      <TextForm>
+        <Title>Join the Stack Overflow community</Title>
+        <ContentForm>
+          <ContentLogo></ContentLogo>
+          <Content></Content>
+        </ContentForm>
+      </TextForm>
+      <SignupFormContainer>
+        <SignupForm>
+          <Name>
+            <Label htmlFor='email-text'>Display name</Label>
+            <Input id='email-text' type='text' />
+          </Name>
+          <Email>
+            <Label htmlFor='email-text'>Email</Label>
+            <Input id='email-text' type='text' />
+          </Email>
+          <Password>
+            <Label htmlFor='password-text'>Password</Label>
+            <Input id='password-text' type='password' />
+            <Caption>
+              Passwords must contain at least eight characters, including at
+              least 1 letter and 1 number.
+            </Caption>
+          </Password>
+          <SignupButton>
+            <Submit>Sign up</Submit>
+          </SignupButton>
           <Caption>
-            Passwords must contain at least eight characters, including at least
-            1 letter and 1 number.
+            {'By clicking “Sign up”, you agree to our '}
+            <BlueText>terms of service</BlueText>
+            {' and acknowledge that you have read and understand our '}
+            <BlueText>privacy policy</BlueText>
+            {' and '}
+            <BlueText>code of conduct</BlueText>.
           </Caption>
-        </Password>
-        <SignupButton>
-          <Submit>Sign up</Submit>
-        </SignupButton>
-        <Caption>
-          {'By clicking “Sign up”, you agree to our '}
-          <BlueText>terms of service</BlueText>
-          {' and acknowledge that you have read and understand our '}
-          <BlueText>privacy policy</BlueText>
-          {' and '}
-          <BlueText>code of conduct</BlueText>.
-        </Caption>
-      </SignupForm>
-      <Message>
-        {'Already have an account? '}
-        <BlueText href='https://stackoverflow.com/users/login?ssrc=head'>
-          Log in
-        </BlueText>
-      </Message>
+        </SignupForm>
+        <Message>
+          {'Already have an account? '}
+          <BlueText href='https://stackoverflow.com/users/login?ssrc=head'>
+            Log in
+          </BlueText>
+        </Message>
+      </SignupFormContainer>
     </SignupContainer>
   );
 };
