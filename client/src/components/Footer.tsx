@@ -1,6 +1,8 @@
 import React from 'react';
 import tw from 'twin.macro';
 
+import { Link } from 'react-router-dom';
+
 import LogoVector from './common/LogoVector';
 
 const FooterContainer = tw.footer`
@@ -32,9 +34,9 @@ text-[12px] text-white
 export default function FooterComponent() {
   return (
     <FooterContainer>
-      <button>
+      <Link to='/'>
         <LogoVector color={'white'} />
-      </button>
+      </Link>
       <Column>
         <TextColumnTitle>SAISAI OVERFLOW</TextColumnTitle>
       </Column>
