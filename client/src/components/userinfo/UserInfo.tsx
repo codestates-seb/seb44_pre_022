@@ -12,7 +12,7 @@ const ProfileContainer = tw.div`
 const ContentDiv1 = tw.div`
   basis-2/12
   h-24
-  ml-4
+  ml-8
 `;
 const ContentDiv2 = tw.div`
   basis-8/12
@@ -51,7 +51,7 @@ const LogoutButton = tw.button`
 const AnsQueText = tw.div`
   w-full h-20
   text-2xl
-  m-auto p-4
+  m-auto p-8
   border-2 border-r-cc-input-border border-l-cc-input-border border-b-cc-input-border border-t-0
 `;
 const UserInfo = () => {
