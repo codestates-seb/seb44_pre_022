@@ -6,9 +6,7 @@ import './App.css';
 
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
-import UserInfo from './components/UserInfo';
-import AskQuestion from './components/AskQuestion';
-
+import AskQuestionPage from './pages/AskQuestionPage';
 const AppContainer = tw.div`
 w-[100%] h-[100vh] bg-cc-footer
 `;
@@ -16,9 +14,9 @@ w-[100%] h-[100vh] bg-cc-footer
 const App = () => {
   return (
     <AppContainer className='App'>
-      <Home />
+      <AskQuestionPage />
     </AppContainer>
   );
-}
+};
 
 export default App;
