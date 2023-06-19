@@ -3,6 +3,8 @@ package server.member.service;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,9 +12,12 @@ import org.springframework.dao.DataIntegrityViolationException;
 import server.member.entity.Member;
 import server.member.repository.MemberRepository;
 
+import javax.transaction.Transactional;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@SpringBootTest
+@Transactional
+@ExtendWith(MockitoExtension.class)
 public class MemberServiceTest {
   @Autowired
   private MemberRepository memberRepository;
