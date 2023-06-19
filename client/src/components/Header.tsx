@@ -9,6 +9,7 @@ const HeaderContainer = tw.header`
 
 fixed w-full h-[90px] bg-white border-b-[2px] border-cc-border
 flex flex-col justify-center items-center
+z-10
 `;
 
 const BorderTop = tw.section`
