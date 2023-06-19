@@ -1,6 +1,4 @@
 import tw from 'twin.macro';
-import UserInfo from '../components/userinfo/UserInfo';
-import QuestionPreviewComponent from '../components/common/question-preview-list/QuestionPreview';
 import Header from '../components/Header';
 import Aside from '../components/Aside';
 import UserInfoMain from '../components/UserInfoMain';
