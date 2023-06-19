@@ -5,6 +5,7 @@ import './App.css';
 
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
+import UserInfo from './components/UserInfo';
 
 const AppContainer = tw.div`
 w-[100%] h-[100vh] bg-cc-footer
