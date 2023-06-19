@@ -35,6 +35,7 @@ const App = () => {
 
           <Route path='/user/:userId' element={<UserInfoPage />} />
           <Route path='/users/login' element={<LoginPage />} />
+          <Route path='/users/signup' element={<SignupPage />} />
           <Route path='/questions/tagged/:tag' element={<TagInfoPage />} />
         </Routes>
       </BrowserRouter>
