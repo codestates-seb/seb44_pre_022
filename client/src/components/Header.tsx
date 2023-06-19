@@ -5,6 +5,8 @@ import Logo from './header/Logo';
 import SearchBar from './common/SearchBar';
 import Nav from './header/Nav';
 
+import { Link } from 'react-router-dom';
+
 const HeaderContainer = tw.header`
 
 fixed w-full h-[90px] bg-white border-b-[2px] border-cc-border
@@ -22,12 +24,16 @@ w-full h-[85px]
 flex justify-center items-center gap-[20px]
 `;
 
+const LinkTW = tw(Link)`h-full`;
+
 export default function HeaderComponent() {
   return (
     <HeaderContainer>
       <BorderTop />
       <ContentsContainer>
-        <Logo color='orange' isOnlyIcon={false} />
+        <LinkTW to='/'>
+          <Logo color='orange' isOnlyIcon={false} />
+        </LinkTW>
         <SearchBar type='large' />
         <Nav />
       </ContentsContainer>
