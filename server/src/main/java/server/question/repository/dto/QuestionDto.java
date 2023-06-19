@@ -1,4 +1,4 @@
-package server.questionPost.repository.dto;
+package server.question.repository.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 
-public class PostDto {
+public class QuestionDto {
 
   @Getter
   @AllArgsConstructor

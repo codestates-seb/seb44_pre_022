@@ -1,10 +1,10 @@
-package server.questionPost.entity;
+package server.question.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import server.audit.Auditable;
-import org.hibernate.validator.constraints.Range;
+import server.member.entity.Member;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -13,7 +13,7 @@ import javax.validation.constraints.Min;
 @Getter
 @Setter
 @Entity
-public class Post extends Auditable {
+public class Question extends Auditable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,13 +29,21 @@ public class Post extends Auditable {
   @Column(nullable = false, updatable = true, unique = false, columnDefinition = "integer default 0")
   private int vote;
 
+  @ManyToOne
+  @JoinColumn(name = "member_id")
+  private Member member;
+
+  public void addMember(Member member) {
+    this.member = member;
+  }
+
   @PrePersist
   public void presetHitAndVote() {
     this.hit = 0;
     this.vote = 0;
   }
 
-  public Post(String title, String content, int hit, int vote) {
+  public Question(String title, String content, int hit, int vote) {
     this.title = title;
     this.content = content;
     this.hit = hit;

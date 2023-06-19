@@ -1,4 +1,4 @@
-package server.questionPost.exception;
+package server.question.exception;
 
 import lombok.Getter;
 
