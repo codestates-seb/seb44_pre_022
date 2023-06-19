@@ -1,5 +1,7 @@
 package server.member.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.Column;
@@ -12,11 +14,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class MemberDto {
+  @Getter
+  @AllArgsConstructor
   public static class Post {
     @Email
     @NotBlank
     private String email;
-    @Pattern(regexp = "/^(?=[a-zA-Z]{1,})(?=[0-9]{1,})(?=[!@#$%^&*+=?]{1,}).{8,20}$/", message="비밀번호는 영문,숫자 12글자 이하 그리고 특수문자 1글자 이상로 이루어져야 합니다.")
+    @Pattern(regexp = "/^(?=.*?[a-zA-Z])((?=.*?[0-9])?=.*?[!@#$%^&*+=?]).{8,}$/",
+            message="비밀번호는 영문,숫자,특수문자 포함 8글자 이상이어야 합니다.")
     @NotBlank
     private String password;
     @NotBlank
