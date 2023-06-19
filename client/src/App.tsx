@@ -33,9 +33,9 @@ const App = () => {
           <Route path='/questions/ask' element={<EditQuestionPage />} />
           <Route path='/search' element={<SearchResultPage />} />
 
-          <Route path='/user/' element={<UserInfoPage />} />
+          <Route path='/user/:userId' element={<UserInfoPage />} />
           <Route path='/users/login' element={<LoginPage />} />
-          <Route path='/questions/tagged/' element={<TagInfoPage />} />
+          <Route path='/questions/tagged/:tag' element={<TagInfoPage />} />
         </Routes>
       </BrowserRouter>
     </AppContainer>

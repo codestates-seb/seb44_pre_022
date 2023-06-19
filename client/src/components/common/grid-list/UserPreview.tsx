@@ -31,11 +31,11 @@ const LinkTW = tw(Link)`shrink-0`;
 export default function UserPreviewComponent() {
   return (
     <UserPreviewContainer>
-      <LinkTW to='/user'>
+      <LinkTW to='/user/0'>
         <ProfileImage></ProfileImage>
       </LinkTW>
       <InformationContainer>
-        <LinkTW to='/user'>
+        <LinkTW to='/user/0'>
           <TextWithLink>Waypil</TextWithLink>
         </LinkTW>
         <UserCountry>South Korea</UserCountry>
