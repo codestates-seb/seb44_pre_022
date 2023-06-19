@@ -16,7 +16,6 @@ import javax.transaction.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@Transactional
 @ExtendWith(MockitoExtension.class)
 public class MemberServiceTest {
   @Autowired

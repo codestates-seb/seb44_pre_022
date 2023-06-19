@@ -4,6 +4,9 @@ import org.springframework.stereotype.Service;
 import server.member.entity.Member;
 import server.member.repository.MemberRepository;
 
+import javax.transaction.Transactional;
+
+@Transactional
 @Service
 public class MemberService {
   private MemberRepository memberRepository;
