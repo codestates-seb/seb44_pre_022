@@ -25,7 +25,7 @@ public class QuestionService {
 
   @Transactional(readOnly = true)
   public Question findById(long postId) {
-    Question findQuestion = questionRepository.findByQuestionId(postId);
+    Question findQuestion = questionRepository.findPostById(postId);
     return findQuestion;
   }
 

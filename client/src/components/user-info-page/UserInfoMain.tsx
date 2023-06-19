@@ -1,8 +1,8 @@
 import React from 'react';
 import tw from 'twin.macro';
 
-import UserInfo from './userinfo/UserInfo';
-import QuestionPreviewList from './common/QuestionPreviewList';
+import UserInfo from './user-info-main/UserInfo';
+import QuestionPreviewList from '../common/QuestionPreviewList';
 
 const MainContainer = tw.main`
 mx-[330px] border-l-2 border-gray-300
