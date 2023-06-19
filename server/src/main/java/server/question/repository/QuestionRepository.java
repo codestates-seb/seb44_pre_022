@@ -5,5 +5,5 @@ import server.question.entity.Question;
 
 public interface QuestionRepository extends JpaRepository<Question, Long> {
 
-  Question findPostById(Long postId);
+  Question findByQuestionId(Long postId);
 }
