@@ -13,7 +13,7 @@ import SearchResultPage from './pages/SearchResultPage';
 
 import UserInfoPage from './pages/UserInfoPage';
 import LoginPage from './pages/LoginPage';
-// import SignupPage from './pages/SignupPage';
+import SignupPage from './pages/SignupPage';
 import EditQuestionPage from './pages/EditQuestionPage';
 
 const AppContainer = tw.div`
