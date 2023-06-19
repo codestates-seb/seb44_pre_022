@@ -2,7 +2,7 @@ import tw from 'twin.macro';
 
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import AskQuestion from '../components/ask-question-page/AskQuestion';
+import AskQuestion from '../components/edit-question-page/EditQuestion';
 
 const Container = tw.div`
 bg-white
