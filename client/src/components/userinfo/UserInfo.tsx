@@ -2,7 +2,7 @@ import { useState } from 'react';
 import tw from 'twin.macro';
 
 const ProfileContainer = tw.div`
-  w-7/12 h-52
+  w-full h-52
   m-auto 
   flex items-center justify-center
   border-2 border-r-cc-input-border border-l-cc-input-border border-t-cc-input-border border-b-0
@@ -12,7 +12,7 @@ const ProfileContainer = tw.div`
 const ContentDiv1 = tw.div`
   basis-2/12
   h-24
-  ml-4
+  ml-8
 `;
 const ContentDiv2 = tw.div`
   basis-8/12
@@ -24,16 +24,16 @@ const ContentDiv3 = tw.div`
 `;
 
 const ProfileImg = tw.img`
-  w-24 h-24
+  w-28 h-28
   bg-cc-orange
 
 `;
 const ProfileNickName = tw.div`
-  text-2xl
-  ml-2 mb-4
+  text-3xl
+  ml-2 mb-8
 `;
 const AnsQueButton = tw.button`
-  w-24 h-10
+  w-24 h-12
   mr-2
   rounded-3xl
   text-black
@@ -49,9 +49,9 @@ const LogoutButton = tw.button`
   hover:bg-cc-button-white-click
 `;
 const AnsQueText = tw.div`
-  w-7/12 h-20
+  w-full h-20
   text-2xl
-  m-auto p-4
+  m-auto p-8
   border-2 border-r-cc-input-border border-l-cc-input-border border-b-cc-input-border border-t-0
 `;
 const UserInfo = () => {
