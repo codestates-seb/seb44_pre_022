@@ -37,11 +37,13 @@ const Logo = tw.svg`
 const LogoUrl = tw.a`
 `;
 
-const Email = tw.div`
+const Column = tw.div`
   flex
   flex-col
   my-1.5
 `;
+
+const Email = tw(Column)``;
 
 const PasswordText = tw.div`
   flex
@@ -49,11 +51,7 @@ const PasswordText = tw.div`
   items-center
 `;
 
-const Password = tw.div`
-  flex
-  flex-col
-  my-1.5
-`;
+const Password = tw(Column)``;
 
 const Forgot = tw.a`
   text-xs
@@ -83,12 +81,7 @@ const Input = tw.input`
   focus:ring-cc-button-sky-effect
 `;
 
-const LoginButton = tw.div`
-  flex
-  flex-col
-  my-1.5
-
-`;
+const LoginButton = tw(Column)``;
 
 const Submit = tw.button`
   my-0.5
@@ -112,7 +105,7 @@ const Message = tw.div`
   text-cc-text
 `;
 
-const BlueText = tw.a`
+const BlueSignupText = tw.span`
   text-cc-button-blue-hover
 `;
 
@@ -157,9 +150,9 @@ const Login = () => {
       </LoginForm>
       <Message>
         {"Don't have an account? "}
-        <BlueText href='https://stackoverflow.com/users/signup?ssrc=head'>
-          Sign up
-        </BlueText>
+        <Link to='/users/signup'>
+          <BlueSignupText>Sign up</BlueSignupText>
+        </Link>
       </Message>
     </LoginContainer>
   );
