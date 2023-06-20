@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import tw from 'twin.macro';
 
+import { Link } from 'react-router-dom';
+
+import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+import { isLoggedInState } from '../../../recoil/atoms';
+
 const ProfileContainer = tw.div`
   w-full h-52
   m-auto 
@@ -54,7 +59,9 @@ const AnsQueText = tw.div`
   m-auto p-8
   border-2 border-r-cc-input-border border-l-cc-input-border border-b-cc-input-border border-t-0
 `;
+
 const UserInfo = () => {
+  const [isLoggedIn, setisLoggedIn] = useRecoilState(isLoggedInState);
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
   const [isQuestionVisible, setIsQuestionVisible] = useState(false);
 
@@ -82,7 +89,12 @@ const UserInfo = () => {
           </AnsQueButton>
         </ContentDiv2>
         <ContentDiv3>
-          <LogoutButton>Log Out</LogoutButton>
+          <Link to={'../../'}>
+            {/* Home 페이지로 리다이렉트 */}
+            <LogoutButton onClick={() => setisLoggedIn(false)}>
+              Log Out
+            </LogoutButton>
+          </Link>
         </ContentDiv3>
       </ProfileContainer>
       <AnsQueText>Answer</AnsQueText>
