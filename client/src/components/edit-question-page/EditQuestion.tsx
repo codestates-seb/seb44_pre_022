@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import tw from 'twin.macro';
-import { useRecoilState } from 'recoil';
-import { QuestionState } from './atoms';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { QuestionState, Question } from '../../recoil/questionAtom';
 import codeIcon from '../../resources/images/code-icon.svg';
 import imageIcon from '../../resources/images/image-icon.svg';
 enum Message {
@@ -98,24 +99,42 @@ const ButtonContainger = tw.div`
   flex justify-between
 `;
 const EditQuestion = () => {
-  const [question, setQuestion] = useRecoilState(QuestionState);
+  const [question, setQuestion] = useState<Question>({
+    title: '',
+    content: '',
+    tag: '',
+  });
+  const setQuestionState = useSetRecoilState(QuestionState);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setQuestion((prevQuestion: string[]) => ({
+    setQuestion((prevQuestion: Question) => ({
       ...prevQuestion,
       [name]: value,
     }));
   };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setQuestionState(question);
+    console.log(question);
+  };
+
   return (
     <Container>
       <ContentDiv>
         <ExplainDiv>{Message.ASK_QUESTION}</ExplainDiv>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <TitleFormDiv>
             <Title>Title</Title>
             <Description>{Message.TITLE_DESCRIPTION}</Description>
-            <Input placeholder={Message.PLACEHOLDER}></Input>
+            <Input
+              name='title'
+              placeholder={Message.PLACEHOLDER}
+              value={question.title}
+              onChange={handleInputChange}
+            ></Input>
           </TitleFormDiv>
           <TitleFormDiv>
             <Title>{Message.CONTENT_TITLE}</Title>
@@ -126,17 +145,25 @@ const EditQuestion = () => {
                 {/* 버튼 배경으로 넣으려고 하니 오류가 발생해 이미지로 대체하였음 / 나중에 버튼으로 감싸면 됨 */}
                 <Icons src={imageIcon} />
               </IconContainer>
-              <TextArea />
+              <TextArea
+                name='content'
+                value={question.content}
+                onChange={handleInputChange}
+              />
             </div>
           </TitleFormDiv>
           <TitleFormDiv>
             <Title>Tags</Title>
             <Description>{Message.TAG_DESCRIPTION}</Description>
-            <Input></Input>
+            <Input
+              name='tag'
+              value={question.tag}
+              onChange={handleInputChange}
+            ></Input>
           </TitleFormDiv>
           <ButtonContainger>
             <DiscardDraft>Discard Draft</DiscardDraft>
-            <SubmitQuestion>Submit Question</SubmitQuestion>
+            <SubmitQuestion type='submit'>Submit Question</SubmitQuestion>
           </ButtonContainger>
         </Form>
       </ContentDiv>
