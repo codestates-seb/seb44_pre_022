@@ -13,10 +13,12 @@ import server.member.mapper.MemberMapper;
 import server.member.repository.dto.MemberDto;
 import server.member.service.MemberService;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 import static server.utils.UriCreator.createUri;
 
+@Validated
 @Controller
 @RequestMapping("/member")
 public class MemberController {
@@ -28,7 +30,7 @@ public class MemberController {
     this.mapper = mapper;
   }
   @PostMapping
-  public ResponseEntity postMember(@RequestBody @Validated MemberDto.Post memberDto) {
+  public ResponseEntity postMember(@RequestBody @Valid MemberDto.Post memberDto) {
     Member member = memberService.createMember(mapper.memberPostDtoToMember(memberDto));
 
     URI uri = createUri(MEMBER_DEFAULT_URI, member.getId());
