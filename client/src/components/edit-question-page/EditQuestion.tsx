@@ -1,4 +1,6 @@
 import tw from 'twin.macro';
+import { useRecoilState } from 'recoil';
+import { QuestionState } from './atoms';
 import codeIcon from '../../resources/images/code-icon.svg';
 import imageIcon from '../../resources/images/image-icon.svg';
 enum Message {
@@ -96,6 +98,15 @@ const ButtonContainger = tw.div`
   flex justify-between
 `;
 const EditQuestion = () => {
+  const [question, setQuestion] = useRecoilState(QuestionState);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setQuestion((prevQuestion: string[]) => ({
+      ...prevQuestion,
+      [name]: value,
+    }));
+  };
   return (
     <Container>
       <ContentDiv>
