@@ -34,4 +34,14 @@ public class Member extends Auditable {
     this.password = password;
     this.alias = alias;
   }
+
+  @Override
+  public String toString() {
+    return "Member{" +
+            "id=" + id +
+            ", email='" + email + '\'' +
+            ", password='" + password + '\'' +
+            ", alias='" + alias + '\'' +
+            '}';
+  }
 }

@@ -20,11 +20,20 @@ public class MemberDto {
     @Email
     @NotBlank
     private String email;
-    @Pattern(regexp = "/^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*+=?]).{8,}$/",
+    @Pattern(regexp = "^(?=.*?[a-zA-Z])(?=.*?\\d)(?=.*?[!@#$%^&*+=?]).{8,}$",
             message="비밀번호는 영문,숫자,특수문자 포함 8글자 이상이어야 합니다.")
     @NotBlank
     private String password;
     @NotBlank
     private String alias;
+
+    @Override
+    public String toString() {
+      return "Post{" +
+              "email='" + email + '\'' +
+              ", password='" + password + '\'' +
+              ", alias='" + alias + '\'' +
+              '}';
+    }
   }
 }
