@@ -18,7 +18,6 @@ public class MemberService {
   }
 
   public Member createMember(Member member) {
-    log.info("#service"+ member.toString());
     return memberRepository.save(member);
   }
 }

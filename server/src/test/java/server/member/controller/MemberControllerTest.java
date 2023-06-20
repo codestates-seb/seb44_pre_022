@@ -33,9 +33,8 @@ public class MemberControllerTest {
   public void postMember() throws Exception {
     // given
     MemberDto.Post memberDto = new MemberDto.Post("test@gmail.com","test1234!", "test");
-
     String content = gson.toJson(memberDto);
-    log.info(content);
+
     // when
     ResultActions actions = mockMvc.perform(
             MockMvcRequestBuilders.post("/member")
