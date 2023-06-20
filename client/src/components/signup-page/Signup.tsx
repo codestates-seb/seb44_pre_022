@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import tw from 'twin.macro';
+import { z } from 'zod';
 import { Link } from 'react-router-dom';
 
 const SignupContainer = tw.div`
@@ -137,7 +138,26 @@ const BlueLoginText = tw.span`
   text-cc-button-blue-hover
 `;
 
+const UserSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  password: z.string().min(8).max(20),
+});
+
 const Signup = () => {
+  const [idValue, setIdValue] = useState('');
+  const [pwValue, setPwValue] = useState('');
+
+  const saveUserId = (event: any) => {
+    setIdValue(event.target.value);
+    console.log(event.target.value);
+  };
+
+  const saveUserPw = (event: any) => {
+    setPwValue(event.target.value);
+    console.log(event.target.value);
+  };
+
   return (
     <SignupContainer>
       <TextForm>
@@ -196,11 +216,21 @@ const Signup = () => {
           </Name>
           <Email>
             <Label htmlFor='email-text'>Email</Label>
-            <Input id='email-text' type='text' />
+            <Input
+              id='email-text'
+              type='text'
+              value={idValue}
+              onChange={saveUserId}
+            />
           </Email>
           <Password>
             <Label htmlFor='password-text'>Password</Label>
-            <Input id='password-text' type='password' />
+            <Input
+              id='password-text'
+              type='password'
+              value={pwValue}
+              onChange={saveUserPw}
+            />
             <Caption>
               Passwords must contain at least eight characters, including at
               least 1 letter and 1 number.
