@@ -2,6 +2,11 @@ import React from 'react';
 // import tw from 'tailwind-styled-components';
 import tw from 'twin.macro';
 
+import { Link } from 'react-router-dom';
+
+import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+import { isLoggedInState } from '../../recoil/atoms';
+
 const LoginContainer = tw.div`
   flex
   flex-col
@@ -112,6 +117,8 @@ const BlueText = tw.a`
 `;
 
 const Login = () => {
+  const [isLoggedIn, setisLoggedIn] = useRecoilState(isLoggedInState);
+
   return (
     <LoginContainer>
       <LogoUrl href='https://stackoverflow.com'>
@@ -137,13 +144,16 @@ const Login = () => {
           </PasswordText>
           <Input id='password-text' type='password' />
         </Password>
-        <LoginButton>
-          <Submit
-          // style={{ boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.4)' }}
-          >
-            Log in
-          </Submit>
-        </LoginButton>
+        <Link to={'../../'}>
+          {/* Home 페이지로 리다이렉트 */}
+          <LoginButton onClick={() => setisLoggedIn(true)}>
+            <Submit
+            // style={{ boxShadow: 'inset 0 1px 0 0 rgba(255, 255, 255, 0.4)' }}
+            >
+              Log in
+            </Submit>
+          </LoginButton>
+        </Link>
       </LoginForm>
       <Message>
         {"Don't have an account? "}
