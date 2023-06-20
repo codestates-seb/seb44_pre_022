@@ -1,7 +1,7 @@
 import React from 'react';
 import tw from 'twin.macro';
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 
 import Home from './pages/HomePage';
 import QuestionsPage from './pages/QuestionsPage';
@@ -23,22 +23,24 @@ w-[100%] h-[100vh] bg-cc-footer
 const App = () => {
   return (
     <AppContainer className='App'>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/questions' element={<QuestionsPage />} />
-          <Route path='/tags' element={<TagsPage />} />
-          <Route path='/users' element={<UsersPage />} />
+      <RecoilRoot>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/questions' element={<QuestionsPage />} />
+            <Route path='/tags' element={<TagsPage />} />
+            <Route path='/users' element={<UsersPage />} />
 
-          <Route path='/questions/ask' element={<EditQuestionPage />} />
-          <Route path='/search' element={<SearchResultPage />} />
+            <Route path='/questions/ask' element={<EditQuestionPage />} />
+            <Route path='/search' element={<SearchResultPage />} />
 
-          <Route path='/user/:userId' element={<UserInfoPage />} />
-          <Route path='/users/login' element={<LoginPage />} />
-          <Route path='/users/signup' element={<SignupPage />} />
-          <Route path='/questions/tagged/:tag' element={<TagInfoPage />} />
-        </Routes>
-      </BrowserRouter>
+            <Route path='/user/:userId' element={<UserInfoPage />} />
+            <Route path='/users/login' element={<LoginPage />} />
+            <Route path='/users/signup' element={<SignupPage />} />
+            <Route path='/questions/tagged/:tag' element={<TagInfoPage />} />
+          </Routes>
+        </BrowserRouter>
+      </RecoilRoot>
     </AppContainer>
   );
 };
