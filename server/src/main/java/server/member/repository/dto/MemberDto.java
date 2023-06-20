@@ -1,4 +1,4 @@
-package server.member.dto;
+package server.member.repository.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
