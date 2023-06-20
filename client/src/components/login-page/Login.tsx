@@ -67,7 +67,7 @@ const Input = tw.input`
   my-0.5
   p-2
   w-[230px]
-  border border-[#babfc4]
+  border border-cc-input-border
   rounded-[3px]
   bg-cc-button-blue-text
   text-[13px]
@@ -87,7 +87,7 @@ const LoginButton = tw.div`
 
 const Submit = tw.button`
   my-0.5
-  p-[10px]
+  p-2.5
   w-[230px]
   border border-solid border-transparent
   rounded-[3px]
@@ -107,7 +107,7 @@ const Message = tw.div`
   text-cc-text
 `;
 
-const Signup = tw.a`
+const BlueText = tw.a`
   text-cc-button-blue-hover
 `;
 
@@ -147,9 +147,9 @@ const Login = () => {
       </LoginForm>
       <Message>
         {"Don't have an account? "}
-        <Signup href='https://stackoverflow.com/users/signup?ssrc=head'>
+        <BlueText href='https://stackoverflow.com/users/signup?ssrc=head'>
           Sign up
-        </Signup>
+        </BlueText>
       </Message>
     </LoginContainer>
   );

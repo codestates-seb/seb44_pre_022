@@ -1,6 +1,6 @@
-import LogoBlackVector from '../../resources/stack-overflow-logo-black.svg';
-import LogoOrangeVector from '../../resources/stack-overflow-logo-orange.svg';
-import LogoWhiteVector from '../../resources/stack-overflow-logo-white.svg';
+import LogoBlackVector from '../../resources/images/stack-overflow-logo-black.svg';
+import LogoOrangeVector from '../../resources/images/stack-overflow-logo-orange.svg';
+import LogoWhiteVector from '../../resources/images/stack-overflow-logo-white.svg';
 
 const LogoVectors: { [key: string]: string } = {
   black: LogoBlackVector,
