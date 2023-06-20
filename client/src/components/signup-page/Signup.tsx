@@ -1,5 +1,6 @@
 import React from 'react';
 import tw from 'twin.macro';
+import { Link } from 'react-router-dom';
 
 const SignupContainer = tw.div`
   flex
@@ -57,23 +58,17 @@ const SignupForm = tw.form`
   bg-cc-button-blue-text
 `;
 
-const Name = tw.div`
+const Column = tw.div`
   flex
   flex-col
   my-1.5
 `;
 
-const Email = tw.div`
-  flex
-  flex-col
-  my-1.5
-`;
+const Name = tw(Column)``;
 
-const Password = tw.div`
-  flex
-  flex-col
-  my-1.5
-`;
+const Email = tw(Column)``;
+
+const Password = tw(Column)``;
 
 const Label = tw.label`
   my-0.5
@@ -105,12 +100,7 @@ const Caption = tw.div`
   text-cc-text-ui
 `;
 
-const SignupButton = tw.div`
-  flex
-  flex-col
-  my-1.5
-
-`;
+const SignupButton = tw(Column)``;
 
 const Submit = tw.button`
   my-0.5
@@ -141,6 +131,10 @@ const Message = tw.div`
 const ContentMessage = tw.div`
   text-[13px]
   text-cc-text
+`;
+
+const BlueLoginText = tw.span`
+  text-cc-button-blue-hover
 `;
 
 const Signup = () => {
@@ -233,9 +227,9 @@ const Signup = () => {
         </SignupForm>
         <Message>
           {'Already have an account? '}
-          <BlueText href='https://stackoverflow.com/users/login?ssrc=head'>
-            Log in
-          </BlueText>
+          <Link to='/users/login'>
+            <BlueLoginText>Log in</BlueLoginText>
+          </Link>
         </Message>
       </SignupFormContainer>
     </SignupContainer>
