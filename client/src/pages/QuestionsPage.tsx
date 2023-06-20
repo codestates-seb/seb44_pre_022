@@ -17,7 +17,7 @@ max-w-[1410px] w-[100%] h-full
 flex
 `;
 
-export default function QuestionPage() {
+export default function QuestionsPage() {
   return (
     <HomeContainer>
       <Header />
