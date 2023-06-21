@@ -8,6 +8,7 @@ import server.member.exception.ExceptionCode;
 import server.member.repository.MemberRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -56,5 +57,10 @@ public class MemberService {
 
   public Member findMember(long memberId) {
     return findVerifiedMember(memberId);
+  }
+
+  public List<Member> findMembers() {
+    List<Member> findMembers = memberRepository.findAll();
+    return findMembers;
   }
 }

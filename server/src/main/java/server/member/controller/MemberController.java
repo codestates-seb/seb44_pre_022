@@ -16,6 +16,7 @@ import server.utils.UriCreator;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.net.URI;
+import java.util.List;
 
 @Validated
 @Controller
@@ -47,5 +48,10 @@ public class MemberController {
   public ResponseEntity getMember(@PathVariable("member-id") @Positive long memberId) {
     Member findMember = memberService.findMember(memberId);
     return new ResponseEntity(mapper.memberToMemberResponseDto(findMember), HttpStatus.OK);
+  }
+  @GetMapping
+  public ResponseEntity getMembers() {
+    List<Member> findMembers = memberService.findMembers();
+    return new ResponseEntity(mapper.membersToMemberResponseDtos(findMembers), HttpStatus.OK);
   }
 }
