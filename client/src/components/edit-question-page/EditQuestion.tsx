@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import tw from 'twin.macro';
 import { useRecoilState, useSetRecoilState } from 'recoil';
+import axios from 'axios';
 import { QuestionState, Question } from '../../recoil/questionAtom';
 import codeIcon from '../../resources/images/code-icon.svg';
 import imageIcon from '../../resources/images/image-icon.svg';
@@ -102,7 +103,7 @@ const EditQuestion = () => {
   const [question, setQuestion] = useState<Question>({
     title: '',
     content: '',
-    tag: '',
+    tag: [],
   });
   const setQuestionState = useSetRecoilState(QuestionState);
 
@@ -115,10 +116,25 @@ const EditQuestion = () => {
       [name]: value,
     }));
   };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  /* 제출 버튼 클릭 후 해당 글로 이동하는 것과 API 호출하는거 해야함 현재는 json-server로 post 요청 중  */
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setQuestionState(question);
-    console.log(question);
+    try {
+      const response = await axios.post<Question>(
+        'http://localhost:3001/posts',
+        question,
+        {
+          headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+        }
+      );
+      console.log(response.data);
+
+      setQuestionState(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+    // setQuestionState(question);
+    // console.log(question);
   };
 
   return (
