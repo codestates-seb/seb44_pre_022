@@ -38,8 +38,7 @@ const Path = tw.path`
   fill-cc-button-blue
 `;
 
-const Content = tw.div`
-`;
+const Content = tw.div``;
 
 const SignupFormContainer = tw.div`
   flex
@@ -85,6 +84,7 @@ const InputErrorContainer = tw.div`
 `;
 
 const Input = tw.input`
+  w-full
   my-0.5
   p-2
   border border-cc-input-border
@@ -116,6 +116,12 @@ const ErrorSvg = tw.svg`
 
 const ErrorPath = tw.path`
   fill-cc-red
+`;
+
+const ErrorMessage = tw.p`
+  my-0.5
+  text-xs
+  text-cc-red
 `;
 
 const Caption = tw.div`
@@ -160,12 +166,6 @@ const BlueLoginText = tw.span`
   text-cc-button-blue-hover
 `;
 
-const ErrorMessage = tw.p`
-  my-0.5
-  text-xs
-  text-cc-red
-`;
-
 const Signup = () => {
   // 이름, 이메일, 비밀번호 초기 상태값 선언
   const [nameValue, setNameValue] = useState<string>('');
@@ -176,6 +176,7 @@ const Signup = () => {
   const [nameMessage, setNameMessage] = useState<string>('');
   const [emailMessage, setEmailMessage] = useState<string>('');
   const [pwMessage, setPwMessage] = useState<string>('');
+  const [errorSvg, setErrorSvg] = useState('');
 
   // 유효성 검사
   const [isName, setIsName] = useState<boolean>(false);
@@ -189,9 +190,13 @@ const Signup = () => {
     if (currentName.length < 4) {
       setNameMessage('닉네임은 4글자 이상이어야 합니다.');
       setIsName(false);
+      setErrorSvg(
+        'M9 17c-4.36 0-8-3.64-8-8 0-4.36 3.64-8 8-8 4.36 0 8 3.64 8 8 0 4.36-3.64 8-8 8ZM8 4v6h2V4H8Zm0 8v2h2v-2H8Z'
+      );
     } else {
       setNameMessage('');
       setIsName(true);
+      setErrorSvg('');
     }
   };
 
@@ -281,14 +286,14 @@ const Signup = () => {
           <Name>
             <Label htmlFor='name-text'>Display name</Label>
             <InputErrorContainer>
-              <InputError
+              <Input
                 id='name-text'
                 type='text'
                 value={nameValue}
                 onChange={onChangeName}
               />
               <ErrorSvg>
-                <ErrorPath d='M9 17c-4.36 0-8-3.64-8-8 0-4.36 3.64-8 8-8 4.36 0 8 3.64 8 8 0 4.36-3.64 8-8 8ZM8 4v6h2V4H8Zm0 8v2h2v-2H8Z'></ErrorPath>
+                <ErrorPath d={errorSvg} />
               </ErrorSvg>
             </InputErrorContainer>
             <ErrorMessage>{nameMessage}</ErrorMessage>
