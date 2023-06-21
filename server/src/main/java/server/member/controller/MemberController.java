@@ -8,15 +8,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
+import server.exception.BusinessLogicException;
 import server.member.entity.Member;
 import server.member.mapper.MemberMapper;
 import server.member.repository.dto.MemberDto;
 import server.member.service.MemberService;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 import static server.utils.UriCreator.createUri;
 
+@Validated
 @Controller
 @RequestMapping("/member")
 public class MemberController {
@@ -28,9 +31,9 @@ public class MemberController {
     this.mapper = mapper;
   }
   @PostMapping
-  public ResponseEntity postMember(@RequestBody @Validated MemberDto.Post memberDto) {
+  public ResponseEntity postMember(@RequestBody @Valid MemberDto.Post memberDto) {
     Member member = memberService.createMember(mapper.memberPostDtoToMember(memberDto));
-
+    System.out.println(member.toString());
     URI uri = createUri(MEMBER_DEFAULT_URI, member.getId());
     return ResponseEntity.created(uri).build();
   }

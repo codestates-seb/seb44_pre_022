@@ -10,13 +10,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@Table
 @Entity
 public class Member extends Auditable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-  @Column(nullable = false, unique = true)
+  @Column(nullable = false)
   private String email;
   @Column(nullable = false)
   private String password;
@@ -24,12 +23,6 @@ public class Member extends Auditable {
   private String alias;
 
   public Member(String email, String password, String alias) {
-    this.email = email;
-    this.password = password;
-    this.alias = alias;
-  }
-  public Member(long id, String email, String password, String alias) {
-    this.id = id;
     this.email = email;
     this.password = password;
     this.alias = alias;
