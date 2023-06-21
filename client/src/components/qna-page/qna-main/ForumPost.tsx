@@ -7,6 +7,7 @@ import {
   faCircleArrowDown,
 } from '@fortawesome/free-solid-svg-icons';
 
+import MarkdownViewer from '../../common/MarkdownViewer';
 import Tag from '../../common/Tag';
 import ProfilePreviewBox from './forum-post/ProfilePreviewBox';
 import CommentList from './forum-post/CommentList';
@@ -29,7 +30,7 @@ const ReputationCount = tw.span``;
 const Body = tw.section`
 flex flex-col justify-center gap-[20px]
 `;
-const QuestionText = tw.p`text-[16px]`;
+
 const Tags = tw.section`flex flex-wrap gap-[5px]`;
 const UploaderInfo = tw.section`w-full flex justify-end items-end gap-[20px]`;
 
@@ -37,9 +38,21 @@ const EditButton = tw.button`text-[14px] text-cc-text-ui`;
 const DeleteButton = tw.button`text-[14px] text-cc-text-ui`;
 const AddCommentButton = tw.button`text-[14px] text-cc-text-ui flex`;
 
-export default function ForumPostComponent() {
-  const testText =
-    '동해 물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한 사람 대한으로 길이 보전하세 동해 물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한 사람 대한으로 길이 보전하세 ';
+type Props = {
+  type: string; // question, answer
+};
+
+/* 질문/답변 양쪽 모두에서 사용 */
+export default function ForumPostComponent(props: Props) {
+  const testMD = `
+  **코드 블록** & *텍스트* 입력!
+  \`\`\`
+  import React from 'react';
+  import tw from 'twin.macro';
+  import MDEditor from '@uiw/react-md-editor';
+  \`\`\`
+  **코드 블록** & *텍스트* 입력!! (2)
+  `;
 
   return (
     <ForumPostContainer>
@@ -53,12 +66,16 @@ export default function ForumPostComponent() {
         </button>
       </VoteButtonContainer>
       <Body>
-        <QuestionText>{testText}</QuestionText>
-        <Tags>
-          <Tag>html</Tag>
-          <Tag>css</Tag>
-          <Tag>javascript</Tag>
-        </Tags>
+        <MarkdownViewer>{testMD}</MarkdownViewer>
+        {props.type === 'question' ? (
+          <Tags>
+            <Tag>html</Tag>
+            <Tag>css</Tag>
+            <Tag>javascript</Tag>
+          </Tags>
+        ) : (
+          <></>
+        )}
         <UploaderInfo>
           <EditButton>Edit</EditButton>
           <DeleteButton>Delete</DeleteButton>

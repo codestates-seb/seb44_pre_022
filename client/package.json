@@ -14,6 +14,7 @@
     "@types/node": "^16.18.35",
     "@types/react": "^18.2.12",
     "@types/react-dom": "^18.2.5",
+    "@uiw/react-md-editor": "^3.23.3",
     "axios": "^1.4.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
