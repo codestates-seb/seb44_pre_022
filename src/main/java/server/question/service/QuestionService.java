@@ -1,6 +1,9 @@
 package server.question.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import server.question.entity.Question;
@@ -30,8 +33,8 @@ public class QuestionService {
   }
 
   @Transactional(readOnly = true)
-  public List<Question> findAllQuestions() {
-    return questionRepository.findAll();
+  public Page<Question> findAllQuestions(int page, int size) {
+    return questionRepository.findAll(PageRequest.of(page, size, Sort.by("questionId").descending()));
   }
 
   public Question updateQuestion(Question question) {
