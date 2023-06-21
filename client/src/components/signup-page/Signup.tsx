@@ -81,11 +81,11 @@ const Input = tw.input`
   focus:ring-cc-button-sky-effect
 `;
 
-const InputError = tw(Input)`
-  border border-cc-red
-  focus:border-cc-red
-  focus:ring-[#c22e3226]
-`;
+// const InputError = tw(Input)`
+//   border border-cc-red
+//   focus:border-cc-red
+//   focus:ring-[#c22e3226]
+// `;
 
 const ErrorSvg = tw.svg`
   absolute
@@ -264,9 +264,6 @@ const Signup = () => {
                 type='text'
                 value={nameValue}
                 onChange={onChangeName}
-                // style={{
-                //   borderColor: nameValue.length < 4 ? '#C22E32' : '#BABFC4',
-                // }}
               />
               <ErrorSvg>
                 <ErrorPath d={errorSvg} />
@@ -276,22 +273,32 @@ const Signup = () => {
           </Name>
           <Email>
             <Label htmlFor='email-text'>Email</Label>
-            <Input
-              id='email-text'
-              type='text'
-              value={emailValue}
-              onChange={onChangeEmail}
-            />
+            <InputErrorContainer>
+              <Input
+                id='email-text'
+                type='text'
+                value={emailValue}
+                onChange={onChangeEmail}
+              />
+              <ErrorSvg>
+                <ErrorPath d={errorSvg} />
+              </ErrorSvg>
+            </InputErrorContainer>
             <ErrorMessage>{emailMessage}</ErrorMessage>
           </Email>
           <Password>
             <Label htmlFor='password-text'>Password</Label>
-            <Input
-              id='password-text'
-              type='password'
-              value={pwValue}
-              onChange={onChangePw}
-            />
+            <InputErrorContainer>
+              <Input
+                id='password-text'
+                type='password'
+                value={pwValue}
+                onChange={onChangePw}
+              />
+              <ErrorSvg>
+                <ErrorPath d={errorSvg} />
+              </ErrorSvg>
+            </InputErrorContainer>
             <ErrorMessage>{pwMessage}</ErrorMessage>
             <Caption>
               Passwords must contain at least eight characters, including at
