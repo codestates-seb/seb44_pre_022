@@ -4,23 +4,19 @@ import tw from 'twin.macro';
 import { Link } from 'react-router-dom';
 
 const SignupContainer = tw.div`
-  flex
-  justify-center
-  items-center
-  h-screen
+  flex justify-center items-center
   p-6
+  h-screen
   bg-cc-background
 `;
 
 const TextForm = tw.div`
-  mr-12
-  mb-32
+  mr-12 mb-32
 `;
 
 const Title = tw.h1`
   mb-8
-  text-[27px]
-  text-cc-text
+  text-[27px] text-cc-text
 `;
 
 const ContentList = tw.div`
@@ -29,9 +25,8 @@ const ContentList = tw.div`
 `;
 
 const ContentLogo = tw.svg`
-  w-[26px]
-  h-[26px]
   mr-2
+  w-[26px] h-[26px]
 `;
 
 const Path = tw.path`
@@ -41,18 +36,12 @@ const Path = tw.path`
 const Content = tw.div``;
 
 const SignupFormContainer = tw.div`
-  flex
-  flex-col
-  items-center
+  flex flex-col items-center
 `;
 
 const SignupForm = tw.form`
-  flex
-  flex-col
-  justify-center
-  items-start
-  mb-6
-  p-6
+  flex flex-col justify-center items-start
+  mb-6 p-6
   w-[330px]
   rounded-[7px]
   shadow-[0 10px 24px rgba(0, 0, 0, 0.05), 0 20px 48px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.1)]
@@ -60,8 +49,7 @@ const SignupForm = tw.form`
 `;
 
 const Column = tw.div`
-  flex
-  flex-col
+  flex flex-col
   my-1.5
   w-full
 `;
@@ -71,11 +59,8 @@ const Email = tw(Column)``;
 const Password = tw(Column)``;
 
 const Label = tw.label`
-  my-0.5
-  px-0.5
-  text-[15px]
-  font-semibold
-  text-cc-text-dark
+  my-0.5 px-0.5
+  text-[15px] font-semibold text-cc-text-dark
   `;
 
 const InputErrorContainer = tw.div`
@@ -84,11 +69,9 @@ const InputErrorContainer = tw.div`
 `;
 
 const Input = tw.input`
+  my-0.5 p-2
   w-full
-  my-0.5
-  p-2
-  border border-cc-input-border
-  rounded-[3px]
+  border border-cc-input-border rounded-[3px]
   bg-cc-button-blue-text
   text-[13px]
 
@@ -99,7 +82,6 @@ const Input = tw.input`
 `;
 
 const InputError = tw(Input)`
-  w-full
   border border-cc-red
   focus:border-cc-red
   focus:ring-[#c22e3226]
@@ -108,10 +90,8 @@ const InputError = tw(Input)`
 const ErrorSvg = tw.svg`
   absolute
   mt-[-9px]
-  top-1/2
-  right-[0.7em]
-  w-[18px]
-  h-[18px]
+  top-1/2 right-[0.7em]
+  w-[18px] h-[18px]
 `;
 
 const ErrorPath = tw.path`
@@ -120,26 +100,21 @@ const ErrorPath = tw.path`
 
 const ErrorMessage = tw.p`
   my-0.5
-  text-xs
-  text-cc-red
+  text-xs text-cc-red
 `;
 
 const Caption = tw.div`
   my-1
-  text-xs
-  text-cc-text-ui
+  text-xs text-cc-text-ui
 `;
 
 const SignupButton = tw(Column)``;
 
 const Submit = tw.button`
-  my-0.5
-  p-2.5
-  border border-solid border-transparent
-  rounded-[3px]
+  my-0.5 p-2.5
+  border border-solid border-transparent rounded-[3px]
   bg-cc-button-blue
-  text-[13px]
-  text-cc-button-blue-text
+  text-[13px] text-cc-button-blue-text
 
   hover:bg-cc-button-blue-hover
   focus:ring-4
@@ -153,13 +128,11 @@ const BlueText = tw.a`
 
 const Message = tw.div`
   p-4
-  text-[13px]
-  text-cc-text
+  text-[13px] text-cc-text
 `;
 
 const ContentMessage = tw.div`
-  text-[13px]
-  text-cc-text
+  text-[13px] text-cc-text
 `;
 
 const BlueLoginText = tw.span`
@@ -291,6 +264,9 @@ const Signup = () => {
                 type='text'
                 value={nameValue}
                 onChange={onChangeName}
+                // style={{
+                //   borderColor: nameValue.length < 4 ? '#C22E32' : '#BABFC4',
+                // }}
               />
               <ErrorSvg>
                 <ErrorPath d={errorSvg} />
