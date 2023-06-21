@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import tw from 'twin.macro';
-import { z } from 'zod';
+
 import { Link } from 'react-router-dom';
 
 const SignupContainer = tw.div`
@@ -54,6 +54,7 @@ const SignupForm = tw.form`
   items-start
   mb-6
   p-6
+  w-[330px]
   rounded-[7px]
   shadow-[0 10px 24px rgba(0, 0, 0, 0.05), 0 20px 48px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.1)]
   bg-cc-button-blue-text
@@ -63,12 +64,11 @@ const Column = tw.div`
   flex
   flex-col
   my-1.5
+  w-full
 `;
 
 const Name = tw(Column)``;
-
 const Email = tw(Column)``;
-
 const Password = tw(Column)``;
 
 const Label = tw.label`
@@ -77,12 +77,16 @@ const Label = tw.label`
   text-[15px]
   font-semibold
   text-cc-text-dark
+  `;
+
+const InputErrorContainer = tw.div`
+  flex
+  relative
 `;
 
 const Input = tw.input`
   my-0.5
   p-2
-  w-[280px]
   border border-cc-input-border
   rounded-[3px]
   bg-cc-button-blue-text
@@ -94,9 +98,28 @@ const Input = tw.input`
   focus:ring-cc-button-sky-effect
 `;
 
+const InputError = tw(Input)`
+  w-full
+  border border-cc-red
+  focus:border-cc-red
+  focus:ring-[#c22e3226]
+`;
+
+const ErrorSvg = tw.svg`
+  absolute
+  mt-[-9px]
+  top-1/2
+  right-[0.7em]
+  w-[18px]
+  h-[18px]
+`;
+
+const ErrorPath = tw.path`
+  fill-cc-red
+`;
+
 const Caption = tw.div`
   my-1
-  w-[280px]
   text-xs
   text-cc-text-ui
 `;
@@ -106,7 +129,6 @@ const SignupButton = tw(Column)``;
 const Submit = tw.button`
   my-0.5
   p-2.5
-  w-[280px]
   border border-solid border-transparent
   rounded-[3px]
   bg-cc-button-blue
@@ -138,24 +160,70 @@ const BlueLoginText = tw.span`
   text-cc-button-blue-hover
 `;
 
-const UserSchema = z.object({
-  name: z.string(),
-  email: z.string().email(),
-  password: z.string().min(8).max(20),
-});
+const ErrorMessage = tw.p`
+  my-0.5
+  text-xs
+  text-cc-red
+`;
 
 const Signup = () => {
-  const [idValue, setIdValue] = useState('');
-  const [pwValue, setPwValue] = useState('');
+  // 이름, 이메일, 비밀번호 초기 상태값 선언
+  const [nameValue, setNameValue] = useState<string>('');
+  const [emailValue, setEmailValue] = useState<string>('');
+  const [pwValue, setPwValue] = useState<string>('');
 
-  const saveUserId = (event: any) => {
-    setIdValue(event.target.value);
-    console.log(event.target.value);
+  // 오류메시지 상태저장
+  const [nameMessage, setNameMessage] = useState<string>('');
+  const [emailMessage, setEmailMessage] = useState<string>('');
+  const [pwMessage, setPwMessage] = useState<string>('');
+
+  // 유효성 검사
+  const [isName, setIsName] = useState<boolean>(false);
+  const [isEmail, setIsEmail] = useState<boolean>(false);
+  const [isPw, setIsPw] = useState<boolean>(false);
+
+  const onChangeName = (event: any) => {
+    const currentName = event.target.value;
+    setNameValue(currentName);
+
+    if (currentName.length < 4) {
+      setNameMessage('닉네임은 4글자 이상이어야 합니다.');
+      setIsName(false);
+    } else {
+      setNameMessage('');
+      setIsName(true);
+    }
   };
 
-  const saveUserPw = (event: any) => {
-    setPwValue(event.target.value);
-    console.log(event.target.value);
+  const onChangeEmail = (event: any) => {
+    const regexEmail =
+      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    const currentEmail = event.target.value;
+    setEmailValue(currentEmail);
+
+    if (!regexEmail.test(currentEmail)) {
+      setEmailMessage('이메일의 형식이 올바르지 않습니다.');
+      setIsEmail(false);
+    } else {
+      setEmailMessage('');
+      setIsEmail(true);
+    }
+  };
+
+  const onChangePw = (event: any) => {
+    const regexPw = /^(?=.*[a-zA-Z])(?=.*[.!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+    const currentPw = event.target.value;
+    setPwValue(currentPw);
+
+    if (!regexPw.test(currentPw)) {
+      setPwMessage(
+        '비밀번호는 8~20자, 영문자, 숫자, 특수문자 1개가 포함되어야 합니다.'
+      );
+      setIsPw(false);
+    } else {
+      setPwMessage('');
+      setIsPw(true);
+    }
   };
 
   return (
@@ -212,16 +280,28 @@ const Signup = () => {
         <SignupForm>
           <Name>
             <Label htmlFor='name-text'>Display name</Label>
-            <Input id='name-text' type='text' />
+            <InputErrorContainer>
+              <InputError
+                id='name-text'
+                type='text'
+                value={nameValue}
+                onChange={onChangeName}
+              />
+              <ErrorSvg>
+                <ErrorPath d='M9 17c-4.36 0-8-3.64-8-8 0-4.36 3.64-8 8-8 4.36 0 8 3.64 8 8 0 4.36-3.64 8-8 8ZM8 4v6h2V4H8Zm0 8v2h2v-2H8Z'></ErrorPath>
+              </ErrorSvg>
+            </InputErrorContainer>
+            <ErrorMessage>{nameMessage}</ErrorMessage>
           </Name>
           <Email>
             <Label htmlFor='email-text'>Email</Label>
             <Input
               id='email-text'
               type='text'
-              value={idValue}
-              onChange={saveUserId}
+              value={emailValue}
+              onChange={onChangeEmail}
             />
+            <ErrorMessage>{emailMessage}</ErrorMessage>
           </Email>
           <Password>
             <Label htmlFor='password-text'>Password</Label>
@@ -229,8 +309,9 @@ const Signup = () => {
               id='password-text'
               type='password'
               value={pwValue}
-              onChange={saveUserPw}
+              onChange={onChangePw}
             />
+            <ErrorMessage>{pwMessage}</ErrorMessage>
             <Caption>
               Passwords must contain at least eight characters, including at
               least 1 letter and 1 number.
