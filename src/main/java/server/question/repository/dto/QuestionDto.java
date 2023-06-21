@@ -16,6 +16,9 @@ public class QuestionDto {
   @Getter
   @AllArgsConstructor
   public static class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long questionId;
 //    @Min(15)
     @Column(nullable = false, updatable = true, unique = false)
     private String title;
@@ -29,8 +32,6 @@ public class QuestionDto {
   @Setter
   @AllArgsConstructor
   public static class Patch {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long questionId;
     @Min(15)
     @Column(nullable = false, updatable = true, unique = false)

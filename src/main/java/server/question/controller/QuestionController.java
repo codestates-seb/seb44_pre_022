@@ -61,8 +61,8 @@ public class QuestionController {
   @PatchMapping("/{question-id}")
   public ResponseEntity patchQuestion(@PathVariable("question-id") @Positive Long questionId,
                                       @Valid @RequestBody QuestionDto.Patch requestBody) {
-    requestBody.
-    Question question = questionService.updateQuestion(mapper.questionPatchToQuestion(questionDto));
+    requestBody.setQuestionId(questionId);
+    Question question = questionService.updateQuestion(mapper.questionPatchToQuestion(requestBody));
     return ResponseEntity.ok(mapper.questionToQuestionResponse(question));
   }
 
