@@ -15,6 +15,7 @@ import UserInfoPage from './pages/UserInfoPage';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import EditQuestionPage from './pages/EditQuestionPage';
+import QNAPage from './pages/QNAPage';
 
 const AppContainer = tw.div`
 w-[100%] h-[100vh] bg-cc-footer
@@ -32,6 +33,7 @@ const App = () => {
             <Route path='/users' element={<UsersPage />} />
 
             <Route path='/questions/ask' element={<EditQuestionPage />} />
+            <Route path='/questions/:qid' element={<QNAPage />} />
             <Route path='/search' element={<SearchResultPage />} />
 
             <Route path='/user/:userId' element={<UserInfoPage />} />

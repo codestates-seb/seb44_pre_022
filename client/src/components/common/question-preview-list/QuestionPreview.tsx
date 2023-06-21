@@ -1,6 +1,8 @@
 import React from 'react';
 import tw from 'twin.macro';
 
+import { Link } from 'react-router-dom';
+
 import Tag from '../Tag';
 
 const QuestionPreviewContainer = tw.article`
@@ -35,9 +37,11 @@ export default function QuestionPreviewComponent() {
         <span>2 views</span>
       </Values>
       <Preview>
-        <QuestionTitle className='line-clamp-2' href='#'>
-          {testText}
-        </QuestionTitle>
+        <Link to='/questions/0'>
+          <QuestionTitle className='line-clamp-2' href='#'>
+            {testText}
+          </QuestionTitle>
+        </Link>
         <Lower>
           <Tags>
             <Tag>javascript</Tag>
