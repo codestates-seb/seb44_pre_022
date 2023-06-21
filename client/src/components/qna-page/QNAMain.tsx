@@ -19,7 +19,7 @@ type Props = {
 const TitleContainer = tw.section`
 w-[1080px] p-[30px] flex flex-col gap-[30px] border-b-[2px] border-cc-border
 `;
-const AddAnswerContainer = tw.section``;
+const AddAnswerContainer = tw.section`flex flex-col p-[30px] gap-[30px]`;
 
 const TitleText = tw.h2`
 text-[30px]
@@ -30,7 +30,6 @@ const Forum = tw.section``;
 const AnswerListHeader = tw.section`
 flex justify-between items-center px-[30px] py-[20px] 
 `;
-const AddAnswerHeader = tw(AnswerListHeader)``;
 const AnswersQuantity = tw.h3`text-[20px] font-bold`;
 const YourAnswerText = tw(AnswersQuantity)``;
 const SortSelectionContainer = tw.section`flex items-center gap-[10px]`;
@@ -57,7 +56,7 @@ export default function QNAMainComponent() {
       </TitleContainer>
 
       <Forum>
-        <ForumPost></ForumPost> {/* 질문 영역 */}
+        <ForumPost type='question'></ForumPost> {/* 질문 영역 */}
         <AnswerListHeader>
           <AnswersQuantity>22 Answers</AnswersQuantity>
           <SortSelectionContainer>
@@ -65,12 +64,10 @@ export default function QNAMainComponent() {
             <SelectBar></SelectBar>
           </SortSelectionContainer>
         </AnswerListHeader>
-        <ForumPost></ForumPost> {/* 답변 영역 */}
-        <ForumPost></ForumPost> {/* 답변 영역 */}
+        <ForumPost type='answer'></ForumPost> {/* 답변 영역 */}
+        <ForumPost type='answer'></ForumPost> {/* 답변 영역 */}
         <AddAnswerContainer>
-          <AddAnswerHeader>
-            <YourAnswerText>Your Answer</YourAnswerText>
-          </AddAnswerHeader>
+          <YourAnswerText>Your Answer</YourAnswerText>
           <MarkdownEditor />
           <Button type='blue'>Post Your Answer</Button>
         </AddAnswerContainer>

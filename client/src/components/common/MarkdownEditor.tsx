@@ -2,7 +2,7 @@ import React from 'react';
 import tw from 'twin.macro';
 import MDEditor from '@uiw/react-md-editor';
 
-const MDEditorContainer = tw.section`flex flex-col p-[30px]`;
+const MDEditorContainer = tw.section`flex flex-col`;
 
 export default function MarkdownEditorComponent() {
   const [markdownText, setMarkdownText] = React.useState<string | undefined>(
