@@ -102,9 +102,12 @@ const ButtonContainger = tw.div`
 `;
 const EditQuestion = () => {
   const [question, setQuestion] = useState<Question>({
+    id: 0,
     title: '',
     content: '',
-    tag: [],
+    tags: [],
+    comments: [],
+    answers: [],
   });
   const [selected, setSelected] = useState<string[]>([]);
 
@@ -112,7 +115,7 @@ const EditQuestion = () => {
   useEffect(() => {
     setQuestion((prevQuestion) => ({
       ...prevQuestion,
-      tag: selected,
+      tags: selected,
     }));
   }, [selected]);
   const handleInputChange = (
@@ -180,7 +183,7 @@ const EditQuestion = () => {
             <Title>Tags</Title>
             <Description>{Message.TAG_DESCRIPTION}</Description>
             <TagsInput
-              name='tag'
+              name='tags'
               value={selected}
               onChange={handleTagChange}
             ></TagsInput>

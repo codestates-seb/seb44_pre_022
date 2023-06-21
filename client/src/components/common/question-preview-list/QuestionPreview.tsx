@@ -25,30 +25,31 @@ const UploadInfo = tw.section`shrink-0`;
 const UploaderName = tw(TextWithLink)`font-bold`;
 const UploadDate = tw.span``;
 
-export default function QuestionPreviewComponent() {
-  const testText =
-    '동해 물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한 사람 대한으로 길이 보전하세 동해 물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려강산 대한 사람 대한으로 길이 보전하세';
+type Props = {
+  id: number;
+  title: string;
+  tags: string[];
+};
+
+export default function QuestionPreviewComponent(props: Props) {
+  const { id, title, tags } = props;
 
   return (
     <QuestionPreviewContainer>
       <Values>
         <span>0 votes</span>
         <span>0 answers</span>
-        <span>2 views</span>
+        <span>0 views</span>
       </Values>
       <Preview>
-        <Link to='/questions/0'>
-          <QuestionTitle className='line-clamp-2' href='#'>
-            {testText}
-          </QuestionTitle>
+        <Link to={`/questions/${id}`}>
+          <QuestionTitle className='line-clamp-2'>{title}</QuestionTitle>
         </Link>
         <Lower>
           <Tags>
-            <Tag>javascript</Tag>
-            <Tag>javascript</Tag>
-            <Tag>javascript</Tag>
-            <Tag>javascript</Tag>
-            <Tag>javascript</Tag>
+            {tags.map((tagName) => (
+              <Tag>{tagName}</Tag>
+            ))}
           </Tags>
           <UploadInfo>
             <UploaderName href='#'>Waypil</UploaderName>
