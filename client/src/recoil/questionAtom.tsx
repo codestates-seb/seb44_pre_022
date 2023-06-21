@@ -1,16 +1,23 @@
 import { atom } from 'recoil';
 
-export interface Question {
+type Answer = {
+  content: string;
+  comments: string[];
+};
+
+export type Question = {
+  id: number;
   title: string;
   content: string;
   tags: string[];
   comments: string[];
-  answers: string[];
-}
+  answers: Answer[];
+};
 
 export const QuestionState = atom<Question>({
   key: 'QuestionState',
   default: {
+    id: 0,
     title: '',
     content: '',
     tags: [],

@@ -102,6 +102,7 @@ const ButtonContainger = tw.div`
 `;
 const EditQuestion = () => {
   const [question, setQuestion] = useState<Question>({
+    id: 0,
     title: '',
     content: '',
     tags: [],

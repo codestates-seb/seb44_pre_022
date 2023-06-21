@@ -1,6 +1,8 @@
 import React from 'react';
 import tw from 'twin.macro';
+import axios from 'axios';
 
+import { Question } from '../../recoil/questionAtom';
 import QuestionPreview from './question-preview-list/QuestionPreview';
 
 const QuestionPreviewListContainer = tw.div`
@@ -12,20 +14,30 @@ const EndOfListText = tw.p`text-[20px]`;
 const TextWithLink = tw.a`text-cc-text-link hover:text-cc-text-link-hover`;
 
 export default function QuestionPreviewListComponent() {
+  const [questionList, setQuestionList] = React.useState([]);
+
+  React.useEffect(() => {
+    axios
+      .get('http://localhost:3001/posts')
+      .then((response) => {
+        console.log(response.data);
+        setQuestionList(response.data);
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+  }, []);
+
   return (
     <QuestionPreviewListContainer>
-      <QuestionPreview></QuestionPreview>
-      <QuestionPreview></QuestionPreview>
-      <QuestionPreview></QuestionPreview>
-      <QuestionPreview></QuestionPreview>
-      <QuestionPreview></QuestionPreview>
-      <QuestionPreview></QuestionPreview>
-      <QuestionPreview></QuestionPreview>
-      <QuestionPreview></QuestionPreview>
-      <QuestionPreview></QuestionPreview>
-      <QuestionPreview></QuestionPreview>
-      <QuestionPreview></QuestionPreview>
-      <QuestionPreview></QuestionPreview>
+      {questionList
+        .slice(1)
+        .reverse()
+        .map((qObj: Question) => {
+          return (
+            <QuestionPreview id={qObj.id} title={qObj.title} tags={qObj.tags} />
+          );
+        })}
       <EndOfList>
         <EndOfListText>
           Looking for more? Browse the{' '}

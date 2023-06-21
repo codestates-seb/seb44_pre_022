@@ -18,7 +18,7 @@ type Props = {
 export default function MainComponent(props: Props) {
   return (
     <MainContainer>
-      <Submenu></Submenu>
+      <Submenu />
       {props.type ? (
         props.type === 'tags' ? (
           <TagsList />
