@@ -49,10 +49,11 @@ public class MemberServiceTest {
     * */
     Member member1 = new Member("test@gmail.com", "test1234!", "테스트1");
     Member createMember1 = memberService.createMember(member1);
-    //System.out.println(createMember1.toString());
 
-    /*Member member2 = new Member( "test@gmail.com", "test1234!", "테스트2");
-    Member createMember2 = memberService.createMember(member2);*/
+    log.info(createMember1.toString());
+
+    Member member2 = new Member( "test@gmail.com", "test1234!", "테스트2");
+    Member createMember2 = memberService.createMember(member2);
 
 
     //log.info(createMember2.toString());
