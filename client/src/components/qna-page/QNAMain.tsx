@@ -1,6 +1,7 @@
 import React from 'react';
 import tw from 'twin.macro';
 
+import MarkdownEditor from '../common/MarkdownEditor';
 import Button from '../common/Button';
 import ForumPost from './qna-main/ForumPost';
 
@@ -70,6 +71,7 @@ export default function QNAMainComponent() {
           <AddAnswerHeader>
             <YourAnswerText>Your Answer</YourAnswerText>
           </AddAnswerHeader>
+          <MarkdownEditor />
           <Button type='blue'>Post Your Answer</Button>
         </AddAnswerContainer>
       </Forum>
