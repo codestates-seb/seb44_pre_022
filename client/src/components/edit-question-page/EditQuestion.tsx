@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import tw from 'twin.macro';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import axios from 'axios';
+import { TagsInput } from 'react-tag-input-component';
 import { QuestionState, Question } from '../../recoil/questionAtom';
 import codeIcon from '../../resources/images/code-icon.svg';
 import imageIcon from '../../resources/images/image-icon.svg';
@@ -105,8 +106,15 @@ const EditQuestion = () => {
     content: '',
     tag: [],
   });
-  const setQuestionState = useSetRecoilState(QuestionState);
+  const [selected, setSelected] = useState<string[]>([]);
 
+  const setQuestionState = useSetRecoilState(QuestionState);
+  useEffect(() => {
+    setQuestion((prevQuestion) => ({
+      ...prevQuestion,
+      tag: selected,
+    }));
+  }, [selected]);
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -133,10 +141,10 @@ const EditQuestion = () => {
     } catch (error) {
       console.error(error);
     }
-    // setQuestionState(question);
-    // console.log(question);
   };
-
+  const handleTagChange = (newTags: string[]) => {
+    setSelected(newTags);
+  };
   return (
     <Container>
       <ContentDiv>
@@ -171,11 +179,11 @@ const EditQuestion = () => {
           <TitleFormDiv>
             <Title>Tags</Title>
             <Description>{Message.TAG_DESCRIPTION}</Description>
-            <Input
+            <TagsInput
               name='tag'
-              value={question.tag}
-              onChange={handleInputChange}
-            ></Input>
+              value={selected}
+              onChange={handleTagChange}
+            ></TagsInput>
           </TitleFormDiv>
           <ButtonContainger>
             <DiscardDraft>Discard Draft</DiscardDraft>
