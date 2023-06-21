@@ -41,6 +41,20 @@ public class MemberService {
     return memberRepository.save(member);
   }
 
+  public Member findMember(long memberId) {
+    return findVerifiedMember(memberId);
+  }
+
+  public List<Member> findMembers() {
+    List<Member> findMembers = memberRepository.findAll();
+    return findMembers;
+  }
+
+  public void deleteMember(long memberId) {
+    Member member = findVerifiedMember(memberId);
+    memberRepository.delete(member);
+  }
+
   private Member findVerifiedMember(long memberId) {
     Optional<Member> findMember = memberRepository.findById(memberId);
     return findMember
@@ -53,14 +67,5 @@ public class MemberService {
     if (findMember.isPresent()) {
       throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
     }
-  }
-
-  public Member findMember(long memberId) {
-    return findVerifiedMember(memberId);
-  }
-
-  public List<Member> findMembers() {
-    List<Member> findMembers = memberRepository.findAll();
-    return findMembers;
   }
 }
