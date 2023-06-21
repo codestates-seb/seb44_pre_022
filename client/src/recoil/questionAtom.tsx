@@ -3,7 +3,9 @@ import { atom } from 'recoil';
 export interface Question {
   title: string;
   content: string;
-  tag: string[];
+  tags: string[];
+  comments: string[];
+  answers: string[];
 }
 
 export const QuestionState = atom<Question>({
@@ -11,6 +13,8 @@ export const QuestionState = atom<Question>({
   default: {
     title: '',
     content: '',
-    tag: [],
+    tags: [],
+    comments: [],
+    answers: [],
   },
 });
