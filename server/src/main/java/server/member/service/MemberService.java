@@ -25,6 +25,27 @@ public class MemberService {
 
     return memberRepository.save(member);
   }
+
+
+  public Member updateMember(Member member) {
+    Member findMember = findVerifiedMember(member.getId());
+
+    Optional.ofNullable(member.getEmail())
+            .ifPresent(email->findMember.setEmail(email));
+    Optional.ofNullable(member.getPassword())
+            .ifPresent(password->findMember.setPassword(password));
+    Optional.ofNullable(member.getAlias())
+            .ifPresent(alias->findMember.setAlias(alias));
+
+    return memberRepository.save(member);
+  }
+
+  private Member findVerifiedMember(long memberId) {
+    Optional<Member> findMember = memberRepository.findById(memberId);
+    return findMember
+            .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+  }
+
   public void verifyExistsEmail(String email) {
     Optional<Member> findMember = memberRepository.findByEmail(email);
 
@@ -32,4 +53,5 @@ public class MemberService {
       throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
     }
   }
+
 }

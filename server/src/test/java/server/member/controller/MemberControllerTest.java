@@ -51,4 +51,11 @@ public class MemberControllerTest {
                     header().string("Location", is(startsWith("/member")))
             );
   }
+
+  @Test
+  public void pathMember() {
+    // given
+    // when
+    // then
+  }
 }
