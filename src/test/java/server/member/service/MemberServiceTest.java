@@ -21,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Slf4j
 @ExtendWith(MockitoExtension.class)
+@SpringBootTest
 public class MemberServiceTest {
   @Autowired
   private MemberRepository memberRepository;
