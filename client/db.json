@@ -1,0 +1,43 @@
+{
+  "posts": [
+    {
+      "title": "예시입니다",
+      "content": "예시입니다 . 이부분은 추후에 다시 바꾸겠습니다 ! \ntag는 입력후 엔터를 치면 자동 생성됩니다 ",
+      "tag": [
+        "tag",
+        "javascript"
+      ],
+      "id": 1
+    },
+    {
+      "title": "예시입니다",
+      "content": "예시입니다 . 이부분은 추후에 다시 바꾸겠습니다 ! \ntag는 입력후 엔터를 치면 자동 생성됩니다 ",
+      "tag": [
+        "tag",
+        "javascript"
+      ],
+      "id": 2
+    },
+    {
+      "title": "질문있습니다 ! ",
+      "content": "질문있습니다 !! ",
+      "tag": [
+        "react",
+        "typescript",
+        "so",
+        "hard"
+      ],
+      "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

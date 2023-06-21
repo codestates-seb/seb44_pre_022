@@ -1,4 +1,9 @@
+import { useState, useEffect } from 'react';
 import tw from 'twin.macro';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import axios from 'axios';
+import { TagsInput } from 'react-tag-input-component';
+import { QuestionState, Question } from '../../recoil/questionAtom';
 import codeIcon from '../../resources/images/code-icon.svg';
 import imageIcon from '../../resources/images/image-icon.svg';
 enum Message {
@@ -96,15 +101,64 @@ const ButtonContainger = tw.div`
   flex justify-between
 `;
 const EditQuestion = () => {
+  const [question, setQuestion] = useState<Question>({
+    title: '',
+    content: '',
+    tag: [],
+  });
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const setQuestionState = useSetRecoilState(QuestionState);
+  useEffect(() => {
+    setQuestion((prevQuestion) => ({
+      ...prevQuestion,
+      tag: selected,
+    }));
+  }, [selected]);
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setQuestion((prevQuestion: Question) => ({
+      ...prevQuestion,
+      [name]: value,
+    }));
+  };
+  /* 제출 버튼 클릭 후 해당 글로 이동하는 것과 API 호출하는거 해야함 현재는 json-server로 post 요청 중  */
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post<Question>(
+        'http://localhost:3001/posts',
+        question,
+        {
+          headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+        }
+      );
+      console.log(response.data);
+
+      setQuestionState(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleTagChange = (newTags: string[]) => {
+    setSelected(newTags);
+  };
   return (
     <Container>
       <ContentDiv>
         <ExplainDiv>{Message.ASK_QUESTION}</ExplainDiv>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <TitleFormDiv>
             <Title>Title</Title>
             <Description>{Message.TITLE_DESCRIPTION}</Description>
-            <Input placeholder={Message.PLACEHOLDER}></Input>
+            <Input
+              name='title'
+              placeholder={Message.PLACEHOLDER}
+              value={question.title}
+              onChange={handleInputChange}
+            ></Input>
           </TitleFormDiv>
           <TitleFormDiv>
             <Title>{Message.CONTENT_TITLE}</Title>
@@ -115,17 +169,25 @@ const EditQuestion = () => {
                 {/* 버튼 배경으로 넣으려고 하니 오류가 발생해 이미지로 대체하였음 / 나중에 버튼으로 감싸면 됨 */}
                 <Icons src={imageIcon} />
               </IconContainer>
-              <TextArea />
+              <TextArea
+                name='content'
+                value={question.content}
+                onChange={handleInputChange}
+              />
             </div>
           </TitleFormDiv>
           <TitleFormDiv>
             <Title>Tags</Title>
             <Description>{Message.TAG_DESCRIPTION}</Description>
-            <Input></Input>
+            <TagsInput
+              name='tag'
+              value={selected}
+              onChange={handleTagChange}
+            ></TagsInput>
           </TitleFormDiv>
           <ButtonContainger>
             <DiscardDraft>Discard Draft</DiscardDraft>
-            <SubmitQuestion>Submit Question</SubmitQuestion>
+            <SubmitQuestion type='submit'>Submit Question</SubmitQuestion>
           </ButtonContainger>
         </Form>
       </ContentDiv>

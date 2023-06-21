@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import EditQuestion from '../components/edit-question-page/EditQuestion';
 
 const Container = tw.div`
-bg-white
+bg-cc-background
 flex flex-col justify-start items-center
 `;
 
