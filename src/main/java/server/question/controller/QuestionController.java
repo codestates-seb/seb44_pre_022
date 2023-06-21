@@ -17,6 +17,7 @@ import server.question.service.QuestionService;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.net.URI;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static server.utils.UriCreator.createUri;
@@ -38,15 +39,23 @@ public class QuestionController {
 
   @PostMapping
   public ResponseEntity createQuestion(@Valid @RequestBody QuestionDto.Post questionDto) {
+    // 질문 생성
     Question question = questionService.createQuestion(mapper.questionPostToQuestion(questionDto));
     log.info("question: {}", question.toString());
+
+    // 응답 생성할 URI 생성
     URI uri = createUri(QUESTION_DEFAULT_URI, question.getQuestionId());
-    return ResponseEntity.created(uri).build();
+
+    // 생성일자 및 시간 생성
+    question.getCreatedAt();
+    // 반환
+    return ResponseEntity.created(uri).body(mapper.questionToQuestionResponse(question));
   }
 
   @GetMapping("/{question-id}")
   public ResponseEntity getQuestion(@PathVariable("question-id") @Positive Long questionId) {
     Question findQuestion = questionService.findById(questionId);
+    findQuestion.setHit(findQuestion.getHit() + 1);
     return ResponseEntity.ok(mapper.questionToQuestionResponse(findQuestion));
   }
 
@@ -63,6 +72,8 @@ public class QuestionController {
                                       @Valid @RequestBody QuestionDto.Patch requestBody) {
     requestBody.setQuestionId(questionId);
     Question question = questionService.updateQuestion(mapper.questionPatchToQuestion(requestBody));
+
+    LocalDateTime modifiedAt = question.getModifiedAt();
     return ResponseEntity.ok(mapper.questionToQuestionResponse(question));
   }
 
