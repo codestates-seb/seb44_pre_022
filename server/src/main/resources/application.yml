@@ -2,6 +2,7 @@ spring:
   h2:
     console:
       enabled: true
+      path: /h2
       settings:
         web-allow-others: true
   datasource:
@@ -11,3 +12,8 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show-sql: true
