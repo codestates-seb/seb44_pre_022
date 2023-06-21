@@ -11,12 +11,11 @@ import server.member.entity.Member;
 import server.member.mapper.MemberMapper;
 import server.member.repository.dto.MemberDto;
 import server.member.service.MemberService;
+import server.utils.UriCreator;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.net.URI;
-
-import static server.utils.UriCreator.createUri;
 
 @Validated
 @Controller
@@ -33,15 +32,20 @@ public class MemberController {
   public ResponseEntity postMember(@RequestBody @Valid MemberDto.Post memberDto) {
     Member member = memberService.createMember(mapper.memberPostDtoToMember(memberDto));
 
-    URI uri = createUri(MEMBER_DEFAULT_URI, member.getId());
+    URI uri = UriCreator.createUri(MEMBER_DEFAULT_URI, member.getId());
     return ResponseEntity.created(uri).build();
   }
   @PatchMapping("/{member-id}")
-  public ResponseEntity patchMember(@PathVariable @Positive long memberId,
+  public ResponseEntity patchMember(@PathVariable("member-id") @Positive long memberId,
                                     @RequestBody @Valid MemberDto.Patch memberDto) {
     memberDto.setId(memberId);
     Member member = mapper.memberPatchDtoToMember(memberDto);
     Member updatedMember = memberService.updateMember(member);
     return new ResponseEntity(mapper.memberToMemberResponseDto(updatedMember), HttpStatus.OK);
+  }
+  @GetMapping("/{member-id}")
+  public ResponseEntity getMember(@PathVariable("member-id") @Positive long memberId) {
+    Member findMember = memberService.findMember(memberId);
+    return new ResponseEntity(mapper.memberToMemberResponseDto(findMember), HttpStatus.OK);
   }
 }
