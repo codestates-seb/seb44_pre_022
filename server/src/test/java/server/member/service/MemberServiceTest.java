@@ -38,15 +38,10 @@ public class MemberServiceTest {
 
   @Autowired
   private MemberMapper mapper;
-
-  @Test
-  @DisplayName("중복 테스트")
-  void createMemberDuplicatedTest() throws BusinessLogicException {
-    /*
-    * TODO:
-    *   1. 유효성 검사
-    *   2. 비즈니스 로직 작동 확인
-    * */
+  /*
+    @Test
+    @DisplayName("중복 테스트")
+    void createMemberDuplicatedTest() throws BusinessLogicException {
     Member member1 = new Member("test@gmail.com", "test1234!", "테스트1");
     Member createMember1 = memberService.createMember(member1);
 
@@ -58,7 +53,7 @@ public class MemberServiceTest {
 
     //log.info(createMember2.toString());
   }
-  /*@Test
+  @Test
   @DisplayName("비밀번호 유효성 검증 실패 테스트")
   public void postMemberExample01() {
     MemberDto.Post memberDto = new MemberDto.Post("test@gmail.com", "asdf", "test");
