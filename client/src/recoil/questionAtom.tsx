@@ -10,6 +10,12 @@ export type TagType = {
   content: string;
 };
 
+export type UserType = {
+  id: number;
+  image: string;
+  name: string;
+};
+
 export type Question = {
   id: number;
   title: string;
