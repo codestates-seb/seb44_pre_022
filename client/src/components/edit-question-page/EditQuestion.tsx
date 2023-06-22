@@ -12,8 +12,9 @@ enum Message {
   ASK_QUESTION = 'Ask a public question',
   CONTENT_TITLE = 'What are the details of your problem?',
   TITLE_DESCRIPTION = 'Be specific and imagine you’re asking a question to another person.',
-  CONTENT_DESCRIPTION = 'Introduce the problem and expand on what you put in the title. Minimum 20 characters.',
+  CONTENT_DESCRIPTION = 'Introduce the problem and expand on what you put in the title. Minimum 220 characters.',
   TAG_DESCRIPTION = 'Add up to 5 tags to describe what your question is about. Start typing to see suggestions.',
+  TITLE_ERROR = 'Title must be at least 15 characters.',
 }
 
 /* 전체를 담을 영역 */
@@ -97,6 +98,10 @@ const ButtonContainger = tw.div`
   p-4
   flex justify-between
 `;
+
+const ValidationMsg = tw.div`
+  text-cc-red
+`;
 const EditQuestion = () => {
   const [question, setQuestion] = useState<Question>({
     id: 0,
@@ -107,7 +112,7 @@ const EditQuestion = () => {
     answers: [],
   });
   const [selected, setSelected] = useState<string[]>([]);
-
+  const [isTitle, setIsTitle] = useState<boolean>(false);
   const setQuestionState = useSetRecoilState(QuestionState);
   useEffect(() => {
     setQuestion((prevQuestion) => ({
@@ -115,6 +120,15 @@ const EditQuestion = () => {
       tags: selected,
     }));
   }, [selected]);
+  useEffect(() => {
+    if (question.title.length !== 0 && question.title.length < 15) {
+      console.log('15자 이상 입력하세요');
+      setIsTitle(true);
+    } else {
+      console.log('15자 이상');
+      setIsTitle(false);
+    }
+  }, [question.title]);
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -159,6 +173,9 @@ const EditQuestion = () => {
               value={question.title}
               onChange={handleInputChange}
             ></Input>
+            {isTitle ? (
+              <ValidationMsg>{Message.TITLE_ERROR}</ValidationMsg>
+            ) : undefined}
           </TitleFormDiv>
           <TitleFormDiv>
             <Title>{Message.CONTENT_TITLE}</Title>
