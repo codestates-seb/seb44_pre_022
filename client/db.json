@@ -11,10 +11,7 @@
     {
       "title": "예시입니다",
       "content": "예시입니다 . 이부분은 추후에 다시 바꾸겠습니다 ! \ntag는 입력후 엔터를 치면 자동 생성됩니다 ",
-      "tags": [
-        "tag",
-        "javascript"
-      ],
+      "tags": ["tag", "javascript"],
       "answers": [],
       "comments": [],
       "id": 1
@@ -22,12 +19,7 @@
     {
       "title": "질문있습니다 ! ",
       "content": "질문있습니다 !! ",
-      "tags": [
-        "react",
-        "typescript",
-        "so",
-        "hard"
-      ],
+      "tags": ["react", "typescript", "so", "hard"],
       "answers": [],
       "comments": [],
       "id": 2
@@ -35,10 +27,7 @@
     {
       "title": "Python에서 파일을 읽고 쓰는 방법에 대해 알려주세요",
       "content": "안녕하세요. Python 초보 개발자입니다. 파일을 읽고 쓰는 방법에 대해 궁금합니다.\n\n예를 들어, \"data.txt\"라는 파일을 읽어와서 내용을 출력하거나, 새로운 파일을 만들어서 내용을 저장하는 방법을 알고 싶습니다. 또한, 파일에 데이터를 추가하는 방법도 알고 싶습니다. 어떤 방식을 사용해야 할까요? 가능한 예시와 함께 자세히 설명해주세요.\n\n감사합니다.",
-      "tags": [
-        "python",
-        "txt"
-      ],
+      "tags": ["python", "txt"],
       "comments": [
         "Python 말고 JavaScript 쓰세요",
         "JavaScript 말고 TypeScript 쓰세요",
@@ -63,21 +52,80 @@
       "id": 4,
       "title": "테스트 ",
       "content": "마지막 테스트 ",
-      "tags": [
-        "test"
-      ],
+      "tags": ["test"],
       "comments": [],
       "answers": []
     }
   ],
-  "comments": [
+  "tags": [
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "python",
+      "content": "Python is a multi-paradigm, dynamically typed, multi-purpose programming language. It is designed to be quick to learn, understand, and use, and enforces a clean and uniform syntax. Please note that Python 2 is officially out of support as of 2020-01-01. For version-specific Python questions, add the [python-2.7] or [python-3.x] tag. When using a Python variant (e.g. Jython, PyPy) or library (e.g. Pandas, NumPy), please include it in the tags."
+    },
+    {
+      "name": "html",
+      "content": "HTML (HyperText Markup Language) is the markup language for creating web pages and other information to be displayed in a web browser. Questions regarding HTML should include a minimal reproducible example and some idea of what you're trying to achieve. This tag is rarely used alone and is often paired with [CSS] and [JavaScript]."
+    },
+    {
+      "name": "css",
+      "content": "CSS (Cascading Style Sheets) is a representation style sheet language used for describing the look and formatting of HTML (HyperText Markup Language), XML (Extensible Markup Language) documents and SVG elements including (but not limited to) colors, layout, fonts, and animations. It also describes how elements should be rendered on screen, on paper, in speech, or on other media."
+    },
+    {
+      "name": "javascript",
+      "content": "For questions about programming in ECMAScript (JavaScript/JS) and its different dialects/implementations (except for ActionScript). Note that JavaScript is NOT Java. Include all tags that are relevant to your question: e.g., [node.js], [jQuery], [JSON], [ReactJS], [angular], [ember.js], [vue.js], [typescript], [svelte], etc."
+    },
+    {
+      "name": "typescript",
+      "content": "TypeScript is a typed superset of JavaScript that transpiles to plain JavaScript. It adds optional types, classes, interfaces, and modules to JavaScript. This tag is for questions specific to TypeScript. It is not used for general JavaScript questions."
+    },
+    {
+      "name": "figma",
+      "content": "Figma is a collaborative interface design / prototyping tool. Programming questions about Figma can be asked here. Questions about the design of, or designing, graphics and interfaces are off-topic on Stack Overflow."
+    },
+    {
+      "name": "react",
+      "content": "React is a JavaScript library for building user interfaces. It uses a declarative, component-based paradigm and aims to be efficient and flexible."
+    },
+    {
+      "name": "c#",
+      "content": "C# (pronounced 'see sharp') is a high-level, statically typed, multi-paradigm programming language developed by Microsoft. C# code usually targets Microsoft's .NET family of tools and run-times, which include .NET, .NET Framework, .NET MAUI, and Xamarin among others. Use this tag for questions about code written in C# or about C#'s formal specification."
+    },
+    {
+      "name": "java",
+      "content": "Java is a high-level object-oriented programming language. Use this tag when you're having problems using or understanding the language itself. This tag is frequently used alongside other tags for libraries and/or frameworks used by Java developers."
+    },
+    {
+      "name": "sql",
+      "content": "Structured Query Language (SQL) is a language for querying databases. Questions should include code examples, table structure, sample data, and a tag for the DBMS implementation (e.g. MySQL, PostgreSQL, Oracle, MS SQL Server, IBM DB2, etc.) being used. If your question relates solely to a specific DBMS (uses specific extensions/features), use that DBMS's tag instead. Answers to questions tagged with SQL should use ISO/IEC standard SQL."
+    },
+    {
+      "name": "spring",
+      "content": "The Spring Framework is an open-source framework for application development on the Java platform. At its core is rich support for component-based architectures, and it currently has over twenty highly integrated modules."
+    },
+    {
+      "name": "gradle",
+      "content": "Gradle is a project build automation tool that uses a Groovy DSL. Gradle build scripts support Maven and Ivy repositories as well as plain file system for dependency management."
+    },
+    {
+      "name": "git",
+      "content": "Git is an open-source distributed version control system (DVCS). Use this tag for questions about Git usage and workflows. Do not use this tag for general programming questions that happen to involve a Git repository. Do not use this tag for GitHub/GitHub Actions questions that do not involve git usage; use [github] or [github-actions] instead. Do not use the [github] tag for Git-related issues just because a repository happens to be hosted on GitHub."
+    },
+    {
+      "name": "github",
+      "content": "GitHub is a web-based hosting service for software development projects that use Git for version control. Use this tag for questions specific to problems with repositories hosted on GitHub, features specific to GitHub, and using GitHub for collaborating with other users. Do not use this tag for Git-related issues simply because a repository happens to be hosted on GitHub."
+    },
+    {
+      "name": "c",
+      "content": "C is a general-purpose programming language used for system programming (OS and embedded), libraries, games and cross-platform. This tag should be used with general questions concerning the C language, as defined in the ISO 9899 standard (the latest version, 9899:2018, unless otherwise specified — also tag version-specific requests with c89, c99, c11, etc). C is distinct from C++ and it should not be combined with the C++ tag without a specific reason."
+    },
+    {
+      "name": "c++",
+      "content": "C++ is a general-purpose programming language. Initially, it was designed as an extension to C and has a similar syntax, but it is now a completely different language. Use this tag for questions about code (to be) compiled with a C++ compiler. Use a version-specific tag for questions related to a specific standard revision [C++11], [C++14], [C++17], [C++20], or [C++23], etc."
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "users": [
+    {
+      "name": "typicode"
+    }
+  ]
 }
