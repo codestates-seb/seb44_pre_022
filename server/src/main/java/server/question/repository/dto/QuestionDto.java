@@ -1,7 +1,9 @@
 package server.question.repository.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -27,10 +29,9 @@ public class QuestionDto {
   }
 
   @Getter
+  @Setter
   @AllArgsConstructor
   public static class Patch {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long questionId;
     @Min(15)
     @Column(nullable = false, updatable = true, unique = false)
@@ -41,7 +42,7 @@ public class QuestionDto {
   }
 
   @Getter
-  @AllArgsConstructor
+  @Builder
   public static class Response {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

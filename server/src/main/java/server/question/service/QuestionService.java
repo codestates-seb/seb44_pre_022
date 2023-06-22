@@ -1,8 +1,15 @@
 package server.question.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import server.member.entity.Member;
+import server.member.repository.MemberRepository;
+import server.member.service.MemberService;
 import server.question.entity.Question;
 import server.question.exception.ExceptionCode;
 import server.question.repository.QuestionRepository;
@@ -17,24 +24,27 @@ import java.util.Optional;
 public class QuestionService {
 
   private final QuestionRepository questionRepository;
+  private final MemberService memberService;
 
-  public Question createPost(Question question) {
+  public Question createQuestion(Question question, UserDetails userDetails) {
     Question saveQuestion = questionRepository.save(question);
+    Member findMember = memberService.findMember(userDetails.getUsername());
+    saveQuestion.setMember(findMember);
     return saveQuestion;
   }
 
   @Transactional(readOnly = true)
-  public Question findById(long postId) {
-    Question findQuestion = questionRepository.findByQuestionId(postId);
+  public Question findById(long questionId) {
+    Question findQuestion = questionRepository.findByQuestionId(questionId);
     return findQuestion;
   }
 
   @Transactional(readOnly = true)
-  public List<Question> findAllPosts() {
-    return questionRepository.findAll();
+  public Page<Question> findAllQuestions(int page, int size) {
+    return questionRepository.findAll(PageRequest.of(page, size, Sort.by("questionId").descending()));
   }
 
-  public Question updatePost(Question question) {
+  public Question updateQuestion(Question question) {
     Question getQuestion = questionRepository.findById(question.getQuestionId())
             .orElseThrow(() -> new IllegalArgumentException(ExceptionCode.POST_NOT_FOUND.getMessage()));
     Optional.ofNullable(question.getTitle())
@@ -46,19 +56,19 @@ public class QuestionService {
     return findQuestion;
   }
 
-  public void deletePost(long postId) {
-    Question findQuestion = findVerifiedPost(postId);
+  public void deleteQuestion(long questionId) {
+    Question findQuestion = findVerifiedQuestion(questionId);
     questionRepository.delete(findQuestion);
   }
 
   @Transactional(readOnly = true)
-  public Question findVerifiedPost(long postId) {
-    Optional<Question> optionalPost = questionRepository.findById(postId);
+  public Question findVerifiedQuestion(long questionId) {
+    Optional<Question> optionalPost = questionRepository.findById(questionId);
     Question findQuestion = optionalPost.orElseThrow(() -> new IllegalArgumentException(ExceptionCode.POST_NOT_FOUND.getMessage()));
     return findQuestion;
   }
 
-  private void verifyExistsPost() {
+  private void verifyExistsQuestion() {
 
   }
 }
