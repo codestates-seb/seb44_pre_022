@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import tw from 'twin.macro';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import axios from 'axios';
+import MDEditor, { commands } from '@uiw/react-md-editor';
 import { TagsInput } from 'react-tag-input-component';
 import { QuestionState, Question } from '../../recoil/questionAtom';
 import codeIcon from '../../resources/images/code-icon.svg';
@@ -55,9 +56,9 @@ const Input = tw.input`
     
 
 `;
-const TextArea = tw.textarea`
-    w-full h-80
-    border-2 rounded-b-lg border-cc-input-border
+const TextAreaDiv = tw.div`
+    w-full 
+    border-2 rounded-lg border-cc-input-border
     focus:outline-none
     focus:border-cc-input-border-click
     focus:ring-4
@@ -68,18 +69,14 @@ const Description = tw.div`
     text-xs text-cc-text-ui
     p-2
 `;
-
-const IconContainer = tw.div`
-  w-full h-10 top-0
-  flex gap-3 
-  border-t-2 border-l-2 border-r-2 rounded-t-lg border-cc-input-border
-  
+const TagsDiv = tw.div`
+  w-full 
+  border-2 rounded-lg border-cc-input-border
+  focus:outline-none
+  focus:border-cc-input-border-click
+  focus:ring-4
+  focus:ring-cc-button-sky-effect
 `;
-const Icons = tw.img`
-  w-6 h-6
-  my-auto ml-2
-`;
-
 const DiscardDraft = tw.button`
   text-cc-red
   text-sm
@@ -122,7 +119,7 @@ const EditQuestion = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setQuestion((prevQuestion: Question) => ({
+    setQuestion((prevQuestion) => ({
       ...prevQuestion,
       [name]: value,
     }));
@@ -166,27 +163,36 @@ const EditQuestion = () => {
           <TitleFormDiv>
             <Title>{Message.CONTENT_TITLE}</Title>
             <Description>{Message.CONTENT_DESCRIPTION}</Description>
-            <div>
-              <IconContainer>
-                <Icons src={codeIcon} />{' '}
-                {/* 버튼 배경으로 넣으려고 하니 오류가 발생해 이미지로 대체하였음 / 나중에 버튼으로 감싸면 됨 */}
-                <Icons src={imageIcon} />
-              </IconContainer>
-              <TextArea
+            <TextAreaDiv tabIndex={0}>
+              <MDEditor
+                height={400}
+                value={question.content}
+                preview='edit'
+                data-color-mode='light'
+                onChange={(content: string) =>
+                  setQuestion((prevQuestion) => ({
+                    ...prevQuestion,
+                    content,
+                  }))
+                }
+              />
+              {/* <TextArea
                 name='content'
                 value={question.content}
                 onChange={handleInputChange}
-              />
-            </div>
+              /> */}
+            </TextAreaDiv>
           </TitleFormDiv>
           <TitleFormDiv>
             <Title>Tags</Title>
             <Description>{Message.TAG_DESCRIPTION}</Description>
-            <TagsInput
-              name='tags'
-              value={selected}
-              onChange={handleTagChange}
-            ></TagsInput>
+            <TagsDiv tabIndex={0}>
+              <TagsInput
+                name='tags'
+                value={selected}
+                onChange={handleTagChange}
+              ></TagsInput>
+            </TagsDiv>
           </TitleFormDiv>
           <ButtonContainger>
             <DiscardDraft>Discard Draft</DiscardDraft>

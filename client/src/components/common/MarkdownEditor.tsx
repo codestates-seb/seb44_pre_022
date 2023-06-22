@@ -11,7 +11,11 @@ export default function MarkdownEditorComponent() {
 
   return (
     <MDEditorContainer data-color-mode='light'>
-      <MDEditor value={markdownText} onChange={setMarkdownText} />
+      <MDEditor
+        value={markdownText}
+        onChange={setMarkdownText}
+        preview='edit'
+      />
       {/* <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} /> */}
     </MDEditorContainer>
   );
