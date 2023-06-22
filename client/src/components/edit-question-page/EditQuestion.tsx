@@ -4,7 +4,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import axios from 'axios';
 import MDEditor, { commands } from '@uiw/react-md-editor';
 import { TagsInput } from 'react-tag-input-component';
-import { QuestionState, Question } from '../../recoil/questionAtom';
+import { QuestionState, Question, TagType } from '../../recoil/questionAtom';
 import codeIcon from '../../resources/images/code-icon.svg';
 import imageIcon from '../../resources/images/image-icon.svg';
 enum Message {

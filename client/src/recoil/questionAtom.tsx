@@ -5,6 +5,11 @@ type Answer = {
   comments: string[];
 };
 
+export type TagType = {
+  name: string;
+  content: string;
+};
+
 export type Question = {
   id: number;
   title: string;
