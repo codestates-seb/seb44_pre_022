@@ -168,6 +168,7 @@ const EditQuestion = () => {
                 height={400}
                 value={question.content}
                 preview='edit'
+                data-color-mode='light'
                 onChange={(content: string) =>
                   setQuestion((prevQuestion) => ({
                     ...prevQuestion,
