@@ -36,7 +36,7 @@ const App = () => {
             <Route path='/questions/:qid' element={<QNAPage />} />
             <Route path='/search' element={<SearchResultPage />} />
 
-            <Route path='/user/:userId' element={<UserInfoPage />} />
+            <Route path='/users/:userId' element={<UserInfoPage />} />
             <Route path='/users/login' element={<LoginPage />} />
             <Route path='/users/signup' element={<SignupPage />} />
             <Route path='/questions/tagged/:tag' element={<TagInfoPage />} />

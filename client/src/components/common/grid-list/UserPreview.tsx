@@ -34,11 +34,11 @@ type Props = {
 export default function UserPreviewComponent(props: Props) {
   return (
     <UserPreviewContainer>
-      <LinkTW to={`../user/${props.id}`}>
+      <LinkTW to={`../users/${props.id}`}>
         <ProfileImage src={props.image} />
       </LinkTW>
       <InformationContainer>
-        <LinkTW to={`../user/${props.id}`}>
+        <LinkTW to={`../users/${props.id}`}>
           <TextWithLink>{props.children}</TextWithLink>
         </LinkTW>
         <UserCountry>South Korea</UserCountry>
