@@ -63,7 +63,7 @@ const Label = tw.label`
   text-[15px] font-semibold text-cc-text-dark
   `;
 
-const InputErrorContainer = tw.div`
+const InputContainer = tw.div`
   flex
   relative
 `;
@@ -258,7 +258,7 @@ const Signup = () => {
         <SignupForm>
           <Name>
             <Label htmlFor='name-text'>Display name</Label>
-            <InputErrorContainer>
+            <InputContainer>
               <Input
                 id='name-text'
                 type='text'
@@ -268,12 +268,12 @@ const Signup = () => {
               <ErrorSvg>
                 <ErrorPath d={errorSvg} />
               </ErrorSvg>
-            </InputErrorContainer>
+            </InputContainer>
             <ErrorMessage>{nameMessage}</ErrorMessage>
           </Name>
           <Email>
             <Label htmlFor='email-text'>Email</Label>
-            <InputErrorContainer>
+            <InputContainer>
               <Input
                 id='email-text'
                 type='text'
@@ -283,12 +283,12 @@ const Signup = () => {
               <ErrorSvg>
                 <ErrorPath d={errorSvg} />
               </ErrorSvg>
-            </InputErrorContainer>
+            </InputContainer>
             <ErrorMessage>{emailMessage}</ErrorMessage>
           </Email>
           <Password>
             <Label htmlFor='password-text'>Password</Label>
-            <InputErrorContainer>
+            <InputContainer>
               <Input
                 id='password-text'
                 type='password'
@@ -298,7 +298,7 @@ const Signup = () => {
               <ErrorSvg>
                 <ErrorPath d={errorSvg} />
               </ErrorSvg>
-            </InputErrorContainer>
+            </InputContainer>
             <ErrorMessage>{pwMessage}</ErrorMessage>
             <Caption>
               Passwords must contain at least eight characters, including at
