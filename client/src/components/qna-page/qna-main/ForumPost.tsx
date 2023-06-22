@@ -11,6 +11,7 @@ import MarkdownViewer from '../../common/MarkdownViewer';
 import Tag from '../../common/Tag';
 import ProfilePreviewBox from './forum-post/ProfilePreviewBox';
 import CommentList from './forum-post/CommentList';
+import { TagType } from '../../../recoil/questionAtom';
 
 const ForumPostContainer = tw.article`
 w-[1080px] border-b-[2px] border-cc-border
