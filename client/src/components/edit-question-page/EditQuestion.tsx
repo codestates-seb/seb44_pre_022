@@ -121,11 +121,10 @@ const EditQuestion = () => {
     }));
   }, [selected]);
   useEffect(() => {
-    if (question.title.length !== 0 && question.title.length < 15) {
-      setIsTitle(true);
-    } else {
-      setIsTitle(false);
-    }
+    const trimmedStr = question.title.trim(); // 입력 문자열의 앞뒤 스페이스 제거
+    const isTooShort = trimmedStr.length !== 0 && trimmedStr.length < 15;
+    const isOnlySpaces = trimmedStr.length === 0 && question.title.length !== 0;
+    setIsTitle(isTooShort || isOnlySpaces);
   }, [question.title]);
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

@@ -160,7 +160,11 @@ const Signup = () => {
     const currentName = event.target.value;
     setNameValue(currentName);
 
-    if (currentName.length < 4) {
+    const trimmedStr = currentName.trim(); // 입력 문자열의 앞뒤 스페이스 제거
+    const isTooShort = trimmedStr.length !== 0 && trimmedStr.length < 4;
+    const isOnlySpaces = trimmedStr.length === 0 && currentName.length !== 0;
+
+    if (isTooShort || isOnlySpaces) {
       setNameMessage('닉네임은 4글자 이상이어야 합니다.');
       setIsName(false);
       setErrorSvg(
