@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import tw from 'twin.macro';
 
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const SignupContainer = tw.div`
   flex justify-center items-center
@@ -160,7 +161,11 @@ const Signup = () => {
     const currentName = event.target.value;
     setNameValue(currentName);
 
-    if (currentName.length < 4) {
+    const trimmedStr = currentName.trim(); // 입력 문자열의 앞뒤 스페이스 제거
+    const isTooShort = trimmedStr.length !== 0 && trimmedStr.length < 4;
+    const isOnlySpaces = trimmedStr.length === 0 && currentName.length !== 0;
+
+    if (isTooShort || isOnlySpaces) {
       setNameMessage('닉네임은 4글자 이상이어야 합니다.');
       setIsName(false);
       setErrorSvg(
@@ -201,6 +206,39 @@ const Signup = () => {
     } else {
       setPwMessage('');
       setIsPw(true);
+    }
+  };
+
+  const url = '';
+
+  const onSubmit = (event: any) => {
+    event.preventDefault();
+
+    // 유효성 검사 통과 여부 확인
+    if (isName && isEmail && isPw) {
+      // 요청 데이터 생성
+      const data = {
+        name: nameValue,
+        email: emailValue,
+        Password: pwValue,
+      };
+
+      // POST 요청 보내기
+      axios
+        .post(url, data)
+        .then((response) => {
+          // 요청이 성공한 경우
+          console.log('요청이 성공했습니다.');
+          console.log('응답 데이터:', response.data);
+        })
+        .catch((error) => {
+          // 요청이 실패한 경우
+          console.error('요청이 실패했습니다.');
+          console.error('에러 메시지:', error.message);
+        });
+    } else {
+      // 유효성 검사 통과하지 못한 경우
+      console.log('유효성 검사에 실패했습니다.');
     }
   };
 
@@ -255,7 +293,7 @@ const Signup = () => {
         </ContentMessage>
       </TextForm>
       <SignupFormContainer>
-        <SignupForm>
+        <SignupForm onSubmit={onSubmit}>
           <Name>
             <Label htmlFor='name-text'>Display name</Label>
             <InputContainer>
