@@ -122,10 +122,8 @@ const EditQuestion = () => {
   }, [selected]);
   useEffect(() => {
     if (question.title.length !== 0 && question.title.length < 15) {
-      console.log('15자 이상 입력하세요');
       setIsTitle(true);
     } else {
-      console.log('15자 이상');
       setIsTitle(false);
     }
   }, [question.title]);
