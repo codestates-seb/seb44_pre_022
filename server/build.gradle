@@ -44,6 +44,10 @@ dependencies {
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 
   implementation 'com.google.code.gson:gson'
+
+  implementation 'io.jsonwebtoken:jjwt-api'
+  runtimeOnly 'io.jsonwebtoken:jjwt-impl'
+  runtimeOnly 'io.jsonwebtoken:jjwt-jackson'
 }
 
 ext {
