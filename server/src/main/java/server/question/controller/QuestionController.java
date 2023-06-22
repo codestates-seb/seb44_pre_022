@@ -17,7 +17,6 @@ import server.question.service.QuestionService;
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
 import java.net.URI;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static server.utils.UriCreator.createUri;
@@ -40,7 +39,7 @@ public class QuestionController {
   @PostMapping
   public ResponseEntity createQuestion(@Valid @RequestBody QuestionDto.Post questionDto,
                                        @AuthenticationPrincipal UserDetails userDetails) {
-    // 질문 생성
+    // 질문 생성 + 로그인된 사용자 정보
     Question question = questionService.createQuestion(mapper.questionPostToQuestion(questionDto), userDetails);
 
     // 응답 생성할 URI 생성
@@ -73,7 +72,6 @@ public class QuestionController {
     requestBody.setQuestionId(questionId);
     Question question = questionService.updateQuestion(mapper.questionPatchToQuestion(requestBody));
 
-    LocalDateTime modifiedAt = question.getModifiedAt();
     return ResponseEntity.ok(mapper.questionToQuestionResponse(question));
   }
 
