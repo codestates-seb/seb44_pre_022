@@ -1,5 +1,6 @@
 package server.member.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import javax.validation.constraints.Positive;
 import java.net.URI;
 import java.util.List;
 
+@Slf4j
 @Validated
 @Controller
 @RequestMapping("/member")

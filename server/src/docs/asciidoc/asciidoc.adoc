@@ -2,3 +2,46 @@
 ***
 === Member
 ==== Post
+.curl-request
+include::{snippets}/post-member/curl-request.adoc[]
+.http-request
+include::{snippets}/post-member/http-request.adoc[]
+.http-response
+include::{snippets}/post-member/http-response.adoc[]
+.request-body
+include::{snippets}/post-member/request-body.adoc[]
+.request-fields
+include::{snippets}/post-member/request-fields.adoc[]
+***
+==== Patch
+.curl-request
+include::{snippets}/patch-member/curl-request.adoc[]
+.http-request
+include::{snippets}/patch-member/http-request.adoc[]
+.http-response
+include::{snippets}/patch-member/http-response.adoc[]
+.request-body
+include::{snippets}/patch-member/request-body.adoc[]
+.request-fields
+include::{snippets}/patch-member/request-fields.adoc[]
+***
+==== get
+.curl-request
+include::{snippets}/get-member/curl-request.adoc[]
+.http-request
+include::{snippets}/get-member/http-request.adoc[]
+.http-response
+include::{snippets}/get-member/http-response.adoc[]
+.request-body
+include::{snippets}/get-member/request-body.adoc[]
+***
+==== delete
+.curl-request
+include::{snippets}/delete-member/curl-request.adoc[]
+.http-request
+include::{snippets}/delete-member/http-request.adoc[]
+.http-response
+include::{snippets}/delete-member/http-response.adoc[]
+.request-body
+include::{snippets}/delete-member/request-body.adoc[]
+

@@ -42,7 +42,8 @@ public class MemberService {
   }
 
   public Member findMember(long memberId) {
-    return findVerifiedMember(memberId);
+    Member findMember = findVerifiedMember(memberId);
+    return findMember;
   }
 
   public List<Member> findMembers() {
@@ -56,9 +57,12 @@ public class MemberService {
   }
 
   private Member findVerifiedMember(long memberId) {
-    Optional<Member> findMember = memberRepository.findById(memberId);
-    return findMember
+    Optional<Member> member = memberRepository.findById(memberId);
+    log.info(member.toString());
+    Member findMember = member
             .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+    log.info(findMember.toString());
+    return findMember;
   }
 
   public void verifyExistsEmail(String email) {

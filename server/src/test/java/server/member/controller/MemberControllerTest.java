@@ -7,18 +7,14 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.restdocs.payload.JsonFieldType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import server.member.entity.Member;
 import server.member.repository.dto.MemberDto;
 import server.member.mapper.MemberMapper;
@@ -26,21 +22,21 @@ import server.member.service.MemberService;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.startsWith;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.restdocs.headers.HeaderDocumentation.headerWithName;
 import static org.springframework.restdocs.headers.HeaderDocumentation.responseHeaders;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
+import static org.springframework.restdocs.mockmvc.RestDocumentationRequestBuilders.*;
 import static org.springframework.restdocs.payload.PayloadDocumentation.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.restdocs.request.RequestDocumentation.parameterWithName;
+import static org.springframework.restdocs.request.RequestDocumentation.pathParameters;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static server.util.RestDocsUtil.getRequestPreProcessor;
 import static server.util.RestDocsUtil.getResponsePreProcessor;
 
 @Slf4j
-@MockBean(JpaMetamodelMappingContext.class)
 @WebMvcTest(MemberController.class)
+@MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
 public class MemberControllerTest {
   @Autowired
@@ -68,7 +64,7 @@ public class MemberControllerTest {
 
     // when
     ResultActions actions = mockMvc.perform(
-            MockMvcRequestBuilders.post("/member")
+            post("/member")
                     .contentType(MediaType.APPLICATION_JSON)
                     .accept(MediaType.APPLICATION_JSON)
                     .content(content)
@@ -98,75 +94,126 @@ public class MemberControllerTest {
   }
 
   @Test
-  public void pathMember() throws Exception {
+  public void patchMember() throws Exception {
     // given
-    MemberDto.Patch memberDto = new MemberDto.Patch(1, "test@gmail.com", "test1234!", "test");
-    String content = gson.toJson(memberDto);
+    long memberId = 1L;
+    MemberDto.Patch member = new MemberDto.Patch(1L, "test@gmail.com", "test1234!", "test");
+    String content = gson.toJson(member);
+
+    given(mapper.memberPatchDtoToMember(Mockito.any(MemberDto.Patch.class)))
+            .willReturn(new Member());
+    given(memberService.updateMember(Mockito.any(Member.class)))
+            .willReturn(new Member());
+    MemberDto.Response response = new MemberDto.Response(1, "test2@gmail.com", "test1234!", "test2");
+    given(mapper.memberToMemberResponseDto(Mockito.any(Member.class)))
+            .willReturn(response);
+
+    log.info(content);
     // when
     ResultActions actions = mockMvc.perform(
-            MockMvcRequestBuilders
-                    .patch("/member/1")
+            patch("/member/{member-id}", 1L)
+                    .accept(MediaType.APPLICATION_JSON)
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .content(content)
+    );
+
+    // then
+    actions
+            .andExpect(
+                    status().isOk()
+            )
+            .andDo(
+                    document(
+                            "patch-member",
+                            getRequestPreProcessor(),
+                            getResponsePreProcessor(),
+                            pathParameters(
+                                    parameterWithName("member-id").description("멤버 식별자")
+                            ),
+                            requestFields(
+                                    List.of(
+                                            fieldWithPath("id").type(JsonFieldType.NUMBER).description("멤버 식별자").ignored(),
+                                            fieldWithPath("email").type(JsonFieldType.STRING).description("이메일").optional(),
+                                            fieldWithPath("password").type(JsonFieldType.STRING).description("비밀번호").optional(),
+                                            fieldWithPath("alias").type(JsonFieldType.STRING).description("별명").optional()
+                                    )
+                            ),
+                            responseFields(
+                                    List.of(
+                                            fieldWithPath("id").type(JsonFieldType.NUMBER).description("멤버 식별자"),
+                                            fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
+                                            fieldWithPath("password").type(JsonFieldType.STRING).description("비밀번호"),
+                                            fieldWithPath("alias").type(JsonFieldType.STRING).description("별명")
+                                    )
+                            )
+                    )
+            );
+  }
+  @Test
+  public void getMember() throws Exception {
+    // give
+    Member member = new Member( "test@gmail.com", "test1234!", "테스트");
+    member.setId(1L);
+    String content = gson.toJson(member);
+
+    given(memberService.findMember(Mockito.anyLong()))
+            .willReturn(new Member());
+
+    MemberDto.Response response = new MemberDto.Response(1, "test2@gmail.com", "test1234!", "테스트2");
+    given(mapper.memberToMemberResponseDto(Mockito.any(Member.class)))
+            .willReturn(response);
+
+    // when
+    ResultActions actions = mockMvc.perform(
+            get("/member/{member-id}", 1L)
                     .accept(MediaType.APPLICATION_JSON)
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(content)
     );
     // then
-    actions.andExpect(
-            status().isOk()
-    );
-  }
-  @Test
-  public void getMember() throws Exception {
-    // given
-    MemberDto.Response response = new MemberDto.Response(1, "test@gmail.com", "test1234!", "테스트");
-    String content = gson.toJson(response);
-
-    // when
-    ResultActions actions = mockMvc.perform(
-            MockMvcRequestBuilders.get(
-                            "/member/1"
+    actions
+            .andExpect(
+                    status().isOk()
+            )
+            .andDo(
+                    document(
+                            "get-member",
+                            getRequestPreProcessor(),
+                            getResponsePreProcessor(),
+                            pathParameters(
+                                    parameterWithName("member-id").description("멤버 식별자")
+                            ),
+                            responseFields(
+                                    List.of(
+                                            fieldWithPath("id").type(JsonFieldType.NUMBER).description("인덱스"),
+                                            fieldWithPath("email").type(JsonFieldType.STRING).description("이메일"),
+                                            fieldWithPath("password").type(JsonFieldType.STRING).description("비밀번호"),
+                                            fieldWithPath("alias").type(JsonFieldType.STRING).description("별명")
+                                    )
+                            )
                     )
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(content)
-    );
-    // then
-    actions.andExpect(
-            status().isOk()
-    );
-  }
-  @Test
-  public void getMembers() throws Exception {
-    // given
-    List<MemberDto.Response> response = List.of(
-            new MemberDto.Response(1, "test@gmail.com", "test1234!", "테스트"),
-            new MemberDto.Response(2, "test2@gmail.com", "test1234!", "테스트2")
-    );
-    String content = gson.toJson(response);
-
-    // when
-    ResultActions actions = mockMvc.perform(
-            MockMvcRequestBuilders.get(
-                            "/member"
-                    )
-                    .contentType(MediaType.APPLICATION_JSON)
-                    .content(content)
-    );
-    // then
-    actions.andExpect(
-            status().isOk()
-    );
+            );
   }
   @Test
   public void deleteMember() throws Exception {
     // when
     ResultActions actions = mockMvc.perform(
-            MockMvcRequestBuilders.delete(
-                            "/member/1"
-                    )
+            delete("/member/{member-id}", 1L)
     );
     // then
-    actions.andExpect(
-            status().isNoContent()
-    );
+    actions
+            .andExpect(
+                    status().isNoContent()
+            )
+            .andDo(
+                    document(
+                            "delete-member",
+                            getRequestPreProcessor(),
+                            getResponsePreProcessor(),
+                            pathParameters(
+                                    parameterWithName("member-id").description("멤버 식별자")
+                            )
+                    )
+            );
   }
 }

@@ -8,10 +8,18 @@ import server.member.entity.Member;
 
 import java.util.List;
 
-@Mapper(componentModel = MappingConstants.ComponentModel.SPRING)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface MemberMapper {
   Member memberPostDtoToMember(MemberDto.Post memberDto);
-  Member memberPatchDtoToMember(MemberDto.Patch memberDto);
+
+  default Member memberPatchDtoToMember(MemberDto.Patch memberDto) {
+    Member member = new Member(
+            memberDto.getEmail(),
+            memberDto.getPassword(),
+            memberDto.getAlias()
+    );
+    return member;
+  }
 
   MemberDto.Response memberToMemberResponseDto(Member updatedMember);
 
