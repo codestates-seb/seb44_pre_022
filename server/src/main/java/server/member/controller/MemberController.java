@@ -1,5 +1,6 @@
 package server.member.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,7 @@ import javax.validation.constraints.Positive;
 import java.net.URI;
 import java.util.List;
 
+@Slf4j
 @Validated
 @Controller
 @RequestMapping("/member")
@@ -53,5 +55,10 @@ public class MemberController {
   public ResponseEntity getMembers() {
     List<Member> findMembers = memberService.findMembers();
     return new ResponseEntity(mapper.membersToMemberResponseDtos(findMembers), HttpStatus.OK);
+  }
+  @DeleteMapping("/{member-id}")
+  public ResponseEntity deleteMember(@PathVariable("member-id") @Positive long memberId) {
+    memberService.deleteMember(memberId);
+    return new ResponseEntity(HttpStatus.NO_CONTENT);
   }
 }
