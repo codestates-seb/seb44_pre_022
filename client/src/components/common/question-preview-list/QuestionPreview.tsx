@@ -4,6 +4,7 @@ import tw from 'twin.macro';
 import { Link } from 'react-router-dom';
 
 import Tag from '../Tag';
+import { TagType } from '../../../recoil/questionAtom';
 
 const QuestionPreviewContainer = tw.article`
 w-[1080px] h-[110px] flex justify-center items-center gap-[50px] border-b-[1px] border-cc-border

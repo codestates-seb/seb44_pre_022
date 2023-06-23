@@ -40,7 +40,7 @@ public class MemberService {
 
     return memberRepository.save(member);
   }
-
+  
   public Member findMember(long memberId) {
     Member findMember = findVerifiedMember(memberId);
     return findMember;
