@@ -209,7 +209,7 @@ const Signup = () => {
     }
   };
 
-  const url = '';
+  const url = 'http://localhost:3001/member';
 
   const onSubmit = (event: any) => {
     event.preventDefault();
@@ -218,9 +218,9 @@ const Signup = () => {
     if (isName && isEmail && isPw) {
       // 요청 데이터 생성
       const data = {
-        name: nameValue,
+        alias: nameValue,
         email: emailValue,
-        Password: pwValue,
+        password: pwValue,
       };
 
       // POST 요청 보내기

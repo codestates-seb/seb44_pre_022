@@ -11,7 +11,10 @@
     {
       "title": "예시입니다",
       "content": "예시입니다 . 이부분은 추후에 다시 바꾸겠습니다 ! \ntag는 입력후 엔터를 치면 자동 생성됩니다 ",
-      "tags": ["tag", "javascript"],
+      "tags": [
+        "tag",
+        "javascript"
+      ],
       "answers": [],
       "comments": [],
       "id": 1
@@ -19,7 +22,12 @@
     {
       "title": "질문있습니다 ! ",
       "content": "질문있습니다 !! ",
-      "tags": ["react", "typescript", "so", "hard"],
+      "tags": [
+        "react",
+        "typescript",
+        "so",
+        "hard"
+      ],
       "answers": [],
       "comments": [],
       "id": 2
@@ -27,7 +35,10 @@
     {
       "title": "Python에서 파일을 읽고 쓰는 방법에 대해 알려주세요",
       "content": "안녕하세요. Python 초보 개발자입니다. 파일을 읽고 쓰는 방법에 대해 궁금합니다.\n\n예를 들어, \"data.txt\"라는 파일을 읽어와서 내용을 출력하거나, 새로운 파일을 만들어서 내용을 저장하는 방법을 알고 싶습니다. 또한, 파일에 데이터를 추가하는 방법도 알고 싶습니다. 어떤 방식을 사용해야 할까요? 가능한 예시와 함께 자세히 설명해주세요.\n\n감사합니다.",
-      "tags": ["python", "txt"],
+      "tags": [
+        "python",
+        "txt"
+      ],
       "comments": [
         "Python 말고 JavaScript 쓰세요",
         "JavaScript 말고 TypeScript 쓰세요",
@@ -52,7 +63,9 @@
       "id": 4,
       "title": "테스트 ",
       "content": "마지막 테스트 ",
-      "tags": ["test"],
+      "tags": [
+        "test"
+      ],
       "comments": [],
       "answers": []
     }
@@ -126,6 +139,20 @@
   "users": [
     {
       "name": "typicode"
+    }
+  ],
+  "member": [
+    {
+      "alias": "asdf",
+      "email": "asdf@gmail.com",
+      "password": "asdf123456.",
+      "id": 1
+    },
+    {
+      "alias": "qwer",
+      "email": "qwer@gmail.com",
+      "password": "qwer5678.",
+      "id": 2
     }
   ]
 }
