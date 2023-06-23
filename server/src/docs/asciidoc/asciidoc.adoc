@@ -34,6 +34,8 @@ include::{snippets}/get-member/http-request.adoc[]
 include::{snippets}/get-member/http-response.adoc[]
 .request-body
 include::{snippets}/get-member/request-body.adoc[]
+.request-fields
+include::{snippets}/get-member/response-fields.adoc[]
 ***
 ==== delete
 .curl-request
