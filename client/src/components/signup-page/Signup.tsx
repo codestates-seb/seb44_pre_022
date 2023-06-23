@@ -1,25 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import tw from 'twin.macro';
+
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const SignupContainer = tw.div`
-  flex
-  justify-center
-  items-center
-  h-screen
+  flex justify-center items-center
   p-6
+  h-screen
   bg-cc-background
 `;
 
 const TextForm = tw.div`
-  mr-12
-  mb-32
+  mr-12 mb-32
 `;
 
 const Title = tw.h1`
   mb-8
-  text-[27px]
-  text-cc-text
+  text-[27px] text-cc-text
 `;
 
 const ContentList = tw.div`
@@ -28,62 +26,53 @@ const ContentList = tw.div`
 `;
 
 const ContentLogo = tw.svg`
-  w-[26px]
-  h-[26px]
   mr-2
+  w-[26px] h-[26px]
 `;
 
 const Path = tw.path`
   fill-cc-button-blue
 `;
 
-const Content = tw.div`
-`;
+const Content = tw.div``;
 
 const SignupFormContainer = tw.div`
-  flex
-  flex-col
-  items-center
+  flex flex-col items-center
 `;
 
 const SignupForm = tw.form`
-  flex
-  flex-col
-  justify-center
-  items-start
-  mb-6
-  p-6
+  flex flex-col justify-center items-start
+  mb-6 p-6
+  w-[330px]
   rounded-[7px]
   shadow-[0 10px 24px rgba(0, 0, 0, 0.05), 0 20px 48px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.1)]
   bg-cc-button-blue-text
 `;
 
 const Column = tw.div`
-  flex
-  flex-col
+  flex flex-col
   my-1.5
+  w-full
 `;
 
 const Name = tw(Column)``;
-
 const Email = tw(Column)``;
-
 const Password = tw(Column)``;
 
 const Label = tw.label`
-  my-0.5
-  px-0.5
-  text-[15px]
-  font-semibold
-  text-cc-text-dark
+  my-0.5 px-0.5
+  text-[15px] font-semibold text-cc-text-dark
+  `;
+
+const InputContainer = tw.div`
+  flex
+  relative
 `;
 
 const Input = tw.input`
-  my-0.5
-  p-2
-  w-[280px]
-  border border-cc-input-border
-  rounded-[3px]
+  my-0.5 p-2
+  w-full
+  border border-cc-input-border rounded-[3px]
   bg-cc-button-blue-text
   text-[13px]
 
@@ -93,24 +82,40 @@ const Input = tw.input`
   focus:ring-cc-button-sky-effect
 `;
 
+// const InputError = tw(Input)`
+//   border border-cc-red
+//   focus:border-cc-red
+//   focus:ring-[#c22e3226]
+// `;
+
+const ErrorSvg = tw.svg`
+  absolute
+  mt-[-9px]
+  top-1/2 right-[0.7em]
+  w-[18px] h-[18px]
+`;
+
+const ErrorPath = tw.path`
+  fill-cc-red
+`;
+
+const ErrorMessage = tw.p`
+  my-0.5
+  text-xs text-cc-red
+`;
+
 const Caption = tw.div`
   my-1
-  w-[280px]
-  text-xs
-  text-cc-text-ui
+  text-xs text-cc-text-ui
 `;
 
 const SignupButton = tw(Column)``;
 
 const Submit = tw.button`
-  my-0.5
-  p-2.5
-  w-[280px]
-  border border-solid border-transparent
-  rounded-[3px]
+  my-0.5 p-2.5
+  border border-solid border-transparent rounded-[3px]
   bg-cc-button-blue
-  text-[13px]
-  text-cc-button-blue-text
+  text-[13px] text-cc-button-blue-text
 
   hover:bg-cc-button-blue-hover
   focus:ring-4
@@ -124,13 +129,11 @@ const BlueText = tw.a`
 
 const Message = tw.div`
   p-4
-  text-[13px]
-  text-cc-text
+  text-[13px] text-cc-text
 `;
 
 const ContentMessage = tw.div`
-  text-[13px]
-  text-cc-text
+  text-[13px] text-cc-text
 `;
 
 const BlueLoginText = tw.span`
@@ -138,6 +141,107 @@ const BlueLoginText = tw.span`
 `;
 
 const Signup = () => {
+  // 이름, 이메일, 비밀번호 초기 상태값 선언
+  const [nameValue, setNameValue] = useState<string>('');
+  const [emailValue, setEmailValue] = useState<string>('');
+  const [pwValue, setPwValue] = useState<string>('');
+
+  // 오류메시지 상태저장
+  const [nameMessage, setNameMessage] = useState<string>('');
+  const [emailMessage, setEmailMessage] = useState<string>('');
+  const [pwMessage, setPwMessage] = useState<string>('');
+  const [errorSvg, setErrorSvg] = useState('');
+
+  // 유효성 검사
+  const [isName, setIsName] = useState<boolean>(false);
+  const [isEmail, setIsEmail] = useState<boolean>(false);
+  const [isPw, setIsPw] = useState<boolean>(false);
+
+  const onChangeName = (event: any) => {
+    const currentName = event.target.value;
+    setNameValue(currentName);
+
+    const trimmedStr = currentName.trim(); // 입력 문자열의 앞뒤 스페이스 제거
+    const isTooShort = trimmedStr.length !== 0 && trimmedStr.length < 4;
+    const isOnlySpaces = trimmedStr.length === 0 && currentName.length !== 0;
+
+    if (isTooShort || isOnlySpaces) {
+      setNameMessage('닉네임은 4글자 이상이어야 합니다.');
+      setIsName(false);
+      setErrorSvg(
+        'M9 17c-4.36 0-8-3.64-8-8 0-4.36 3.64-8 8-8 4.36 0 8 3.64 8 8 0 4.36-3.64 8-8 8ZM8 4v6h2V4H8Zm0 8v2h2v-2H8Z'
+      );
+    } else {
+      setNameMessage('');
+      setIsName(true);
+      setErrorSvg('');
+    }
+  };
+
+  const onChangeEmail = (event: any) => {
+    const regexEmail =
+      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    const currentEmail = event.target.value;
+    setEmailValue(currentEmail);
+
+    if (!regexEmail.test(currentEmail)) {
+      setEmailMessage('이메일의 형식이 올바르지 않습니다.');
+      setIsEmail(false);
+    } else {
+      setEmailMessage('');
+      setIsEmail(true);
+    }
+  };
+
+  const onChangePw = (event: any) => {
+    const regexPw = /^(?=.*[a-zA-Z])(?=.*[.!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+    const currentPw = event.target.value;
+    setPwValue(currentPw);
+
+    if (!regexPw.test(currentPw)) {
+      setPwMessage(
+        '비밀번호는 8~20자, 영문자, 숫자, 특수문자 1개가 포함되어야 합니다.'
+      );
+      setIsPw(false);
+    } else {
+      setPwMessage('');
+      setIsPw(true);
+    }
+  };
+
+  const url = 'http://localhost:3001/member';
+
+  const onSubmit = (event: any) => {
+    event.preventDefault();
+
+    // 유효성 검사 통과 여부 확인
+    if (isName && isEmail && isPw) {
+      // 요청 데이터 생성
+      const data = {
+        alias: nameValue,
+        email: emailValue,
+        password: pwValue,
+      };
+
+      // POST 요청 보내기
+      axios
+        .post(url, data)
+        .then((response) => {
+          // 요청이 성공한 경우
+          console.log('요청이 성공했습니다.');
+          console.log('응답 데이터:', response.data);
+        })
+        .catch((error) => {
+          // 요청이 실패한 경우
+          console.error('요청이 실패했습니다.');
+          console.error('에러 메시지:', error.message);
+        });
+    } else {
+      // 유효성 검사 통과하지 못한 경우
+      console.log('유효성 검사에 실패했습니다.');
+    }
+  };
+
   return (
     <SignupContainer>
       <TextForm>
@@ -189,18 +293,51 @@ const Signup = () => {
         </ContentMessage>
       </TextForm>
       <SignupFormContainer>
-        <SignupForm>
+        <SignupForm onSubmit={onSubmit}>
           <Name>
             <Label htmlFor='name-text'>Display name</Label>
-            <Input id='name-text' type='text' />
+            <InputContainer>
+              <Input
+                id='name-text'
+                type='text'
+                value={nameValue}
+                onChange={onChangeName}
+              />
+              <ErrorSvg>
+                <ErrorPath d={errorSvg} />
+              </ErrorSvg>
+            </InputContainer>
+            <ErrorMessage>{nameMessage}</ErrorMessage>
           </Name>
           <Email>
             <Label htmlFor='email-text'>Email</Label>
-            <Input id='email-text' type='text' />
+            <InputContainer>
+              <Input
+                id='email-text'
+                type='text'
+                value={emailValue}
+                onChange={onChangeEmail}
+              />
+              <ErrorSvg>
+                <ErrorPath d={errorSvg} />
+              </ErrorSvg>
+            </InputContainer>
+            <ErrorMessage>{emailMessage}</ErrorMessage>
           </Email>
           <Password>
             <Label htmlFor='password-text'>Password</Label>
-            <Input id='password-text' type='password' />
+            <InputContainer>
+              <Input
+                id='password-text'
+                type='password'
+                value={pwValue}
+                onChange={onChangePw}
+              />
+              <ErrorSvg>
+                <ErrorPath d={errorSvg} />
+              </ErrorSvg>
+            </InputContainer>
+            <ErrorMessage>{pwMessage}</ErrorMessage>
             <Caption>
               Passwords must contain at least eight characters, including at
               least 1 letter and 1 number.

@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import tw from 'twin.macro';
+import axios from 'axios';
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
 import { isLoggedInState } from '../../../recoil/atoms';
+import { UserType } from '../../../recoil/questionAtom';
 
 const ProfileContainer = tw.div`
   w-full h-52
@@ -29,8 +31,7 @@ const ContentDiv3 = tw.div`
 `;
 
 const ProfileImg = tw.img`
-  w-28 h-28
-  bg-cc-orange
+  w-28 h-28 shadow-md
 
 `;
 const ProfileNickName = tw.div`
@@ -60,6 +61,12 @@ const AnsQueText = tw.div`
   border-2 border-r-cc-input-border border-l-cc-input-border border-b-cc-input-border border-t-0
 `;
 
+const getUserId = () => {
+  const keywords = useLocation().pathname.split('/');
+  const numStr = keywords[keywords.length - 1];
+  return numStr;
+};
+
 const UserInfo = () => {
   const [isLoggedIn, setisLoggedIn] = useRecoilState(isLoggedInState);
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
@@ -74,15 +81,38 @@ const UserInfo = () => {
     setIsQuestionVisible(true);
     setIsAnswerVisible(false);
   };
+
   console.log(isAnswerVisible);
+
+  const [userObj, setUserObj] = useState<UserType>({
+    id: 0,
+    image: '',
+    name: '',
+  });
+
+  const userId = getUserId();
+  console.log(userId);
+
+  React.useEffect(() => {
+    axios
+      .get(`http://localhost:3001/users/${userId}`)
+      .then((response) => {
+        console.log(response.data);
+        setUserObj(response.data);
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+  }, []);
+
   return (
     <div>
       <ProfileContainer>
         <ContentDiv1>
-          <ProfileImg></ProfileImg>
+          <ProfileImg src={userObj.image}></ProfileImg>
         </ContentDiv1>
         <ContentDiv2>
-          <ProfileNickName>NickName</ProfileNickName>
+          <ProfileNickName>{userObj.name}</ProfileNickName>
           <AnsQueButton onClick={handleAnswerButtonClick}>Answers</AnsQueButton>
           <AnsQueButton onClick={handleQuestionButtonClick}>
             Questions

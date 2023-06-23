@@ -66,7 +66,7 @@ export default function NavComponent() {
             <NavIcon icon={faCircleQuestion}></NavIcon>
           </HelpButton>
           <ProfileButtonContainer>
-            <Link to='/user/0'>
+            <Link to='/users/0'>
               <ProfileButton />
             </Link>
           </ProfileButtonContainer>

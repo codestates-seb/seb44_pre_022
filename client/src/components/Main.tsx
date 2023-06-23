@@ -12,7 +12,7 @@ flex flex-col justify-start items-center
 `;
 
 type Props = {
-  type?: string; // undefined, tags, users
+  type?: string; // undefined(questions), tags, users
 };
 
 export default function MainComponent(props: Props) {

@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import tw from 'twin.macro';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import axios from 'axios';
+import MDEditor, { commands } from '@uiw/react-md-editor';
 import { TagsInput } from 'react-tag-input-component';
-import { QuestionState, Question } from '../../recoil/questionAtom';
+import { QuestionState, Question, TagType } from '../../recoil/questionAtom';
 import codeIcon from '../../resources/images/code-icon.svg';
 import imageIcon from '../../resources/images/image-icon.svg';
 enum Message {
@@ -11,8 +12,9 @@ enum Message {
   ASK_QUESTION = 'Ask a public question',
   CONTENT_TITLE = 'What are the details of your problem?',
   TITLE_DESCRIPTION = 'Be specific and imagine you’re asking a question to another person.',
-  CONTENT_DESCRIPTION = 'Introduce the problem and expand on what you put in the title. Minimum 20 characters.',
+  CONTENT_DESCRIPTION = 'Introduce the problem and expand on what you put in the title. Minimum 220 characters.',
   TAG_DESCRIPTION = 'Add up to 5 tags to describe what your question is about. Start typing to see suggestions.',
+  TITLE_ERROR = 'Title must be at least 15 characters.',
 }
 
 /* 전체를 담을 영역 */
@@ -55,9 +57,9 @@ const Input = tw.input`
     
 
 `;
-const TextArea = tw.textarea`
-    w-full h-80
-    border-2 rounded-b-lg border-cc-input-border
+const TextAreaDiv = tw.div`
+    w-full 
+    border-2 rounded-lg border-cc-input-border
     focus:outline-none
     focus:border-cc-input-border-click
     focus:ring-4
@@ -68,18 +70,14 @@ const Description = tw.div`
     text-xs text-cc-text-ui
     p-2
 `;
-
-const IconContainer = tw.div`
-  w-full h-10 top-0
-  flex gap-3 
-  border-t-2 border-l-2 border-r-2 rounded-t-lg border-cc-input-border
-  
+const TagsDiv = tw.div`
+  w-full 
+  border-2 rounded-lg border-cc-input-border
+  focus:outline-none
+  focus:border-cc-input-border-click
+  focus:ring-4
+  focus:ring-cc-button-sky-effect
 `;
-const Icons = tw.img`
-  w-6 h-6
-  my-auto ml-2
-`;
-
 const DiscardDraft = tw.button`
   text-cc-red
   text-sm
@@ -100,6 +98,10 @@ const ButtonContainger = tw.div`
   p-4
   flex justify-between
 `;
+
+const ValidationMsg = tw.div`
+  text-cc-red
+`;
 const EditQuestion = () => {
   const [question, setQuestion] = useState<Question>({
     id: 0,
@@ -110,7 +112,7 @@ const EditQuestion = () => {
     answers: [],
   });
   const [selected, setSelected] = useState<string[]>([]);
-
+  const [isTitle, setIsTitle] = useState<boolean>(false);
   const setQuestionState = useSetRecoilState(QuestionState);
   useEffect(() => {
     setQuestion((prevQuestion) => ({
@@ -118,11 +120,17 @@ const EditQuestion = () => {
       tags: selected,
     }));
   }, [selected]);
+  useEffect(() => {
+    const trimmedStr = question.title.trim(); // 입력 문자열의 앞뒤 스페이스 제거
+    const isTooShort = trimmedStr.length !== 0 && trimmedStr.length < 15;
+    const isOnlySpaces = trimmedStr.length === 0 && question.title.length !== 0;
+    setIsTitle(isTooShort || isOnlySpaces);
+  }, [question.title]);
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
-    setQuestion((prevQuestion: Question) => ({
+    setQuestion((prevQuestion) => ({
       ...prevQuestion,
       [name]: value,
     }));
@@ -162,31 +170,43 @@ const EditQuestion = () => {
               value={question.title}
               onChange={handleInputChange}
             ></Input>
+            {isTitle ? (
+              <ValidationMsg>{Message.TITLE_ERROR}</ValidationMsg>
+            ) : undefined}
           </TitleFormDiv>
           <TitleFormDiv>
             <Title>{Message.CONTENT_TITLE}</Title>
             <Description>{Message.CONTENT_DESCRIPTION}</Description>
-            <div>
-              <IconContainer>
-                <Icons src={codeIcon} />{' '}
-                {/* 버튼 배경으로 넣으려고 하니 오류가 발생해 이미지로 대체하였음 / 나중에 버튼으로 감싸면 됨 */}
-                <Icons src={imageIcon} />
-              </IconContainer>
-              <TextArea
+            <TextAreaDiv tabIndex={0}>
+              <MDEditor
+                height={400}
+                value={question.content}
+                preview='edit'
+                data-color-mode='light'
+                onChange={(content: string) =>
+                  setQuestion((prevQuestion) => ({
+                    ...prevQuestion,
+                    content,
+                  }))
+                }
+              />
+              {/* <TextArea
                 name='content'
                 value={question.content}
                 onChange={handleInputChange}
-              />
-            </div>
+              /> */}
+            </TextAreaDiv>
           </TitleFormDiv>
           <TitleFormDiv>
             <Title>Tags</Title>
             <Description>{Message.TAG_DESCRIPTION}</Description>
-            <TagsInput
-              name='tags'
-              value={selected}
-              onChange={handleTagChange}
-            ></TagsInput>
+            <TagsDiv tabIndex={0}>
+              <TagsInput
+                name='tags'
+                value={selected}
+                onChange={handleTagChange}
+              ></TagsInput>
+            </TagsDiv>
           </TitleFormDiv>
           <ButtonContainger>
             <DiscardDraft>Discard Draft</DiscardDraft>
