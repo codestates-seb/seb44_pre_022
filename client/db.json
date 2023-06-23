@@ -1,43 +1,173 @@
 {
   "posts": [
     {
-      "title": "예시입니다",
-      "content": "예시입니다 . 이부분은 추후에 다시 바꾸겠습니다 ! \ntag는 입력후 엔터를 치면 자동 생성됩니다 ",
-      "tag": [
-        "tag",
-        "javascript"
-      ],
-      "id": 1
+      "title": "",
+      "content": "",
+      "tags": [],
+      "answers": [],
+      "comments": [],
+      "id": 0
     },
     {
       "title": "예시입니다",
       "content": "예시입니다 . 이부분은 추후에 다시 바꾸겠습니다 ! \ntag는 입력후 엔터를 치면 자동 생성됩니다 ",
-      "tag": [
-        "tag",
-        "javascript"
-      ],
-      "id": 2
+      "tags": ["tag", "javascript"],
+      "answers": [],
+      "comments": [],
+      "id": 1
     },
     {
       "title": "질문있습니다 ! ",
       "content": "질문있습니다 !! ",
-      "tag": [
-        "react",
-        "typescript",
-        "so",
-        "hard"
+      "tags": ["react", "typescript", "so", "hard"],
+      "answers": [],
+      "comments": [],
+      "id": 2
+    },
+    {
+      "title": "Python에서 파일을 읽고 쓰는 방법에 대해 알려주세요",
+      "content": "안녕하세요. Python 초보 개발자입니다. 파일을 읽고 쓰는 방법에 대해 궁금합니다.\n\n예를 들어, \"data.txt\"라는 파일을 읽어와서 내용을 출력하거나, 새로운 파일을 만들어서 내용을 저장하는 방법을 알고 싶습니다. 또한, 파일에 데이터를 추가하는 방법도 알고 싶습니다. 어떤 방식을 사용해야 할까요? 가능한 예시와 함께 자세히 설명해주세요.\n\n감사합니다.",
+      "tags": ["python", "txt"],
+      "comments": [
+        "Python 말고 JavaScript 쓰세요",
+        "JavaScript 말고 TypeScript 쓰세요",
+        "TypeScript 말고 COBOL 쓰세요",
+        "COBOL 말고 어셈블리어 쓰세요",
+        "어셈블리어 말고 기계어 쓰세요",
+        "그만해 이 양반들아"
+      ],
+      "answers": [
+        {
+          "content": "안녕하세요. 파이썬 파일 읽고 쓰는 방법에 대해 궁금해하시는군요.\n\n파이썬에서 파일을 읽고 쓰는 방법은 여러 가지가 있는데, 가장 일반적인 방법은 `open()` 함수를 사용하는 것입니다. `open()` 함수는 파일을 열고 읽거나 쓰기 위한 파일 객체를 반환합니다. 파일 객체를 생성한 후에는 `read()` 함수를 사용하여 파일의 내용을 읽고, `write()` 함수를 사용하여 파일에 내용을 씁니다.\n\n예를 들어, `data.txt` 파일을 읽어와서 내용을 출력하려면 다음과 같은 코드를 사용할 수 있습니다.\n\n```python\nwith open(\"data.txt\", \"r\") as f:\n    contents = f.read()\n    print(contents)\n```\n\n`with` 문은 파일을 열고 닫는 것을 자동으로 처리하므로 파일을 열고 닫는 코드를 따로 작성할 필요가 없습니다. `open()` 함수는 두 개의 인수를 받습니다. 첫 번째 인수는 파일의 이름이고, 두 번째 인수는 파일의 모드입니다. 모드는 파일을 읽기(`r`), 쓰기(`w`), 추가(`a`)로 지정할 수 있습니다.\n\n파일에 데이터를 추가하려면 `write()` 함수를 사용합니다. `write()` 함수는 파일에 문자열을 씁니다. 예를 들어, `data.txt` 파일에 \"Hello, world!\"라는 문자열을 추가하려면 다음과 같은 코드를 사용할 수 있습니다.\n\n```python\n    with open(\"data.txt\", \"a\") as f:\n    f.write(\"Hello, world!\")\n```\n\n파일을 읽고 쓰는 방법에 대한 자세한 내용은 파이썬 공식 문서를 참조하세요.\n\n```\nhttps://docs.python.org/3/tutorial/inputoutput.html\n```\n\n감사합니다.\n",
+          "comments": []
+        },
+        {
+          "content": "파일을 읽고 쓰는 방법에 대해 알려드리겠습니다. Python에서는 내장된 open() 함수를 사용하여 파일을 열고 다양한 작업을 할 수 있습니다.\n1. 파일 읽기:\n   파일을 읽기 위해서는 open() 함수를 사용하여 파일을 열고, read() 메서드를 호출하여 파일 내용을 읽습니다. 아래는 예시 코드입니다.\n   ```python\n   file = open(\"data.txt\", \"r\")  # 파일을 읽기 모드로 열기\n   content = file.read()  # 파일 내용 읽기\n   print(content)  # 파일 내용 출력\n   file.close()  # 파일 닫기\n   ```\n\n2. 파일 쓰기:\n   새로운 파일을 생성하거나 기존 파일을 덮어쓰기 위해서는 open() 함수를 사용하고, write() 메서드를 호출하여 내용을 작성합니다. 아래는 예시 코드입니다.\n\n   ```python\n   file = open(\"new_file.txt\", \"w\")  # 파일을 쓰기 모드로 열기\n   content = \"Hello, world!\"  # 저장할 내용\n   file.write(content)  # 파일에 내용 작성\n   file.close()  # 파일 닫기\n   ```\n\n3. 파일에 데이터 추가하기:\n   기존 파일에 내용을 추가하기 위해서는 open() 함수를 사용하고, write() 메서드를 호출하여 내용을 작성합니다. 단, 파일을 쓰기 모드(\"w\")로 열게 되면 기존 내용이 모두 사라지므로 주의해야 합니다. 아래는 예시 코드입니다.\n   ```python\n   file = open(\"existing_file.txt\", \"a\")  # 파일을 추가 모드로 열기\n   content = \"Additional content.\"  # 추가할 내용\n   file.write(content)  # 파일에 내용 추가\n   file.close()  # 파일 닫기\n   ```",
+          "comments": []
+        }
       ],
       "id": 3
-    }
-  ],
-  "comments": [
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 4,
+      "title": "테스트 ",
+      "content": "마지막 테스트 ",
+      "tags": ["test"],
+      "comments": [],
+      "answers": []
     }
   ],
-  "profile": {
-    "name": "typicode"
-  }
+  "tags": [
+    {
+      "name": "python",
+      "content": "Python is a multi-paradigm, dynamically typed, multi-purpose programming language. It is designed to be quick to learn, understand, and use, and enforces a clean and uniform syntax. Please note that Python 2 is officially out of support as of 2020-01-01. For version-specific Python questions, add the [python-2.7] or [python-3.x] tag. When using a Python variant (e.g. Jython, PyPy) or library (e.g. Pandas, NumPy), please include it in the tags."
+    },
+    {
+      "name": "html",
+      "content": "HTML (HyperText Markup Language) is the markup language for creating web pages and other information to be displayed in a web browser. Questions regarding HTML should include a minimal reproducible example and some idea of what you're trying to achieve. This tag is rarely used alone and is often paired with [CSS] and [JavaScript]."
+    },
+    {
+      "name": "css",
+      "content": "CSS (Cascading Style Sheets) is a representation style sheet language used for describing the look and formatting of HTML (HyperText Markup Language), XML (Extensible Markup Language) documents and SVG elements including (but not limited to) colors, layout, fonts, and animations. It also describes how elements should be rendered on screen, on paper, in speech, or on other media."
+    },
+    {
+      "name": "javascript",
+      "content": "For questions about programming in ECMAScript (JavaScript/JS) and its different dialects/implementations (except for ActionScript). Note that JavaScript is NOT Java. Include all tags that are relevant to your question: e.g., [node.js], [jQuery], [JSON], [ReactJS], [angular], [ember.js], [vue.js], [typescript], [svelte], etc."
+    },
+    {
+      "name": "typescript",
+      "content": "TypeScript is a typed superset of JavaScript that transpiles to plain JavaScript. It adds optional types, classes, interfaces, and modules to JavaScript. This tag is for questions specific to TypeScript. It is not used for general JavaScript questions."
+    },
+    {
+      "name": "figma",
+      "content": "Figma is a collaborative interface design / prototyping tool. Programming questions about Figma can be asked here. Questions about the design of, or designing, graphics and interfaces are off-topic on Stack Overflow."
+    },
+    {
+      "name": "react",
+      "content": "React is a JavaScript library for building user interfaces. It uses a declarative, component-based paradigm and aims to be efficient and flexible."
+    },
+    {
+      "name": "c#",
+      "content": "C# (pronounced 'see sharp') is a high-level, statically typed, multi-paradigm programming language developed by Microsoft. C# code usually targets Microsoft's .NET family of tools and run-times, which include .NET, .NET Framework, .NET MAUI, and Xamarin among others. Use this tag for questions about code written in C# or about C#'s formal specification."
+    },
+    {
+      "name": "java",
+      "content": "Java is a high-level object-oriented programming language. Use this tag when you're having problems using or understanding the language itself. This tag is frequently used alongside other tags for libraries and/or frameworks used by Java developers."
+    },
+    {
+      "name": "sql",
+      "content": "Structured Query Language (SQL) is a language for querying databases. Questions should include code examples, table structure, sample data, and a tag for the DBMS implementation (e.g. MySQL, PostgreSQL, Oracle, MS SQL Server, IBM DB2, etc.) being used. If your question relates solely to a specific DBMS (uses specific extensions/features), use that DBMS's tag instead. Answers to questions tagged with SQL should use ISO/IEC standard SQL."
+    },
+    {
+      "name": "spring",
+      "content": "The Spring Framework is an open-source framework for application development on the Java platform. At its core is rich support for component-based architectures, and it currently has over twenty highly integrated modules."
+    },
+    {
+      "name": "gradle",
+      "content": "Gradle is a project build automation tool that uses a Groovy DSL. Gradle build scripts support Maven and Ivy repositories as well as plain file system for dependency management."
+    },
+    {
+      "name": "git",
+      "content": "Git is an open-source distributed version control system (DVCS). Use this tag for questions about Git usage and workflows. Do not use this tag for general programming questions that happen to involve a Git repository. Do not use this tag for GitHub/GitHub Actions questions that do not involve git usage; use [github] or [github-actions] instead. Do not use the [github] tag for Git-related issues just because a repository happens to be hosted on GitHub."
+    },
+    {
+      "name": "github",
+      "content": "GitHub is a web-based hosting service for software development projects that use Git for version control. Use this tag for questions specific to problems with repositories hosted on GitHub, features specific to GitHub, and using GitHub for collaborating with other users. Do not use this tag for Git-related issues simply because a repository happens to be hosted on GitHub."
+    },
+    {
+      "name": "c",
+      "content": "C is a general-purpose programming language used for system programming (OS and embedded), libraries, games and cross-platform. This tag should be used with general questions concerning the C language, as defined in the ISO 9899 standard (the latest version, 9899:2018, unless otherwise specified — also tag version-specific requests with c89, c99, c11, etc). C is distinct from C++ and it should not be combined with the C++ tag without a specific reason."
+    },
+    {
+      "name": "c++",
+      "content": "C++ is a general-purpose programming language. Initially, it was designed as an extension to C and has a similar syntax, but it is now a completely different language. Use this tag for questions about code (to be) compiled with a C++ compiler. Use a version-specific tag for questions related to a specific standard revision [C++11], [C++14], [C++17], [C++20], or [C++23], etc."
+    }
+  ],
+  "users": [
+    {
+      "image": "",
+      "name": "",
+      "id": 0
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1523942839745-7848c839b661?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=100&ixid=MnwxfDB8MXxyYW5kb218MHx8YXx8fHx8fDE2ODc0MTM1NDY&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=100",
+      "name": "typicode",
+      "id": 1
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1512012879562-fbfd1b209161?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=100&ixid=MnwxfDB8MXxyYW5kb218MHx8YXx8fHx8fDE2ODc0MTM3Nzc&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=100",
+      "name": "Hypophrenia",
+      "id": 2
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1601918774946-25832a4be0d6?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=100&ixid=MnwxfDB8MXxyYW5kb218MHx8YXx8fHx8fDE2ODc0MTM5NTY&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=100",
+      "name": "MutantFate",
+      "id": 3
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1569158937496-f4e4ecddd00c?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=100&ixid=MnwxfDB8MXxyYW5kb218MHx8YXx8fHx8fDE2ODc0MTM5NzY&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=100",
+      "name": "Possumiss",
+      "id": 4
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1597281362711-7004802c6881?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=100&ixid=MnwxfDB8MXxyYW5kb218MHx8YXx8fHx8fDE2ODc0MTM5Njc&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=100",
+      "name": "Mario",
+      "id": 5
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1552584783-ac27eae7783a?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=100&ixid=MnwxfDB8MXxyYW5kb218MHx8YXx8fHx8fDE2ODc0MTM5ODM&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=100",
+      "name": "Bonkers",
+      "id": 6
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1630278381578-392f31f110c4?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=100&ixid=MnwxfDB8MXxyYW5kb218MHx8YXx8fHx8fDE2ODc0MTM5OTI&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=100",
+      "name": "Drippy",
+      "id": 7
+    },
+    {
+      "image": "https://images.unsplash.com/photo-1590846083693-f23fdede3a7e?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=100&ixid=MnwxfDB8MXxyYW5kb218MHx8YXx8fHx8fDE2ODc0MTM5OTM&ixlib=rb-4.0.3&q=80&utm_campaign=api-credit&utm_medium=referral&utm_source=unsplash_source&w=100",
+      "name": "Jamesbob",
+      "id": 8
+    }
+  ]
 }

@@ -1,6 +1,7 @@
 package server.audit;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 public abstract class Auditable {
 
   @CreatedDate
+  @Setter(lombok.AccessLevel.NONE)
   @Column(name = "CREATED_AT", updatable = false)
   private LocalDateTime createdAt;
 

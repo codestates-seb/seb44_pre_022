@@ -17,11 +17,11 @@ const UploadDate = tw.span`text-cc-text-ui`;
 export default function ProfilePreviewBoxComponent() {
   return (
     <ProfilePreviewBoxContainer>
-      <Link to='../../user/0'>
+      <Link to='../../users/0'>
         <ProfileImage />
       </Link>
       <ProfileData>
-        <Link to='../../user/0'>
+        <Link to='../../users/0'>
           <TextWithLink>Waypil</TextWithLink> {/* UserName */}
         </Link>
         <UploadDate>asked Oct 23, 2008 at 15:16</UploadDate>

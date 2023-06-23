@@ -11,6 +11,7 @@ import MarkdownViewer from '../../common/MarkdownViewer';
 import Tag from '../../common/Tag';
 import ProfilePreviewBox from './forum-post/ProfilePreviewBox';
 import CommentList from './forum-post/CommentList';
+import { TagType } from '../../../recoil/questionAtom';
 
 const ForumPostContainer = tw.article`
 w-[1080px] border-b-[2px] border-cc-border
@@ -28,6 +29,7 @@ flex flex-col justify-start items-center
 `;
 const ReputationCount = tw.span``;
 const Body = tw.section`
+w-full
 flex flex-col justify-center gap-[20px]
 `;
 
@@ -40,10 +42,15 @@ const AddCommentButton = tw.button`text-[14px] text-cc-text-ui flex`;
 
 type Props = {
   type: string; // question, answer
+  tags?: string[]; // only in question
+  comments: string[];
+  children: string;
 };
 
 /* 질문/답변 양쪽 모두에서 사용 */
 export default function ForumPostComponent(props: Props) {
+  const { type, tags, comments, children } = props;
+
   const testMD = `
   **코드 블록** & *텍스트* 입력!
   \`\`\`
@@ -60,18 +67,18 @@ export default function ForumPostComponent(props: Props) {
         <button>
           <IconOrigin icon={faCircleArrowUp}></IconOrigin>
         </button>
-        <ReputationCount>22</ReputationCount>
+        <ReputationCount>0</ReputationCount>
         <button>
           <IconOrigin icon={faCircleArrowDown}></IconOrigin>
         </button>
       </VoteButtonContainer>
       <Body>
-        <MarkdownViewer>{testMD}</MarkdownViewer>
+        <MarkdownViewer>{children}</MarkdownViewer>
         {props.type === 'question' ? (
           <Tags>
-            <Tag>html</Tag>
-            <Tag>css</Tag>
-            <Tag>javascript</Tag>
+            {tags?.map((tagName) => (
+              <Tag>{tagName}</Tag>
+            ))}
           </Tags>
         ) : (
           <></>
@@ -81,7 +88,7 @@ export default function ForumPostComponent(props: Props) {
           <DeleteButton>Delete</DeleteButton>
           <ProfilePreviewBox />
         </UploaderInfo>
-        <CommentList />
+        <CommentList comments={comments} />
         <AddCommentButton>Add a comment</AddCommentButton>
       </Body>
     </ForumPostContainer>

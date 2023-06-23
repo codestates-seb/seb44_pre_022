@@ -20,15 +20,16 @@ const ValueText = tw.span`
 w-full leading-[17px] pl-[5px] text-cc-text-ui
 `;
 
-export default function TagPreviewComponent() {
+type Props = {
+  name: string;
+  children: string;
+};
+
+export default function TagPreviewComponent(props: Props) {
   return (
     <TagPreviewContainer>
-      <Tag>javascript</Tag>
-      <Description className='line-clamp-4'>
-        {
-          'For questions about programming in ECMAScript (JavaScript/JS) and its different dialects/implementations (except for ActionScript). Note that JavaScript is NOT Java. Include all tags that are relevant to your question: e.g., [node.js], [jQuery], [JSON], [ReactJS], [angular], [ember.js], [vue.js], [typescript], [svelte], etc.'
-        }
-      </Description>
+      <Tag>{props.name}</Tag>
+      <Description className='line-clamp-4'>{props.children}</Description>
       <Values>
         <ValueText>
           2498904
