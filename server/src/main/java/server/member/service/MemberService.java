@@ -60,16 +60,4 @@ public class MemberService {
       throw new BusinessLogicException(ExceptionCode.MEMBER_EXISTS);
     }
   }
-
-  public Member findMember(long memberId) {
-    return findVerifiedMember(memberId);
-  }
-  public Member findMember(String email) {
-    return findVerifiedMember(email);
-  }
-
-  public List<Member> findMembers() {
-    List<Member> findMembers = memberRepository.findAll();
-    return findMembers;
-  }
 }
