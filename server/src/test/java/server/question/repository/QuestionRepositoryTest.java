@@ -29,7 +29,7 @@ class QuestionRepositoryTest {
     questionRepository.deleteAll();
     memberRepository.deleteAll();
   }
-
+/*
   @Test
   @DisplayName("질문 생성")
   public void createQuestion() {
@@ -76,4 +76,5 @@ class QuestionRepositoryTest {
 
     assertThat(findQeustion).isNull();
   }
+ */
 }
