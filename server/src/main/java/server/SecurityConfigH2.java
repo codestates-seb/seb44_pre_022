@@ -2,6 +2,7 @@ package server;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -18,17 +19,19 @@ public class SecurityConfigH2 extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
-            .cors().configurationSource(corsConfigurationSource())
-            .and()
-            .authorizeRequests()
-            .antMatchers("/h2-console/**").permitAll() // Allow all access to /h2-console/*
-            .antMatchers("/member/**").permitAll()
-            .antMatchers("/question/**").permitAll()
-            .antMatchers("/**").authenticated()
-            .anyRequest().authenticated() // Any other request should be authenticated
+            .headers().frameOptions().disable() // Allow us to load frames from the same origin (this is needed for H2 console)
             .and()
             .csrf().disable() // Disable CSRF protection
-            .headers().frameOptions().disable(); // Allow us to load frames from the same origin (this is needed for H2 console)
+            .cors().configurationSource(corsConfigurationSource())
+            .and()
+            .authorizeRequests(
+                    authorize->authorize
+                            .antMatchers("/h2-console/**").permitAll() // Allow all access to /h2-console/*
+                            .antMatchers("/member/**").permitAll()
+                            .antMatchers("/question/**").permitAll()
+                            .antMatchers("/**").authenticated()
+                            .anyRequest().authenticated() // Any other request should be authenticated
+            );
   }
 
   @Bean
