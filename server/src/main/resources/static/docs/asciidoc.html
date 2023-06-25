@@ -467,7 +467,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /member HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
-Content-Length: 84
+Content-Length: 80
 Host: localhost:8080
 
 {
@@ -555,7 +555,7 @@ Expires: 0</code></pre>
 <pre class="highlight nowrap"><code class="language-http" data-lang="http">PATCH /member/1 HTTP/1.1
 Content-Type: application/json;charset=UTF-8
 Accept: application/json
-Content-Length: 97
+Content-Length: 92
 Host: localhost:8080
 
 {
@@ -576,7 +576,7 @@ X-XSS-Protection: 1; mode=block
 Cache-Control: no-cache, no-store, max-age=0, must-revalidate
 Pragma: no-cache
 Expires: 0
-Content-Length: 99
+Content-Length: 94
 
 {
   "id" : 1,
@@ -633,111 +633,22 @@ Content-Length: 99
 </div>
 <div class="sect3">
 <h4 id="_get">get</h4>
-<div class="listingblock">
+<div class="paragraph">
 <div class="title">curl-request</div>
-<div class="content">
-<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/member/1' -i -X GET \
-    -H 'Content-Type: application/json;charset=UTF-8' \
-    -H 'Accept: application/json' \
-    -d '{
-  "id" : 1,
-  "email" : "test@gmail.com",
-  "password" : "test1234!",
-  "alias" : "테스트"
-}'</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">http-request</div>
-<div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /member/1 HTTP/1.1
-Content-Type: application/json;charset=UTF-8
-Accept: application/json
-Content-Length: 102
-Host: localhost:8080
-
-{
-  "id" : 1,
-  "email" : "test@gmail.com",
-  "password" : "test1234!",
-  "alias" : "테스트"
-}</code></pre>
-</div>
+<p>Unresolved directive in asciidoc.adoc - include::/Users/seojaegon/Web/codestates/seb44_pre_022/server/server/build/generated-snippets/get-member/curl-request.adoc[]
+.http-request
+Unresolved directive in asciidoc.adoc - include::/Users/seojaegon/Web/codestates/seb44_pre_022/server/server/build/generated-snippets/get-member/http-request.adoc[]
+.http-response
+Unresolved directive in asciidoc.adoc - include::/Users/seojaegon/Web/codestates/seb44_pre_022/server/server/build/generated-snippets/get-member/http-response.adoc[]
+.request-body
+Unresolved directive in asciidoc.adoc - include::/Users/seojaegon/Web/codestates/seb44_pre_022/server/server/build/generated-snippets/get-member/request-body.adoc[]
+.request-fields
+Unresolved directive in asciidoc.adoc - include::/Users/seojaegon/Web/codestates/seb44_pre_022/server/server/build/generated-snippets/get-member/response-fields.adoc[]
+<strong>*</strong>
+==== delete
+.curl-request</p>
 </div>
 <div class="listingblock">
-<div class="title">http-response</div>
-<div class="content">
-<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
-Content-Type: application/json
-X-Content-Type-Options: nosniff
-X-XSS-Protection: 1; mode=block
-Cache-Control: no-cache, no-store, max-age=0, must-revalidate
-Pragma: no-cache
-Expires: 0
-Content-Length: 104
-
-{
-  "id" : 1,
-  "email" : "test2@gmail.com",
-  "password" : "test1234!",
-  "alias" : "테스트2"
-}</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="title">request-body</div>
-<div class="content">
-<pre class="highlight nowrap"><code>{
-  "id" : 1,
-  "email" : "test@gmail.com",
-  "password" : "test1234!",
-  "alias" : "테스트"
-}</code></pre>
-</div>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. request-fields</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Path</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>id</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">인덱스</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>email</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">이메일</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>password</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">비밀번호</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>alias</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">별명</p></td>
-</tr>
-</tbody>
-</table>
-<hr>
-</div>
-<div class="sect3">
-<h4 id="_delete">delete</h4>
-<div class="listingblock">
-<div class="title">curl-request</div>
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/member/1' -i -X DELETE</code></pre>
 </div>
@@ -766,7 +677,393 @@ Expires: 0</code></pre>
 <pre class="highlight nowrap"><code></code></pre>
 </div>
 </div>
+<hr>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_question_controller">Question-Controller</h3>
+<hr>
+<div class="sect3">
+<h4 id="_post_2">Post</h4>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/question' -i -X POST \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json' \
+    -d '{
+  "title" : "test title 이것은 15자 이상이 되어야한다고 합니다.",
+  "content" : "test content를 220자 이상 채워야해서 저는 아무 말이나 써보려고 합니다. 반갑습니다. 이상입니다. 뭐 딱히 API명세서를 작성하면서 할말은 없는 것 같습니다.그래서 이제는 Lorem으로 나머지를 채워보려 합니다. 지금까지 감사했습니다.Lorem tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget duis at tellus at urna condimentum mattis pellentesque id nibh tortor id aliquet lectus proin nibh nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis",
+  "memberId" : 1,
+  "createdAt" : "2023-06-25T21:33:17.549732",
+  "modifiedAt" : "2023-06-25T21:33:17.549734"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">POST /question HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Content-Length: 1254
+Host: localhost:8080
+
+{
+  "title" : "test title 이것은 15자 이상이 되어야한다고 합니다.",
+  "content" : "test content를 220자 이상 채워야해서 저는 아무 말이나 써보려고 합니다. 반갑습니다. 이상입니다. 뭐 딱히 API명세서를 작성하면서 할말은 없는 것 같습니다.그래서 이제는 Lorem으로 나머지를 채워보려 합니다. 지금까지 감사했습니다.Lorem tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget duis at tellus at urna condimentum mattis pellentesque id nibh tortor id aliquet lectus proin nibh nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis",
+  "memberId" : 1,
+  "createdAt" : "2023-06-25T21:33:17.549732",
+  "modifiedAt" : "2023-06-25T21:33:17.549734"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 201 Created
+Location: /question/0
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="highlight nowrap"><code>{
+  "title" : "test title 이것은 15자 이상이 되어야한다고 합니다.",
+  "content" : "test content를 220자 이상 채워야해서 저는 아무 말이나 써보려고 합니다. 반갑습니다. 이상입니다. 뭐 딱히 API명세서를 작성하면서 할말은 없는 것 같습니다.그래서 이제는 Lorem으로 나머지를 채워보려 합니다. 지금까지 감사했습니다.Lorem tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget duis at tellus at urna condimentum mattis pellentesque id nibh tortor id aliquet lectus proin nibh nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis",
+  "memberId" : 1,
+  "createdAt" : "2023-06-25T21:33:17.549732",
+  "modifiedAt" : "2023-06-25T21:33:17.549734"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">질문 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">질문 내용</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>memberId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">질문 작성자 ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>createdAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">질문 작성일</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>modifiedAt</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">질문 수정일</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="_patch_2">Patch</h4>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/question/1' -i -X PATCH \
+    -H 'Content-Type: application/json;charset=UTF-8' \
+    -H 'Accept: application/json' \
+    -d '{
+  "questionId" : 1,
+  "title" : "본문 내용을 변경하면 찾지 못하실 것 같아 제목을 수정해 보겠습니다.",
+  "content" : "test content를 220자 이상 채워야해서 저는 아무 말이나 써보려고 합니다. 반갑습니다. 이상입니다. 뭐 딱히 API명세서를 작성하면서 할말은 없는 것 같습니다.그래서 이제는 Lorem으로 나머지를 채워보려 합니다. 지금까지 감사했습니다.Lorem tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget duis at tellus at urna condimentum mattis pellentesque id nibh tortor id aliquet lectus proin nibh nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis"
+}'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">PATCH /question/1 HTTP/1.1
+Content-Type: application/json;charset=UTF-8
+Accept: application/json
+Content-Length: 1191
+Host: localhost:8080
+
+{
+  "questionId" : 1,
+  "title" : "본문 내용을 변경하면 찾지 못하실 것 같아 제목을 수정해 보겠습니다.",
+  "content" : "test content를 220자 이상 채워야해서 저는 아무 말이나 써보려고 합니다. 반갑습니다. 이상입니다. 뭐 딱히 API명세서를 작성하면서 할말은 없는 것 같습니다.그래서 이제는 Lorem으로 나머지를 채워보려 합니다. 지금까지 감사했습니다.Lorem tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget duis at tellus at urna condimentum mattis pellentesque id nibh tortor id aliquet lectus proin nibh nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Content-Length: 1532
+
+{
+  "createdAt" : "2023-06-25T21:33:17.502875",
+  "modifiedAt" : "2023-06-25T21:33:17.502885",
+  "questionId" : 1,
+  "title" : "본문 내용을 변경하면 찾지 못하실 것 같아 제목을 수정해 보겠습니다.",
+  "content" : "test content를 220자 이상 채워야해서 저는 아무 말이나 써보려고 합니다. 반갑습니다. 이상입니다. 뭐 딱히 API명세서를 작성하면서 할말은 없는 것 같습니다.그래서 이제는 Lorem으로 나머지를 채워보려 합니다. 지금까지 감사했습니다.Lorem tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget duis at tellus at urna condimentum mattis pellentesque id nibh tortor id aliquet lectus proin nibh nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis",
+  "hit" : 0,
+  "vote" : 0,
+  "member" : {
+    "createdAt" : "2023-06-25T21:33:17.501676",
+    "modifiedAt" : "2023-06-25T21:33:17.501678",
+    "id" : 0,
+    "email" : "testUser@gmail.com",
+    "password" : "test1234",
+    "alias" : "testUser"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="highlight nowrap"><code>{
+  "questionId" : 1,
+  "title" : "본문 내용을 변경하면 찾지 못하실 것 같아 제목을 수정해 보겠습니다.",
+  "content" : "test content를 220자 이상 채워야해서 저는 아무 말이나 써보려고 합니다. 반갑습니다. 이상입니다. 뭐 딱히 API명세서를 작성하면서 할말은 없는 것 같습니다.그래서 이제는 Lorem으로 나머지를 채워보려 합니다. 지금까지 감사했습니다.Lorem tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget duis at tellus at urna condimentum mattis pellentesque id nibh tortor id aliquet lectus proin nibh nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis"
+}</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. request-fields</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Path</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>questionId</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Number</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">질문글 ID</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>title</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">질문 제목</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">질문 내용</p></td>
+</tr>
+</tbody>
+</table>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="_get_2">get</h4>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/question/1' -i -X GET \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /question/1 HTTP/1.1
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Content-Length: 1504
+
+{
+  "createdAt" : "2023-06-25T21:33:17.577887",
+  "modifiedAt" : "2023-06-25T21:33:17.577889",
+  "questionId" : 1,
+  "title" : "test title 이것은 15자 이상이 되어야한다고 합니다.",
+  "content" : "test content를 220자 이상 채워야해서 저는 아무 말이나 써보려고 합니다. 반갑습니다. 이상입니다. 뭐 딱히 API명세서를 작성하면서 할말은 없는 것 같습니다.그래서 이제는 Lorem으로 나머지를 채워보려 합니다. 지금까지 감사했습니다.Lorem tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget duis at tellus at urna condimentum mattis pellentesque id nibh tortor id aliquet lectus proin nibh nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis",
+  "hit" : 0,
+  "vote" : 0,
+  "member" : {
+    "createdAt" : "2023-06-25T21:33:17.577894",
+    "modifiedAt" : "2023-06-25T21:33:17.577896",
+    "id" : 0,
+    "email" : "testUser@gmail.com",
+    "password" : "test1234",
+    "alias" : "testUser"
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="highlight nowrap"><code></code></pre>
+</div>
+</div>
+<hr>
+</div>
+<div class="sect3">
+<h4 id="_getall">getAll</h4>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/question?page=1&amp;size=10' -i -X GET \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">GET /question?page=1&amp;size=10 HTTP/1.1
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0
+Content-Length: 3426
+
+{
+  "data" : [ {
+    "createdAt" : "2023-06-25T21:33:17.590136",
+    "modifiedAt" : "2023-06-25T21:33:17.590137",
+    "questionId" : 0,
+    "title" : "test title 이것은 15자 이상이 되어야한다고 합니다.",
+    "content" : "test content를 220자 이상 채워야해서 저는 아무 말이나 써보려고 합니다. 반갑습니다. 이상입니다. 뭐 딱히 API명세서를 작성하면서 할말은 없는 것 같습니다.그래서 이제는 Lorem으로 나머지를 채워보려 합니다. 지금까지 감사했습니다.Lorem tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget duis at tellus at urna condimentum mattis pellentesque id nibh tortor id aliquet lectus proin nibh nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas integer eget aliquet nibh praesent tristique magna sit amet purus gravida quis",
+    "hit" : 0,
+    "vote" : 0,
+    "member" : {
+      "createdAt" : "2023-06-25T21:33:17.590143",
+      "modifiedAt" : "2023-06-25T21:33:17.590144",
+      "id" : 0,
+      "email" : "testUser@gmail.com",
+      "password" : "test1234",
+      "alias" : "testUser"
+    }
+  }, {
+    "createdAt" : "2023-06-25T21:33:17.590153",
+    "modifiedAt" : "2023-06-25T21:33:17.590154",
+    "questionId" : 0,
+    "title" : "test title 이것은 두번째 질문입니다.",
+    "content" : "아주 신나는 본문을 작성해야하는 시간이 왔습니다. 제가 이것을 두번이나 작성하게 될 줄은 몰랐는데요. QuestionTestCode 작성 당시이렇게 작성하기 싫어서 Validation을 생략했다가 빌드에러를 만나게 해드렸습니다. 죄송스럽게 생각하고 있습니다.하지만 API명세서에서 그럴 수는 없어서 이렇게 작성 중입니다. 뭐 어느정도 채운 것 같습니다. 이제부터 Lorem으로 좀 채워보겠습니다.Lorem tortor at auctor urna nunc id cursus metus aliquam eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper eget duis at tellus at urna condimentum mattis pellentesque id nibh tortor id aliquet lectus proin nibh nisl condimentum id venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas sed tempus urna et pharetra pharetra massa massa ultricies mi quis hendrerit dolor magna eget est lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas혹시 220자가 되지 않을까봐 조금 더 작성해보았습니다. 지금까지 이런 긴 글을 읽어 주셔서 감사합니다.",
+    "hit" : 0,
+    "vote" : 0,
+    "member" : {
+      "createdAt" : "2023-06-25T21:33:17.59016",
+      "modifiedAt" : "2023-06-25T21:33:17.590162",
+      "id" : 0,
+      "email" : "testUser@gmail.com",
+      "password" : "test1234",
+      "alias" : "testUser"
+    }
+  } ],
+  "pageInfo" : {
+    "page" : 1,
+    "size" : 10,
+    "totalElements" : 2,
+    "totalPages" : 1
+  }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="highlight nowrap"><code></code></pre>
+</div>
+</div>
+<hr>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_delete">delete</h3>
+<div class="listingblock">
+<div class="title">curl-request</div>
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">$ curl 'http://localhost:8080/question/1' -i -X DELETE \
+    -H 'Accept: application/json'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-request</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">DELETE /question/1 HTTP/1.1
+Accept: application/json
+Host: localhost:8080</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">http-response</div>
+<div class="content">
+<pre class="highlight nowrap"><code class="language-http" data-lang="http">HTTP/1.1 204 No Content
+X-Content-Type-Options: nosniff
+X-XSS-Protection: 1; mode=block
+Cache-Control: no-cache, no-store, max-age=0, must-revalidate
+Pragma: no-cache
+Expires: 0</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">request-body</div>
+<div class="content">
+<pre class="highlight nowrap"><code></code></pre>
+</div>
+</div>
+<hr>
 </div>
 </div>
 </div>
@@ -774,7 +1071,7 @@ Expires: 0</code></pre>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1-SNAPSHOT<br>
-Last updated 2023-06-23 09:25:13 +0900
+Last updated 2023-06-25 21:29:56 +0900
 </div>
 </div>
 </body>
