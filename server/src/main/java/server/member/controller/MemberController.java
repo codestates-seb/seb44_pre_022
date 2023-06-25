@@ -1,5 +1,6 @@
 package server.member.controller;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,14 +24,11 @@ import java.util.List;
 @Validated
 @Controller
 @RequestMapping("/member")
+@RequiredArgsConstructor
 public class MemberController {
   private final static String MEMBER_DEFAULT_URI = "/member";
   private final MemberService memberService;
   private final MemberMapper mapper;
-  public MemberController(MemberService memberService, MemberMapper mapper) {
-    this.memberService = memberService;
-    this.mapper = mapper;
-  }
   @PostMapping
   public ResponseEntity postMember(@RequestBody @Valid MemberDto.Post memberDto) {
     Member member = memberService.createMember(mapper.memberPostDtoToMember(memberDto));
