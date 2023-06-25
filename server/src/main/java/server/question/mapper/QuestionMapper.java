@@ -1,12 +1,13 @@
 package server.question.mapper;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
 import server.question.entity.Question;
 import server.question.repository.dto.QuestionDto;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface QuestionMapper {
   Question questionPostToQuestion(QuestionDto.Post requestBody);
   Question questionPatchToQuestion(QuestionDto.Patch requestBody);

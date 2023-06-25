@@ -8,6 +8,7 @@ import server.member.entity.Member;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @NoArgsConstructor
 @Getter
@@ -17,11 +18,11 @@ public class Question extends Auditable {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long questionId;
-  @Min(15)
+  private long questionId;
+  @Size(min = 15)
   @Column(nullable = false, updatable = true, unique = false)
   private String title;
-  @Min(220)
+  @Size(min = 220)
   @Column(nullable = false, updatable = true, unique = false)
   private String content;
   @Column(nullable = false, updatable = true, unique = false, columnDefinition = "integer default 0")
@@ -30,7 +31,7 @@ public class Question extends Auditable {
   private int vote;
 
   @ManyToOne
-  @JoinColumn(name = "member_id")
+  @JoinColumn(name = "id")
   private Member member;
 
   public void addMember(Member member) {

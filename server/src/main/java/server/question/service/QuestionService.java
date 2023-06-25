@@ -67,8 +67,4 @@ public class QuestionService {
     Question findQuestion = optionalPost.orElseThrow(() -> new IllegalArgumentException(ExceptionCode.POST_NOT_FOUND.getMessage()));
     return findQuestion;
   }
-
-  private void verifyExistsQuestion() {
-
-  }
 }

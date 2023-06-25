@@ -4,58 +4,53 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import server.audit.Auditable;
+import server.member.entity.Member;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 public class QuestionDto {
 
   @Getter
   @AllArgsConstructor
-  public static class Post {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long questionId;
-    @Min(15)
+  public static class Post extends Auditable {
+    @Size(min = 15)
     @Column(nullable = false, updatable = true, unique = false)
     private String title;
-    @Min(220)
+    @Size(min = 220)
     @Column(nullable = false, updatable = true, unique = false)
     private String content;
-
+    @NotNull
+    private long memberId;
   }
 
   @Getter
   @Setter
   @AllArgsConstructor
-  public static class Patch {
-    private Long questionId;
-    @Min(15)
+  public static class Patch extends Auditable {
+    private long questionId;
+    @Size(min = 15)
     @Column(nullable = false, updatable = true, unique = false)
     private String title;
-    @Min(220)
+    @Size(min = 220)
     @Column(nullable = false, updatable = true, unique = false)
     private String content;
+
+    private Member member;
   }
 
   @Getter
+  @AllArgsConstructor
   @Builder
-  public static class Response {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long questionId;
-    @Min(15)
-    @Column(nullable = false, updatable = true, unique = false)
+  public static class Response extends Auditable {
+    private long questionId;
     private String title;
-    @Min(220)
-    @Column(nullable = false, updatable = true, unique = false)
     private String content;
-    @Column(nullable = false, updatable = true, unique = false, columnDefinition = "integer default 0")
     private int hit;
-    @Column(nullable = false, updatable = true, unique = false, columnDefinition = "integer default 0")
     private int vote;
+    private Member member;
   }
 }
