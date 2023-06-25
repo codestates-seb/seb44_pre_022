@@ -24,4 +24,17 @@ public abstract class Auditable {
   @LastModifiedDate
   @Column(name = "LAST_MODIFIED_AT")
   private LocalDateTime modifiedAt;
+
+  // Test용 Setter Method
+  public void setAuditable(LocalDateTime createdAt, LocalDateTime modifiedAt) {
+    this.createdAt = LocalDateTime.now();
+    this.modifiedAt = LocalDateTime.now();
+  }
+
+  public void setCreatedAt(LocalDateTime createdAt) {
+    this.createdAt = LocalDateTime.now();
+  }
+  public void setModifiedAt(LocalDateTime modifiedAt) {
+    this.modifiedAt = LocalDateTime.now();
+  }
 }
