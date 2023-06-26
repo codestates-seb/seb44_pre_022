@@ -1,110 +1,110 @@
-== API 명세서
-***
-=== Member
-==== Post
-.curl-request
-include::{snippets}/post-member/curl-request.adoc[]
-.http-request
-include::{snippets}/post-member/http-request.adoc[]
-.http-response
-include::{snippets}/post-member/http-response.adoc[]
-.request-body
-include::{snippets}/post-member/request-body.adoc[]
-.request-fields
-include::{snippets}/post-member/request-fields.adoc[]
-***
-==== Patch
-.curl-request
-include::{snippets}/patch-member/curl-request.adoc[]
-.http-request
-include::{snippets}/patch-member/http-request.adoc[]
-.http-response
-include::{snippets}/patch-member/http-response.adoc[]
-.request-body
-include::{snippets}/patch-member/request-body.adoc[]
-.request-fields
-include::{snippets}/patch-member/request-fields.adoc[]
-***
-==== get
-.curl-request
-include::{snippets}/get-member/curl-request.adoc[]
-.http-request
-include::{snippets}/get-member/http-request.adoc[]
-.http-response
-include::{snippets}/get-member/http-response.adoc[]
-.request-body
-include::{snippets}/get-member/request-body.adoc[]
-.request-fields
-include::{snippets}/get-member/response-fields.adoc[]
-***
-==== delete
-.curl-request
-include::{snippets}/delete-member/curl-request.adoc[]
-.http-request
-include::{snippets}/delete-member/http-request.adoc[]
-.http-response
-include::{snippets}/delete-member/http-response.adoc[]
-.request-body
-include::{snippets}/delete-member/request-body.adoc[]
-
-***
-=== Question-Controller
-***
-==== Post
-.curl-request
-include::{snippets}/question-create/curl-request.adoc[]
-.http-request
-include::{snippets}/question-create/http-request.adoc[]
-.http-response
-include::{snippets}/question-create/http-response.adoc[]
-.request-body
-include::{snippets}/question-create/request-body.adoc[]
-.request-fields
-include::{snippets}/question-create/request-fields.adoc[]
-***
-==== Patch
-.curl-request
-include::{snippets}/question-patch/curl-request.adoc[]
-.http-request
-include::{snippets}/question-patch/http-request.adoc[]
-.http-response
-include::{snippets}/question-patch/http-response.adoc[]
-.request-body
-include::{snippets}/question-patch/request-body.adoc[]
-.request-fields
-include::{snippets}/question-patch/request-fields.adoc[]
-***
-==== get
-.curl-request
-include::{snippets}/question-get/curl-request.adoc[]
-.http-request
-include::{snippets}/question-get/http-request.adoc[]
-.http-response
-include::{snippets}/question-get/http-response.adoc[]
-.request-body
-include::{snippets}/question-get/request-body.adoc[]
-***
-==== getAll
-.curl-request
-include::{snippets}/question-getAll/curl-request.adoc[]
-.http-request
-include::{snippets}/question-getAll/http-request.adoc[]
-.http-response
-include::{snippets}/question-getAll/http-response.adoc[]
-.request-body
-include::{snippets}/question-getAll/request-body.adoc[]
-***
-=== delete
-.curl-request
-include::{snippets}/question-delete/curl-request.adoc[]
-.http-request
-include::{snippets}/question-delete/http-request.adoc[]
-.http-response
-include::{snippets}/question-delete/http-response.adoc[]
-.request-body
-include::{snippets}/question-delete/request-body.adoc[]
-***
-
-
-
-
+// == API 명세서
+// ***
+// === Member
+// ==== Post
+// .curl-request
+// include::{snippets}/post-member/curl-request.adoc[]
+// .http-request
+// include::{snippets}/post-member/http-request.adoc[]
+// .http-response
+// include::{snippets}/post-member/http-response.adoc[]
+// .request-body
+// include::{snippets}/post-member/request-body.adoc[]
+// .request-fields
+// include::{snippets}/post-member/request-fields.adoc[]
+// ***
+// ==== Patch
+// .curl-request
+// include::{snippets}/patch-member/curl-request.adoc[]
+// .http-request
+// include::{snippets}/patch-member/http-request.adoc[]
+// .http-response
+// include::{snippets}/patch-member/http-response.adoc[]
+// .request-body
+// include::{snippets}/patch-member/request-body.adoc[]
+// .request-fields
+// include::{snippets}/patch-member/request-fields.adoc[]
+// ***
+// ==== get
+// .curl-request
+// include::{snippets}/get-member/curl-request.adoc[]
+// .http-request
+// include::{snippets}/get-member/http-request.adoc[]
+// .http-response
+// include::{snippets}/get-member/http-response.adoc[]
+// .request-body
+// include::{snippets}/get-member/request-body.adoc[]
+// .request-fields
+// include::{snippets}/get-member/response-fields.adoc[]
+// ***
+// ==== delete
+// .curl-request
+// include::{snippets}/delete-member/curl-request.adoc[]
+// .http-request
+// include::{snippets}/delete-member/http-request.adoc[]
+// .http-response
+// include::{snippets}/delete-member/http-response.adoc[]
+// .request-body
+// include::{snippets}/delete-member/request-body.adoc[]
+//
+// ***
+// === Question-Controller
+// ***
+// ==== Post
+// .curl-request
+// include::{snippets}/question-create/curl-request.adoc[]
+// .http-request
+// include::{snippets}/question-create/http-request.adoc[]
+// .http-response
+// include::{snippets}/question-create/http-response.adoc[]
+// .request-body
+// include::{snippets}/question-create/request-body.adoc[]
+// .request-fields
+// include::{snippets}/question-create/request-fields.adoc[]
+// ***
+// ==== Patch
+// .curl-request
+// include::{snippets}/question-patch/curl-request.adoc[]
+// .http-request
+// include::{snippets}/question-patch/http-request.adoc[]
+// .http-response
+// include::{snippets}/question-patch/http-response.adoc[]
+// .request-body
+// include::{snippets}/question-patch/request-body.adoc[]
+// .request-fields
+// include::{snippets}/question-patch/request-fields.adoc[]
+// ***
+// ==== get
+// .curl-request
+// include::{snippets}/question-get/curl-request.adoc[]
+// .http-request
+// include::{snippets}/question-get/http-request.adoc[]
+// .http-response
+// include::{snippets}/question-get/http-response.adoc[]
+// .request-body
+// include::{snippets}/question-get/request-body.adoc[]
+// ***
+// ==== getAll
+// .curl-request
+// include::{snippets}/question-getAll/curl-request.adoc[]
+// .http-request
+// include::{snippets}/question-getAll/http-request.adoc[]
+// .http-response
+// include::{snippets}/question-getAll/http-response.adoc[]
+// .request-body
+// include::{snippets}/question-getAll/request-body.adoc[]
+// ***
+// === delete
+// .curl-request
+// include::{snippets}/question-delete/curl-request.adoc[]
+// .http-request
+// include::{snippets}/question-delete/http-request.adoc[]
+// .http-response
+// include::{snippets}/question-delete/http-response.adoc[]
+// .request-body
+// include::{snippets}/question-delete/request-body.adoc[]
+// ***
+//
+//
+//
+//
