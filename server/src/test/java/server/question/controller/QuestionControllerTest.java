@@ -1,5 +1,5 @@
 package server.question.controller;
-
+/*
 import com.google.gson.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
@@ -49,18 +49,18 @@ import static org.springframework.restdocs.request.RequestDocumentation.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-/*import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;*/
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static server.util.RestDocsUtil.getRequestPreProcessor;
-import static server.util.RestDocsUtil.getResponsePreProcessor;
+import static server.util.RestDocsUtil.getResponsePreProcessor;*/
 
 
-
+/*
 @Slf4j
 @WebMvcTest(QuestionController.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @AutoConfigureRestDocs
 class QuestionControllerTest {
-  /*@Autowired
+  @Autowired
   private MockMvc mockMvc;
   @Autowired
   private Gson gson;
@@ -446,5 +446,6 @@ class QuestionControllerTest {
     log.info("clear");
     reset(questionService);
     reset(mapper);
-  }*/
+  }
 }
+*/
