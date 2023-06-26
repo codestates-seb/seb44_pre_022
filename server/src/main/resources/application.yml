@@ -1,3 +1,6 @@
 spring:
   profiles:
     active: server
+mail:
+  admin:
+    address: admin@gmail.com
