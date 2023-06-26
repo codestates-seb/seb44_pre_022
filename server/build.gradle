@@ -50,10 +50,6 @@ dependencies {
   runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
   implementation 'com.mysql:mysql-connector-j'
-
-  implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
-  implementation 'org.springframework.cloud:spring-cloud-starter-aws-messaging:2.2.6.RELEASE'
-  implementation 'org.springframework.cloud:spring-cloud-starter-aws-parameter-store-config:2.2.6.RELEASE'
 }
 
 ext {

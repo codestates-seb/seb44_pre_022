@@ -20,15 +20,17 @@ import javax.validation.constraints.Positive;
 import java.net.URI;
 import java.util.List;
 
+@CrossOrigin
 @Slf4j
 @Validated
-@Controller
+@RestController
 @RequestMapping("/member")
 @RequiredArgsConstructor
 public class MemberController {
   private final static String MEMBER_DEFAULT_URI = "/member";
   private final MemberService memberService;
   private final MemberMapper mapper;
+  // 회원가입
   @PostMapping
   public ResponseEntity postMember(@RequestBody @Valid MemberDto.Post memberDto) {
     Member member = memberService.createMember(mapper.memberPostDtoToMember(memberDto));
@@ -44,6 +46,7 @@ public class MemberController {
     Member updatedMember = memberService.updateMember(member);
     return new ResponseEntity(mapper.memberToMemberResponseDto(updatedMember), HttpStatus.OK);
   }
+
   @GetMapping("/{member-id}")
   public ResponseEntity getMember(@PathVariable("member-id") @Positive long memberId) {
     Member findMember = memberService.findMember(memberId);

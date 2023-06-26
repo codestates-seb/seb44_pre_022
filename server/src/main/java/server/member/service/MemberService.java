@@ -1,6 +1,8 @@
 package server.member.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import server.exception.BusinessLogicException;
 import server.member.entity.Member;
@@ -14,15 +16,15 @@ import java.util.Optional;
 @Slf4j
 @Transactional
 @Service
+@RequiredArgsConstructor
 public class MemberService {
   private final MemberRepository memberRepository;
-
-  public MemberService(MemberRepository memberRepository) {
-    this.memberRepository = memberRepository;
-  }
+  private final PasswordEncoder passwordEncoder;
 
   public Member createMember(Member member) {
     verifyExistsEmail(member.getEmail());
+
+    member.setPassword(passwordEncoder.encode(member.getPassword()));
 
     return memberRepository.save(member);
   }
