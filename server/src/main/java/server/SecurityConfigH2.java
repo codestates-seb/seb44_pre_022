@@ -19,6 +19,7 @@ public class SecurityConfigH2 extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
+            .formLogin().disable()
             .headers().frameOptions().disable() // Allow us to load frames from the same origin (this is needed for H2 console)
             .and()
             .csrf().disable() // Disable CSRF protection
