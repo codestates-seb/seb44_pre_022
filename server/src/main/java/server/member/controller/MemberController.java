@@ -33,7 +33,7 @@ public class MemberController {
   public ResponseEntity postMember(@RequestBody @Valid MemberDto.Post memberDto) {
     Member member = memberService.createMember(mapper.memberPostDtoToMember(memberDto));
 
-    URI uri = UriCreator.createUri(MEMBER_DEFAULT_URI, member.getId());
+    URI uri = UriCreator.createUri(MEMBER_DEFAULT_URI, member.getMemberId());
     return ResponseEntity.created(uri).build();
   }
   @PatchMapping("/{member-id}")

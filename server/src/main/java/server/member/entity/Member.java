@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Member extends Auditable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long id;
+  private long memberId;
   @Column(nullable = false)
   private String email;
   @Column(nullable = false)
