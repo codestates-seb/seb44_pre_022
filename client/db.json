@@ -195,8 +195,49 @@
       "email": "qwer@gmail.com",
       "password": "qwer5678.",
       "id": 2
+    },
+    {
+      "alias": "rtyu",
+      "email": "rtyu@gmail.com",
+      "password": "asdfzxcv123456@",
+      "id": 3
+    },
+    {
+      "alias": "sdfg",
+      "email": "sdfg@gmail.com",
+      "password": "sdfg789##",
+      "id": 4
+    },
+    {
+      "alias": "asdfasdf",
+      "email": "asdfasdf@gmail.com",
+      "password": "asdfasdf123456..",
+      "id": 5
+    },
+    {
+      "alias": "wert",
+      "email": "wert@gmail.com",
+      "password": "wert456./.",
+      "id": 6
+    },
+    {
+      "alias": "qwe123",
+      "email": "qwe123@gmail.com",
+      "password": "qwe123...",
+      "id": 7
+    },
+    {
+      "alias": "fghj",
+      "email": "fghj@gmail.com",
+      "password": "fghj+51532123423",
+      "id": 8
     }
   ],
   "login": [
+    {
+      "email": "fghj@gmail.com",
+      "password": "fghj+51532123423",
+      "id": 1
+    }
   ]
 }

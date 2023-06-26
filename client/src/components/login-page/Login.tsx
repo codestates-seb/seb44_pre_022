@@ -176,14 +176,28 @@ const Login = () => {
     password: pwValue,
   };
 
+  const getTest = async () => {
+    const response = await axios.get('http://localhost:3001/member');
+    return response.data;
+  };
+
   const handleLogin = async (event: any) => {
     event.preventDefault();
 
     try {
       const response = await axios.post(url, data, { withCredentials: true });
-      const matchingUser = response.data; // Assuming the response contains the matching user data
+      const matchingUser = response.data;
 
-      if (matchingUser) {
+      const retrievedData = await getTest();
+
+      const isMatchingUser = retrievedData.some((user: any) => {
+        return (
+          user.email === matchingUser.email &&
+          user.password === matchingUser.password
+        );
+      });
+
+      if (isMatchingUser) {
         // Login successful
         console.log('로그인 성공:', matchingUser);
         setisLoggedIn(true); // Update the login state
@@ -196,8 +210,6 @@ const Login = () => {
       console.error('로그인 실패:', error.response.data);
     }
   };
-
-  console.log(isLoggedIn);
 
   return (
     <LoginContainer>

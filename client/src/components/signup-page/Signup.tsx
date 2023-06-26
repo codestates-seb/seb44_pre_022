@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import tw from 'twin.macro';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const SignupContainer = tw.div`
@@ -142,6 +142,8 @@ const BlueLoginText = tw.span`
 `;
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   // 이름, 이메일, 비밀번호 초기 상태값 선언
   const [nameValue, setNameValue] = useState<string>('');
   const [emailValue, setEmailValue] = useState<string>('');
@@ -210,7 +212,8 @@ const Signup = () => {
     }
   };
 
-  const url = 'http://localhost:8080/member';
+  // const url = 'http://localhost:8080/member';
+  const url = 'http://localhost:3001/member';
 
   const onSubmit = (event: any) => {
     event.preventDefault();
@@ -231,6 +234,7 @@ const Signup = () => {
           // 요청이 성공한 경우
           console.log('요청이 성공했습니다.');
           console.log('응답 데이터:', response.data);
+          navigate('../users/login');
         })
         .catch((error) => {
           // 요청이 실패한 경우
