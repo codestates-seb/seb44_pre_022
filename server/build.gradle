@@ -50,10 +50,14 @@ dependencies {
   runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
 
   implementation 'com.mysql:mysql-connector-j'
+
+  implementation 'org.springframework.cloud:spring-cloud-starter-aws'
+  implementation 'org.springframework.cloud:spring-cloud-starter-aws-messaging'
+  implementation 'org.springframework.cloud:spring-cloud-starter-aws-parameter-store-config'
 }
 
 ext {
-    snippetsDir = file('build/generated-snippets')
+    set('snippetsDir', file('build/generated-snippets'))
 }
 
 tasks.named('test') {
@@ -61,7 +65,7 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-asciidoctor {
+tasks.named('asciidoctor') {
     inputs.dir snippetsDir
     configurations 'asciidoctorExt'
     dependsOn test
