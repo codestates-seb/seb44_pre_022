@@ -153,7 +153,7 @@ public class MemberControllerTest {
   public void getMember() throws Exception {
     // give
     Member member = new Member( "test@gmail.com", "test1234!", "테스트");
-    member.setId(1L);
+    member.setMemberId(1L);
     String content = gson.toJson(member);
 
     given(memberService.findMember(Mockito.anyLong()))
