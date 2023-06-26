@@ -26,7 +26,7 @@ public class SecurityConfigH2 extends WebSecurityConfigurerAdapter {
             .and()
             .authorizeRequests(
                     authorize->authorize
-                            .antMatchers("/h2-console/**").permitAll() // Allow all access to /h2-console/*
+                            .antMatchers("/h2/**").permitAll() // Allow all access to /h2-console/*
                             .antMatchers("/member/**").permitAll()
                             .antMatchers("/question/**").permitAll()
                             .antMatchers("/**").authenticated()
@@ -44,6 +44,7 @@ public class SecurityConfigH2 extends WebSecurityConfigurerAdapter {
     CorsConfiguration configuration = new CorsConfiguration();
     configuration.setAllowedOrigins(Arrays.asList("*"));
     configuration.setAllowedMethods(Arrays.asList("GET","POST","PATCH","DELETE"));
+    configuration.setAllowedHeaders(Arrays.asList("*"));
 
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/**", configuration);
