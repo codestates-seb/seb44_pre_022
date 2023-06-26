@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import tw from 'twin.macro';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const SignupContainer = tw.div`
@@ -91,7 +91,8 @@ const Input = tw.input`
 const ErrorSvg = tw.svg`
   absolute
   mt-[-9px]
-  top-1/2 right-[0.7em]
+  top-1/2
+  right-[0.7em]
   w-[18px] h-[18px]
 `;
 
@@ -141,6 +142,8 @@ const BlueLoginText = tw.span`
 `;
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   // 이름, 이메일, 비밀번호 초기 상태값 선언
   const [nameValue, setNameValue] = useState<string>('');
   const [emailValue, setEmailValue] = useState<string>('');
@@ -209,6 +212,7 @@ const Signup = () => {
     }
   };
 
+  // const url = 'http://localhost:8080/member';
   const url = 'http://localhost:3001/member';
 
   const onSubmit = (event: any) => {
@@ -225,11 +229,12 @@ const Signup = () => {
 
       // POST 요청 보내기
       axios
-        .post(url, data)
+        .post(url, data, { withCredentials: true })
         .then((response) => {
           // 요청이 성공한 경우
           console.log('요청이 성공했습니다.');
           console.log('응답 데이터:', response.data);
+          navigate('../users/login');
         })
         .catch((error) => {
           // 요청이 실패한 경우
