@@ -8,6 +8,7 @@ import server.auth.dto.LoginDto;
 import javax.validation.Valid;
 
 @RestController
+@RequestMapping
 public class AuthController {
   @GetMapping("/login")
   public ResponseEntity login(
