@@ -91,7 +91,8 @@ const Input = tw.input`
 const ErrorSvg = tw.svg`
   absolute
   mt-[-9px]
-  top-1/2 right-[0.7em]
+  top-1/2
+  right-[0.7em]
   w-[18px] h-[18px]
 `;
 
@@ -209,7 +210,7 @@ const Signup = () => {
     }
   };
 
-  const url = 'http://localhost:3001/member';
+  const url = 'http://localhost:8080/member';
 
   const onSubmit = (event: any) => {
     event.preventDefault();
@@ -225,7 +226,7 @@ const Signup = () => {
 
       // POST 요청 보내기
       axios
-        .post(url, data)
+        .post(url, data, { withCredentials: true })
         .then((response) => {
           // 요청이 성공한 경우
           console.log('요청이 성공했습니다.');

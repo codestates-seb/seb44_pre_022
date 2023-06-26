@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import tw from 'tailwind-styled-components';
 import tw from 'twin.macro';
 
@@ -112,6 +112,53 @@ const BlueSignupText = tw.span`
 const Login = () => {
   const [isLoggedIn, setisLoggedIn] = useRecoilState(isLoggedInState);
 
+  // 이름, 이메일, 비밀번호 초기 상태값 선언
+  const [emailValue, setEmailValue] = useState<string>('');
+  const [pwValue, setPwValue] = useState<string>('');
+
+  // 오류메시지 상태저장
+  const [emailMessage, setEmailMessage] = useState<string>('');
+  const [pwMessage, setPwMessage] = useState<string>('');
+  const [errorSvg, setErrorSvg] = useState('');
+
+  // 유효성 검사
+  const [isEmail, setIsEmail] = useState<boolean>(false);
+  const [isPw, setIsPw] = useState<boolean>(false);
+
+  const onChangeEmail = (event: any) => {
+    const currentEmail = event.target.value;
+    setEmailValue(currentEmail);
+    const regexEmail =
+      /([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
+    if (!regexEmail.test(currentEmail)) {
+      setEmailMessage('이메일의 형식이 올바르지 않습니다.');
+      setIsEmail(false);
+    } else {
+      setEmailMessage('');
+      setIsEmail(true);
+    }
+  };
+
+  const onChangePw = (event: any) => {
+    const currentPw = event.target.value;
+    setPwValue(currentPw);
+    const regexPw = /^(?=.*[a-zA-Z])(?=.*[.!@#$%^*+=-])(?=.*[0-9]).{8,20}$/;
+
+    if (!regexPw.test(currentPw)) {
+      setPwMessage(
+        '비밀번호는 8~20자, 영문자, 숫자, 특수문자 1개가 포함되어야 합니다.'
+      );
+      setIsPw(false);
+    } else {
+      setPwMessage('');
+      setIsPw(true);
+    }
+  };
+
+  console.log(emailValue);
+  console.log(pwValue);
+
   return (
     <LoginContainer>
       <LogoUrl href='https://stackoverflow.com'>
@@ -126,7 +173,7 @@ const Login = () => {
       <LoginForm>
         <Email>
           <Label htmlFor='email-text'>Email</Label>
-          <Input id='email-text' type='text' />
+          <Input id='email-text' type='text' onChange={onChangeEmail} />
         </Email>
         <Password>
           <PasswordText>
@@ -135,7 +182,7 @@ const Login = () => {
               Forgot password?
             </Forgot>
           </PasswordText>
-          <Input id='password-text' type='password' />
+          <Input id='password-text' type='password' onChange={onChangePw} />
         </Password>
         <Link to={'../../'}>
           {/* Home 페이지로 리다이렉트 */}
