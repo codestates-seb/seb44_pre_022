@@ -30,7 +30,6 @@ public class SecurityConfigH2 extends WebSecurityConfigurerAdapter {
                             .antMatchers("/h2/**").permitAll() // Allow all access to /h2-console/*
                             .antMatchers("/member/**").permitAll()
                             .antMatchers("/question/**").permitAll()
-                            .antMatchers("/mypage/**").hasAnyRole("ROLE_ADMIN", "ROLE_USER")
                             .antMatchers("/**").authenticated()
                             .anyRequest().authenticated() // Any other request should be authenticated
             );
