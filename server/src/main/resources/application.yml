@@ -4,3 +4,7 @@ spring:
 mail:
   admin:
     address: admin@gmail.com
+jwt:
+  key: 'c3ByaW5nLXNlY3VyaXR5LWp3dC00MjQyLXNlY3JldAo='
+  access-token-expiration: 30
+  refresh-token-expiration: 420
